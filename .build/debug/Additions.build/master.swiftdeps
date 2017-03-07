@@ -1,0 +1,13 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.43.6 clang-800.0.38)"
+options: "ac27dc69f7a21ebfd4bd32727a76327e"
+build_time: [524865919, 593880000]
+inputs:
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/CollectionModels.swift": [524865195, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions.swift": [524865413, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Functions.swift": [524678904, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/IDArray.swift": [524674400, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Matching.swift": [524865221, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators.swift": [524844531, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/OrderedDictionary.swift": [524672068, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols.swift": [522540129, 0]
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Weak.swift": [524671836, 0]

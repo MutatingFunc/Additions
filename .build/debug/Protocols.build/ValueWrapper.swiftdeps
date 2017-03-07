@@ -1,0 +1,29 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ValueWrapper"
+- "MutableValueWrapper"
+provides-nominal:
+- "P9Protocols12ValueWrapper"
+- "P9Protocols19MutableValueWrapper"
+provides-member:
+- ["P9Protocols12ValueWrapper", ""]
+- ["P9Protocols19MutableValueWrapper", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "MutableValueWrapper"
+- "ValueWrapper"
+depends-member:
+- ["P9Protocols19MutableValueWrapper", "Value"]
+- ["P9Protocols19MutableValueWrapper", "value"]
+- ["P9Protocols19MutableValueWrapper", ""]
+- ["P9Protocols12ValueWrapper", "Value"]
+- ["P9Protocols12ValueWrapper", "value"]
+- ["P9Protocols12ValueWrapper", ""]
+depends-nominal:
+- "P9Protocols19MutableValueWrapper"
+- "P9Protocols12ValueWrapper"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "affdbd067c995cd2a158f902da866e8d"

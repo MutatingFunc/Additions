@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Functions.build/master.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Functions/Functional.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Functions.build/Functional.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Functions.build/Functional.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Functions.build/Functional~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Functions.build/Functional.swiftdeps"
+  }
+}

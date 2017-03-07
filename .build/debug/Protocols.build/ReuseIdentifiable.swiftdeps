@@ -1,0 +1,26 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ReuseIdentifiable"
+provides-nominal:
+- "P9Protocols17ReuseIdentifiable"
+provides-member:
+- ["P9Protocols17ReuseIdentifiable", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "String"
+- "UICollectionView"
+- "ReuseIdentifiable"
+- "UIView"
+- "UITableView"
+depends-member:
+- ["P9Protocols17ReuseIdentifiable", "String"]
+- ["P9Protocols17ReuseIdentifiable", "UIView"]
+- ["P9Protocols17ReuseIdentifiable", "reuseID"]
+- ["P9Protocols17ReuseIdentifiable", ""]
+depends-nominal:
+- "P9Protocols17ReuseIdentifiable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "1bed9a35456d8f35aa052c9eadb63fde"

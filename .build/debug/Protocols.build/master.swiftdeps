@@ -1,0 +1,9 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.30 clang-800.0.24)"
+options: "57f0098752b3d4e93d3ec79b0f187e54"
+build_time: [519227325, 245095000]
+inputs:
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/Copyable.swift": !dirty [518985371, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/EditableTableViewController.swift": !dirty [519175604, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/ReuseIdentifiable.swift": !dirty [519174946, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/StoryboardIdentifiable.swift": !dirty [519174946, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/ValueWrapper.swift": !dirty [518222119, 0]

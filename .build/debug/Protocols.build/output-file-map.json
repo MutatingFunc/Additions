@@ -1,0 +1,35 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/master.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/Copyable.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/Copyable.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/Copyable.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/Copyable.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/EditableTableViewController.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/EditableTableViewController.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/EditableTableViewController.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/EditableTableViewController~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/EditableTableViewController.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/ReuseIdentifiable.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ReuseIdentifiable.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ReuseIdentifiable.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ReuseIdentifiable~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ReuseIdentifiable.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/StoryboardIdentifiable.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/StoryboardIdentifiable.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/StoryboardIdentifiable.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/StoryboardIdentifiable~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/StoryboardIdentifiable.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols/ValueWrapper.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ValueWrapper.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ValueWrapper.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ValueWrapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Protocols.build/ValueWrapper.swiftdeps"
+  }
+}

@@ -1,0 +1,81 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Weak"
+- "WeakAny"
+provides-nominal:
+- "V5Types4Weak"
+- "V5Types7WeakAny"
+provides-member:
+- ["V5Types4Weak", ""]
+- ["V5Types7WeakAny", ""]
+- ["V5Types7WeakAny", "hasValue"]
+- ["V5Types7WeakAny", "storesWeakly"]
+provides-dynamic-lookup:
+depends-top-level:
+- "_WeakAny"
+- "WeakAny"
+- !private "!="
+- "Bool"
+- "ValueWrapper"
+- "MutableValueWrapper"
+- "AnyObject"
+- "Weak"
+depends-member:
+- !private ["Ps9AnyObject", "deinit"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps7Boolean", "_getBuiltinLogicValue"]
+- !private ["Ps25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- ["Ps28CustomDebugStringConvertible", "some"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- ["Ps17CustomReflectable", "some"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps21NilLiteralConvertible", "some"]
+- !private ["Sq", "deinit"]
+- ["Sq", "some"]
+- !private ["Ps16RawRepresentable", "Value"]
+- !private ["Ps16RawRepresentable", "Weak"]
+- !private ["Ps16RawRepresentable", "init"]
+- !private ["Ps16RawRepresentable", "rawValue"]
+- !private ["Ps16RawRepresentable", "referenceType"]
+- !private ["Ps16RawRepresentable", "value"]
+- !private ["Ps16RawRepresentable", "valueType"]
+- ["V5Types4Weak", "Value"]
+- !private ["V5Types4Weak", "_value"]
+- ["V5Types4Weak", "init"]
+- ["V5Types4Weak", "value"]
+- !private ["V5Types7WeakAny", "AnyObject"]
+- ["V5Types7WeakAny", "Bool"]
+- ["V5Types7WeakAny", "Value"]
+- !private ["V5Types7WeakAny", "Weak"]
+- ["V5Types7WeakAny", "_WeakAny"]
+- !private ["V5Types7WeakAny", "data"]
+- ["V5Types7WeakAny", "hasValue"]
+- ["V5Types7WeakAny", "init"]
+- ["V5Types7WeakAny", "storesWeakly"]
+- ["V5Types7WeakAny", "value"]
+- !private ["Ps33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+depends-nominal:
+- !private "Ps9AnyObject"
+- !private "Sb"
+- !private "Ps7Boolean"
+- !private "Ps25BooleanLiteralConvertible"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- !private "Ps23CustomStringConvertible"
+- !private "Ps9Equatable"
+- !private "Ps8Hashable"
+- "Ps21NilLiteralConvertible"
+- "Sq"
+- !private "Ps16RawRepresentable"
+- "V5Types4Weak"
+- "V5Types7WeakAny"
+- !private "Ps33_BuiltinBooleanLiteralConvertible"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "d7acc49605cde9e5941921a06c7a1ba9"

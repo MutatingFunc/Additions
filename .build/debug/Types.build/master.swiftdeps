@@ -1,0 +1,6 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.30 clang-800.0.24)"
+options: "b69d0a143cf4e0646fd8012372f0cefc"
+build_time: [519227325, 244999000]
+inputs:
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Types/Reference.swift": !dirty [518222119, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Types/Weak.swift": !dirty [518385304, 0]

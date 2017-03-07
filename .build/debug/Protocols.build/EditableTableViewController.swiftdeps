@@ -1,0 +1,51 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "TableViewControllerProtocol"
+- "EditableTableViewController"
+provides-nominal:
+- "P9Protocols27TableViewControllerProtocol"
+- "P9Protocols27EditableTableViewController"
+provides-member:
+- ["P9Protocols27TableViewControllerProtocol", ""]
+- ["P9Protocols27EditableTableViewController", ""]
+- ["P9Protocols27EditableTableViewController", "cutRow"]
+provides-dynamic-lookup:
+depends-top-level:
+- "UIViewController"
+- "TableViewControllerProtocol"
+- "Int"
+- "EditableTableViewController"
+- "Bool"
+- "UITableView"
+depends-member:
+- ["P9Protocols27EditableTableViewController", "Bool"]
+- ["P9Protocols27EditableTableViewController", "Int"]
+- ["P9Protocols27EditableTableViewController", "UIViewController"]
+- ["P9Protocols27EditableTableViewController", "copyRow"]
+- ["P9Protocols27EditableTableViewController", "cutRow"]
+- ["P9Protocols27EditableTableViewController", "deleteRow"]
+- ["P9Protocols27EditableTableViewController", "duplicateRow"]
+- ["P9Protocols27EditableTableViewController", "hasPasteboardItem"]
+- ["P9Protocols27EditableTableViewController", "insertRow"]
+- ["P9Protocols27EditableTableViewController", "pasteRow"]
+- ["P9Protocols27EditableTableViewController", ""]
+- ["P9Protocols27TableViewControllerProtocol", "Bool"]
+- ["P9Protocols27TableViewControllerProtocol", "Int"]
+- ["P9Protocols27TableViewControllerProtocol", "UITableView"]
+- ["P9Protocols27TableViewControllerProtocol", "UIViewController"]
+- ["P9Protocols27TableViewControllerProtocol", "copyRow"]
+- ["P9Protocols27TableViewControllerProtocol", "cutRow"]
+- ["P9Protocols27TableViewControllerProtocol", "deleteRow"]
+- ["P9Protocols27TableViewControllerProtocol", "duplicateRow"]
+- ["P9Protocols27TableViewControllerProtocol", "hasPasteboardItem"]
+- ["P9Protocols27TableViewControllerProtocol", "insertRow"]
+- ["P9Protocols27TableViewControllerProtocol", "pasteRow"]
+- ["P9Protocols27TableViewControllerProtocol", ""]
+depends-nominal:
+- "P9Protocols27EditableTableViewController"
+- "P9Protocols27TableViewControllerProtocol"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "ba193018c5dd2d8ffb44a0544b2e6982"

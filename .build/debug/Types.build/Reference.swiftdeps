@@ -1,0 +1,36 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Reference"
+- "MutableReference"
+provides-nominal:
+- "C5Types9Reference"
+- "C5Types16MutableReference"
+provides-member:
+- ["C5Types9Reference", ""]
+- ["C5Types16MutableReference", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "Reference"
+- "MutableReference"
+- "ValueWrapper"
+- "MutableValueWrapper"
+depends-member:
+- !private ["Ps9AnyObject", "value"]
+- ["Ps9AnyObject", ""]
+- ["C5Types16MutableReference", "Value"]
+- ["C5Types16MutableReference", "deinit"]
+- ["C5Types16MutableReference", "init"]
+- ["C5Types16MutableReference", "value"]
+- ["C5Types9Reference", "Value"]
+- ["C5Types9Reference", "deinit"]
+- ["C5Types9Reference", "init"]
+- ["C5Types9Reference", "value"]
+depends-nominal:
+- "Ps9AnyObject"
+- "C5Types16MutableReference"
+- "C5Types9Reference"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "eb13d20335a49b3e545e7a50b4acbd24"

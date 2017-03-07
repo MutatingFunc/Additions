@@ -1,0 +1,27 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+provides-member:
+- ["Sq", ""]
+- ["Sq", "ifPresent"]
+- ["Sq", "ifPresent"]
+provides-dynamic-lookup:
+depends-top-level:
+- "Optional"
+depends-member:
+- ["Ps28CustomDebugStringConvertible", "some"]
+- ["Ps17CustomReflectable", "some"]
+- ["Ps21NilLiteralConvertible", "some"]
+- ["Sq", "Wrapped"]
+- ["Sq", "ifPresent"]
+- ["Sq", "some"]
+depends-nominal:
+- "Ps28CustomDebugStringConvertible"
+- "Ps17CustomReflectable"
+- "Ps21NilLiteralConvertible"
+- "Sq"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "055efc611480738366df524aa226d065"

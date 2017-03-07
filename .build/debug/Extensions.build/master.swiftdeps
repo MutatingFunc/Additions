@@ -1,0 +1,8 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.30 clang-800.0.24)"
+options: "4beb4c446d3790e2ca8e2a27a85fd16b"
+build_time: [519227325, 245193000]
+inputs:
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/AlertController.swift": !dirty [519174946, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/Optional.swift": !dirty [519174973, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/ViewFunctions.swift": !dirty [519174946, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/ViewLayout.swift": !dirty [519175604, 0]

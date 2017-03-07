@@ -1,0 +1,29 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/master.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/AlertController.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/AlertController.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/AlertController.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/AlertController~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/AlertController.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/Optional.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/Optional.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/Optional.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/Optional~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/Optional.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/ViewFunctions.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewFunctions.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewFunctions.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewFunctions~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewFunctions.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions/ViewLayout.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewLayout.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewLayout.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewLayout~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Extensions.build/ViewLayout.swiftdeps"
+  }
+}

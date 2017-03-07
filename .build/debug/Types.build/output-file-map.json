@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/master.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Types/Reference.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Reference.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Reference.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Reference~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Reference.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Types/Weak.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Weak.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Weak.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Weak~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Types.build/Weak.swiftdeps"
+  }
+}

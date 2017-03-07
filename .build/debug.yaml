@@ -1,0 +1,24 @@
+client:
+  name: swift-build
+tools: {}
+targets:
+  "test": ["<Additions.module>"]
+  "main": ["<Additions.module>"]
+default: "main"
+commands: 
+  "<Additions.module>":
+    tool: swift-compiler
+    executable: "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    module-name: "Additions"
+    module-output-path: "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.swiftmodule"
+    inputs: []
+    outputs: ["<Additions.module>","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak.swift.o"]
+    import-paths: ["/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug"]
+    temps-path: "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build"
+    objects: ["/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols.swift.o","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak.swift.o"]
+    other-args: ["-j8","-D","SWIFT_PACKAGE","-Onone","-g","-enable-testing","-F","/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-target","x86_64-apple-macosx10.10","-sdk","/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk","-module-cache-path","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/ModuleCache"]
+    sources: ["/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/CollectionModels.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Functions.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/IDArray.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Matching.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/OrderedDictionary.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols.swift","/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Weak.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+

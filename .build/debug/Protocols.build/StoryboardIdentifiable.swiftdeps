@@ -1,0 +1,25 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "StoryboardIdentifiable"
+provides-nominal:
+- "P9Protocols22StoryboardIdentifiable"
+provides-member:
+- ["P9Protocols22StoryboardIdentifiable", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "UIStoryboard"
+- "String"
+- "StoryboardIdentifiable"
+- "UIViewController"
+depends-member:
+- ["P9Protocols22StoryboardIdentifiable", "String"]
+- ["P9Protocols22StoryboardIdentifiable", "UIViewController"]
+- ["P9Protocols22StoryboardIdentifiable", "storyboardID"]
+- ["P9Protocols22StoryboardIdentifiable", ""]
+depends-nominal:
+- "P9Protocols22StoryboardIdentifiable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+interface-hash: "e94a64b11ddf9ad38ede43e478446fc1"

@@ -1,0 +1,59 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/master.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/CollectionModels.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/CollectionModels.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Extensions.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Extensions.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Functions.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Functions.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/IDArray.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/IDArray.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Matching.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Matching.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Operators.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/OrderedDictionary.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/OrderedDictionary.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Protocols.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Protocols.swiftdeps"
+  },
+  "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Weak.swift": {
+    "dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak.d",
+    "object": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak.swift.o",
+    "swiftmodule": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/macOS/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Additions.build/Weak.swiftdeps"
+  }
+}

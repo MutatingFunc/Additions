@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/master.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators/Functional Operators.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Functional Operators.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Functional Operators.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Functional Operators~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Functional Operators.swiftdeps"
+  },
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators/Optional Functional Operators.swift": {
+    "dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Optional Functional Operators.d",
+    "object": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Optional Functional Operators.swift.o",
+    "swiftmodule": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Optional Functional Operators~partial.swiftmodule",
+    "swift-dependencies": "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/.build/debug/Operators.build/Optional Functional Operators.swiftdeps"
+  }
+}

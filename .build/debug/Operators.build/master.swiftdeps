@@ -1,0 +1,6 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.30 clang-800.0.24)"
+options: "4fe37ed157ccff295722747064004687"
+build_time: [519227325, 245235000]
+inputs:
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators/Functional Operators.swift": [519175662, 0]
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Operators/Optional Functional Operators.swift": [519175096, 0]

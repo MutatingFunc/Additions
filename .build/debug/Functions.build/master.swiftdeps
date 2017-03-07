@@ -1,0 +1,5 @@
+version: "Apple Swift version 3.0 (swiftlang-800.0.30 clang-800.0.24)"
+options: "8de42377c8e29e2502855a918f1d2eed"
+build_time: [519227325, 245606000]
+inputs:
+  "/Users/James/Home/Mac/App Data/Xcode/Swift 3/Frameworks/StandardAdditions/Sources/Functions/Functional.swift": [519175054, 0]

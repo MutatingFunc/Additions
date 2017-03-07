@@ -1,0 +1,187 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "CollectionModel"
+- "CollectionEditor"
+- "CollectionSource"
+- "ComposedCollectionSource"
+provides-nominal:
+- "P9Additions15CollectionModel"
+- "P9Additions16CollectionEditor"
+- "P9Additions16CollectionSource"
+- "P9Additions24ComposedCollectionSource"
+provides-member:
+- ["P9Additions15CollectionModel", ""]
+- ["P9Additions16CollectionEditor", ""]
+- ["P9Additions16CollectionSource", ""]
+- ["P9Additions24ComposedCollectionSource", ""]
+- ["P9Additions15CollectionModel", "Item"]
+- ["P9Additions16CollectionEditor", "cutItem"]
+- ["P9Additions16CollectionSource", "hasPasteboardItem"]
+- ["P9Additions16CollectionSource", "indexPath"]
+- ["P9Additions16CollectionSource", "newCopy"]
+- ["P9Additions24ComposedCollectionSource", "items"]
+- ["P9Additions24ComposedCollectionSource", "pasteboard"]
+- ["P9Additions24ComposedCollectionSource", "items"]
+- ["P9Additions24ComposedCollectionSource", "pasteboard"]
+provides-dynamic-lookup:
+depends-top-level:
+- "RangeReplaceableCollection"
+- "CollectionSource"
+- "Bool"
+- "Int"
+- "AssignmentPrecedence"
+- "CollectionModel"
+- "IndexPath"
+- !private "!="
+- "ComposedCollectionSource"
+- "AnyObject"
+- "CollectionEditor"
+- "Copyable"
+depends-member:
+- ["Ps9AnyObject", "Model"]
+- !private ["Ps9AnyObject", "model"]
+- !private ["Ps23BidirectionalCollection", "init"]
+- !private ["Ps22BidirectionalIndexable", "init"]
+- ["Sb", "deinit"]
+- ["Ps10Collection", "Iterator"]
+- !private ["Ps10Collection", "init"]
+- ["P9Additions16CollectionEditor", "AnyObject"]
+- ["P9Additions16CollectionEditor", "Bool"]
+- ["P9Additions16CollectionEditor", "CollectionModel"]
+- ["P9Additions16CollectionEditor", "Copyable"]
+- ["P9Additions16CollectionEditor", "IndexPath"]
+- ["P9Additions16CollectionEditor", "Int"]
+- ["P9Additions16CollectionEditor", "Item"]
+- ["P9Additions16CollectionEditor", "Items"]
+- ["P9Additions16CollectionEditor", "Model"]
+- ["P9Additions16CollectionEditor", "copyItem"]
+- ["P9Additions16CollectionEditor", "cutItem"]
+- ["P9Additions16CollectionEditor", "deleteItem"]
+- ["P9Additions16CollectionEditor", "duplicateItem"]
+- ["P9Additions16CollectionEditor", "hasPasteboardItem"]
+- ["P9Additions16CollectionEditor", "indexPath"]
+- ["P9Additions16CollectionEditor", "insertItem"]
+- ["P9Additions16CollectionEditor", "items"]
+- ["P9Additions16CollectionEditor", "model"]
+- ["P9Additions16CollectionEditor", "newCopy"]
+- ["P9Additions16CollectionEditor", "newItem"]
+- ["P9Additions16CollectionEditor", "pasteItem"]
+- ["P9Additions16CollectionEditor", "pasteboard"]
+- ["P9Additions16CollectionEditor", ""]
+- ["P9Additions15CollectionModel", "AnyObject"]
+- ["P9Additions15CollectionModel", "Bool"]
+- ["P9Additions15CollectionModel", "CollectionModel"]
+- ["P9Additions15CollectionModel", "Copyable"]
+- ["P9Additions15CollectionModel", "IndexPath"]
+- ["P9Additions15CollectionModel", "Int"]
+- ["P9Additions15CollectionModel", "Item"]
+- ["P9Additions15CollectionModel", "Items"]
+- ["P9Additions15CollectionModel", "Model"]
+- ["P9Additions15CollectionModel", "RangeReplaceableCollection"]
+- ["P9Additions15CollectionModel", "indexPath"]
+- ["P9Additions15CollectionModel", "items"]
+- ["P9Additions15CollectionModel", "model"]
+- ["P9Additions15CollectionModel", "newCopy"]
+- ["P9Additions15CollectionModel", "newItem"]
+- ["P9Additions15CollectionModel", "pasteboard"]
+- ["P9Additions15CollectionModel", ""]
+- ["P9Additions16CollectionSource", "AnyObject"]
+- ["P9Additions16CollectionSource", "Bool"]
+- ["P9Additions16CollectionSource", "CollectionModel"]
+- ["P9Additions16CollectionSource", "Copyable"]
+- ["P9Additions16CollectionSource", "IndexPath"]
+- ["P9Additions16CollectionSource", "Int"]
+- ["P9Additions16CollectionSource", "Item"]
+- ["P9Additions16CollectionSource", "Items"]
+- ["P9Additions16CollectionSource", "Model"]
+- ["P9Additions16CollectionSource", "hasPasteboardItem"]
+- ["P9Additions16CollectionSource", "indexPath"]
+- ["P9Additions16CollectionSource", "items"]
+- ["P9Additions16CollectionSource", "model"]
+- ["P9Additions16CollectionSource", "newCopy"]
+- ["P9Additions16CollectionSource", "newItem"]
+- ["P9Additions16CollectionSource", "pasteboard"]
+- ["P9Additions16CollectionSource", ""]
+- !private ["Ps10Comparable", "init"]
+- ["P9Additions24ComposedCollectionSource", "AnyObject"]
+- ["P9Additions24ComposedCollectionSource", "CollectionModel"]
+- ["P9Additions24ComposedCollectionSource", "Model"]
+- ["P9Additions24ComposedCollectionSource", "items"]
+- ["P9Additions24ComposedCollectionSource", "model"]
+- ["P9Additions24ComposedCollectionSource", "pasteboard"]
+- ["P9Additions24ComposedCollectionSource", ""]
+- !private ["P9Additions8Copyable", "deinit"]
+- !private ["P9Additions8Copyable", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps17CustomReflectable", "init"]
+- !private ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps9Equatable", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "init"]
+- !private ["Ps8Hashable", "init"]
+- ["V10Foundation9IndexPath", "deinit"]
+- !private ["V10Foundation9IndexPath", "init"]
+- ["Ps9Indexable", "Iterator"]
+- !private ["Ps9Indexable", "init"]
+- ["Ps13IndexableBase", "Iterator"]
+- !private ["Ps13IndexableBase", "init"]
+- ["Si", "deinit"]
+- ["Ps16IteratorProtocol", "Element"]
+- !private ["Ps17MutableCollection", "init"]
+- !private ["Ps16MutableIndexable", "init"]
+- ["Sq", "deinit"]
+- !private ["Ps22RandomAccessCollection", "init"]
+- !private ["Ps21RandomAccessIndexable", "init"]
+- ["Ps26RangeReplaceableCollection", "Iterator"]
+- ["Ps25RangeReplaceableIndexable", "Iterator"]
+- !private ["P10Foundation20ReferenceConvertible", "init"]
+- ["Ps8Sequence", "Iterator"]
+- !private ["Ps8Sequence", "init"]
+- !private ["Ps9_Hashable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+- ["Vs26_OptionalNilComparisonType", "deinit"]
+depends-nominal:
+- "Ps9AnyObject"
+- !private "Ps23BidirectionalCollection"
+- !private "Ps22BidirectionalIndexable"
+- "Sb"
+- "Ps10Collection"
+- "P9Additions16CollectionEditor"
+- "P9Additions15CollectionModel"
+- "P9Additions16CollectionSource"
+- !private "Ps10Comparable"
+- "P9Additions24ComposedCollectionSource"
+- !private "P9Additions8Copyable"
+- !private "Ps28CustomDebugStringConvertible"
+- !private "Ps17CustomReflectable"
+- !private "Ps23CustomStringConvertible"
+- !private "Ps9Equatable"
+- !private "Ps25ExpressibleByArrayLiteral"
+- !private "Ps8Hashable"
+- "V10Foundation9IndexPath"
+- "Ps9Indexable"
+- "Ps13IndexableBase"
+- "Si"
+- "Ps16IteratorProtocol"
+- !private "Ps17MutableCollection"
+- !private "Ps16MutableIndexable"
+- "Sq"
+- !private "Ps22RandomAccessCollection"
+- !private "Ps21RandomAccessIndexable"
+- "Ps26RangeReplaceableCollection"
+- "Ps25RangeReplaceableIndexable"
+- !private "P10Foundation20ReferenceConvertible"
+- "Ps8Sequence"
+- !private "Ps9_Hashable"
+- !private "Ps21_ObjectiveCBridgeable"
+- "Vs26_OptionalNilComparisonType"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+interface-hash: "0977328370398fbb36e31c6a6f53ab96"
