@@ -14,7 +14,7 @@ public final class Event<Notification> {
 	public typealias Stream = Additions.Stream<Notification>
 	
 	public let stream: Stream
-	private let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
+	fileprivate let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
 	
 	public init(asyncQueue: DispatchQueue? = nil) {
 		let hashTable = self.hashTable
@@ -34,7 +34,7 @@ public final class Event<Notification> {
 	}
 }
 
-private class HandlerRef<Notification> {
+fileprivate class HandlerRef<Notification> {
 	let handle: (Notification) -> ()
 	
 	init(_ handle: @escaping (Notification) -> ()) {
@@ -46,12 +46,12 @@ private class HandlerRef<Notification> {
 
 public struct Stream<Notification> {
 	public typealias Subscribe = (_ handler: @escaping (Notification) -> ()) -> EventSubscription
-	private let subscribeSource: Subscribe
+	fileprivate let subscribeSource: Subscribe
 	
 	fileprivate init(_ subscribe: @escaping Subscribe) {
 		self.subscribeSource = subscribe
 	}
-	private init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
+	fileprivate init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
 		self.init {handler in
 			subscribe {notification in
 				queue.async {
@@ -60,7 +60,7 @@ public struct Stream<Notification> {
 			}
 		}
 	}
-	private init<Source>(flatMapping subscribe: @escaping (_ handler: @escaping (Source) -> ()) -> EventSubscription, through transform: @escaping (Source) -> Notification?) {
+	fileprivate init<Source>(flatMapping subscribe: @escaping (_ handler: @escaping (Source) -> ()) -> EventSubscription, through transform: @escaping (Source) -> Notification?) {
 		self.init {handler in
 			subscribe {
 				transform($0) ?=> handler
@@ -83,7 +83,7 @@ public struct Stream<Notification> {
 //Subscription
 
 public final class EventSubscription: Hashable {
-	private var unsub: (() -> ())?
+	fileprivate var unsub: (() -> ())?
 	public var isActive: Bool {return unsub != nil}
 	
 	fileprivate init(_ unsub: @escaping () -> ()) {

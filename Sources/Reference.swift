@@ -17,6 +17,6 @@ public final class Reference<Target> {
 	public init(_ target: Target) {
 		self.target = target
 	}
-	private let changeEvent = Event<Target>()
+	fileprivate let changeEvent = Event<Target>()
 	public var changed: EventStream<Target> {return changeEvent.stream}
 }

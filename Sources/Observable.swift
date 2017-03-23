@@ -14,9 +14,9 @@ public final class Observable<Value> {
 	public typealias Stream = Additions.Stream<Value>
 	
 	public let stream: Stream
-	private var subscription: EventSubscription!
+	fileprivate var subscription: EventSubscription!
 	
-	public private(set) var latest: Value
+	public fileprivate(set) var latest: Value
 	
 	public init(_ stream: Stream, initial: Value) {
 		self.latest = initial

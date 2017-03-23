@@ -21,7 +21,7 @@ public extension AnyCollectionEditing {
 	func pasteItem(at index: Index) {base.pasteItem(at: index)}
 	func duplicateItem(at index: Index) {base.duplicateItem(at: index)}
 }
-private class _CollectionEditing<Index: Hashable>: CollectionEditing {
+fileprivate class _CollectionEditing<Index: Hashable>: CollectionEditing {
 	func insertItem(at index: Index) {fatalError()}
 	func deleteItem(at index: Index) {fatalError()}
 	func cutItem(at index: Index) {fatalError()}
@@ -29,7 +29,7 @@ private class _CollectionEditing<Index: Hashable>: CollectionEditing {
 	func pasteItem(at index: Index) {fatalError()}
 	func duplicateItem(at index: Index) {fatalError()}
 }
-private class __CollectionEditing<Base: CollectionEditing>: _CollectionEditing<Base.Index> {
+fileprivate class __CollectionEditing<Base: CollectionEditing>: _CollectionEditing<Base.Index> {
 	var base: Base
 	init(_ base: Base) {self.base = base}
 	override func insertItem(at index: Base.Index) {base.insertItem(at: index)}

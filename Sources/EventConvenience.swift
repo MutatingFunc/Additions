@@ -26,7 +26,7 @@ public extension Stream {
 	}
 }
 
-private var key: ()? = ()
+fileprivate var key: ()? = ()
 public extension NSObject {
 	var subscriptions: Set<EventSubscription> {
 		get {

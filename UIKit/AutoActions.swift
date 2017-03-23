@@ -15,7 +15,7 @@
 		}
 	}
 	public extension CollectionSourcing where Index == Items.Index, Self: AnyObject {
-		private var hasPasteboard: () -> Bool {return {[weak self] in self?.pasteboard != nil}}
+		fileprivate var hasPasteboard: () -> Bool {return {[weak self] in self?.pasteboard != nil}}
 		
 		func editActions(forRow index: Index, menuSource sourceView: UITableViewCell?, in vc: UIViewController) -> [UITableViewRowAction] {
 			return self.editActions(forRow: index, menuSource: sourceView, in: vc, hasPasteboard: hasPasteboard)
