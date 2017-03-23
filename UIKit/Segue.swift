@@ -11,7 +11,7 @@
 
 	//Segues
 	public extension UIViewController {
-		func performSegue<Segue>(_ identifierConvertible: Segue, sender: Any?) where
+		func performSegue<Segue>(_ identifierConvertible: Segue, sender: Any? = nil) where
 				Segue: RawRepresentable, Segue.RawValue == String {
 			return performSegue(withIdentifier: identifierConvertible.rawValue, sender: sender)
 		}

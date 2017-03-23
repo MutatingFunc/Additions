@@ -52,9 +52,8 @@
 	}
 	
 	public extension UIView {
-		func enablingAutolayout() -> Self {
+		func enableAutolayout() {
 			self.translatesAutoresizingMaskIntoConstraints = false
-			return self
 		}
 		func setHidden(_ newValue: Bool, animated: Bool, duration: TimeInterval = 0.5) {
 			if newValue == self.isHidden {return}

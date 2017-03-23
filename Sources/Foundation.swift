@@ -16,3 +16,14 @@ public extension IndexPath {
 		self.init(indexes: [0, item])
 	}
 }
+
+public extension UserDefaults {
+	func setValue<T>(_ value: Any?, forKey key: T) where
+			T: RawRepresentable, T.RawValue == String {
+		return self.setValue(value, forKey: key.rawValue)
+	}
+	func value<T>(forKey key: T) -> Any? where
+			T: RawRepresentable, T.RawValue == String {
+		return self.value(forKey: key.rawValue)
+	}
+}
