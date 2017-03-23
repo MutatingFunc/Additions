@@ -8,6 +8,11 @@
 
 import Foundation
 
+public extension Event where Notification == () {
+	public func notify() {
+		notify(())
+	}
+}
 public extension Stream {
 	func map<Result>(_ transform: @escaping (Notification) -> Result) -> Stream<Result> {
 		return self.flatMap(transform)
@@ -21,30 +26,6 @@ public extension Stream {
 			event?.notify($0)
 		}
 	}
-	func subscribe(_ nsObject: NSObject, _ handler: @escaping (Notification) -> ()) {
-		nsObject.subscriptions.insert(self.subscribe(handler))
-	}
 }
 
-private var key: ()? = ()
-public extension NSObject {
-	var subscriptions: Set<EventSubscription> {
-		get {
-			let test = objc_getAssociatedObject(self, &key) as? NSSet
-			return test?.allObjects.map{$0 as! EventSubscription} ?=> Set.init ?? []
-		}
-		set {objc_setAssociatedObject(self, &key, newValue as NSSet, .OBJC_ASSOCIATION_RETAIN)}
-	}
-}
-public func +=(lhs: inout Set<EventSubscription>, rhs: EventSubscription) {
-	lhs.insert(rhs)
-}
-public func +=(lhs: inout Set<EventSubscription>, rhs: Set<EventSubscription>) {
-	lhs.formUnion(rhs)
-}
-public func -=(lhs: inout Set<EventSubscription>, rhs: EventSubscription) {
-	lhs.remove(rhs)
-}
-public func -=(lhs: inout Set<EventSubscription>, rhs: Set<EventSubscription>) {
-	lhs.subtract(rhs)
-}
+extension EventSubscription: Hashable {}

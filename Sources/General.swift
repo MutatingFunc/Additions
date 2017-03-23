@@ -6,47 +6,82 @@
 //
 //
 
-//protocols
-
-public protocol Copyable {
-	///creates a new instance with the same value as self
-	func copy() -> Self
-}
-public extension Copyable {
-	init(copying other: Self) {
-		self = other.copy()
+//Adrian Zubarev, Swift Evolution, Jun 27, 2017
+public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never) rethrows -> T {
+	switch optional {
+	case .some(let value): return value
+	case .none: try noreturnOrError()
 	}
 }
 
-public protocol ValueSemantics: Copyable {}
-public extension ValueSemantics {
-	public func copy() -> Self {return self}
+extension Equatable where Self: AnyObject {
+	public static func ==(lhs: Self, rhs: Self) -> Bool {
+		return lhs === rhs
+	}
+}
+extension Hashable where Self: AnyObject {
+	#if swift(>=4.2)
+	func hash(into hasher: inout Hasher) {
+		ObjectIdentifier(self).hash(into: &hasher)
+	}
+	#else
+	var hashValue: Int {return ObjectIdentifier(self).hashValue}
+	#endif
 }
 
-//functions
-
-///runs a function, and returns it
-public func runNow<Out>(_ f: @escaping () -> Out) -> () -> Out {
-	_ = f()
-	return f
+extension Sequence {
+	public var isEmpty: Bool {
+		var iterator = self.makeIterator()
+		return iterator.next() == nil
+	}
+}
+extension Optional: IteratorProtocol where Wrapped: IteratorProtocol {
+	public typealias Element = Wrapped.Element
+	public mutating func next() -> Wrapped.Element? {
+		return self?.next()
+	}
+}
+extension Optional: Sequence where Wrapped: Sequence {
+	public typealias Iterator = Wrapped.Iterator?
+	public func makeIterator() -> Wrapped.Iterator? {
+		return self?.makeIterator()
+	}
+}
+extension Optional where Wrapped: Collection {
+	public subscript(_ position: Wrapped.Index) -> Wrapped.Element {
+		get {
+			guard let `self` = self else {preconditionFailure("Index out of bounds")}
+			return self[position]
+		}
+	}
+	public var count: Int {
+		return self?.count ?? 0
+	}
 }
 
-///runs a function, and returns it
-public func runNow<In, Out>(with value: In, _ f: @escaping (In) -> Out) -> (In) -> Out {
-	_ = f(value)
-	return f
+public extension Optional {
+	func map<T>(_ keyPath: KeyPath<Wrapped, T>) -> T? {
+		return self.map{$0[keyPath: keyPath]}
+	}
+	func flatMap<T>(_ keyPath: KeyPath<Wrapped, T?>) -> T? {
+		return self.flatMap{$0[keyPath: keyPath]}
+	}
 }
-
-//operators
-
-///matching
-public func ~=<A>(pattern: (A) -> Bool, matched: A) -> Bool {
-	return pattern(matched)
+public extension Sequence {
+	func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
+		return self.map{$0[keyPath: keyPath]}
+	}
+	func compactMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
+		return self.compactMap{$0[keyPath: keyPath]}
+	}
+	func flatMap<Sequence: Swift.Sequence>(_ keyPath: KeyPath<Element, Sequence>) -> [Sequence.Element] {
+		return self.flatMap{$0[keyPath: keyPath]}
+	}
+	func filter(by keyPath: KeyPath<Element, Bool>) -> [Element] {
+		return self.filter{$0[keyPath: keyPath]}
+	}
 }
-
-//extensions
-
-public extension Collection where Index == Indices.Iterator.Element {
+public extension Collection {
 	subscript(ifPresent index: Index) -> Iterator.Element? {
 		get {return self.indices.contains(index) ? self[index] : nil}
 	}
@@ -61,37 +96,70 @@ public extension RangeReplaceableCollection {
 
 public extension Comparable {
 	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: ClosedRange<Self>) -> Self {
+	func clamped(to range: ClosedRange<Self>) -> Self {
 		return max(min(self, range.upperBound), range.lowerBound)
 	}
 	
 	///clamps self
-	mutating func clamped(_ range: ClosedRange<Self>) {
-		self = self.clamped(range)
-	}
-}
-public extension Comparable where Self: _Strideable, Self.Stride: SignedInteger {
-	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: CountableRange<Self>) -> Self {
-		return max(min(self, range.upperBound.advanced(by: -1)), range.lowerBound)
-	}
-	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: CountableClosedRange<Self>) -> Self {
-		return max(min(self, range.upperBound), range.lowerBound)
-	}
-	
-	///clamps self
-	mutating func clamp(_ range: CountableRange<Self>) {
-		self = self.clamped(range)
-	}
-	///clamps self
-	mutating func clamp(_ range: CountableClosedRange<Self>) {
-		self = self.clamped(range)
+	mutating func clamp(to range: ClosedRange<Self>) {
+		self = self.clamped(to: range)
 	}
 }
 
-public extension Bool {
-	mutating func invert() {
-		self = !self
+public extension Comparable where Self: Strideable, Self.Stride: SignedInteger {
+	///return the bound which self is beyond, otherwise self
+	func clamped(to range: CountableRange<Self>) -> Self {
+		return max(min(self, range.upperBound.advanced(by: -1)), range.lowerBound)
+	}
+	///return the bound which self is beyond, otherwise self
+	func clamped(to range: CountableClosedRange<Self>) -> Self {
+		return max(min(self, range.upperBound), range.lowerBound)
+	}
+	
+	///clamps self
+	mutating func clamp(to range: CountableRange<Self>) {
+		self = self.clamped(to: range)
+	}
+	///clamps self
+	mutating func clamp(to range: CountableClosedRange<Self>) {
+		self = self.clamped(to: range)
+	}
+}
+
+private struct StrideToCollection<Index: Strideable>: BidirectionalCollection {
+	subscript(position: Index) -> Index {
+		guard indices.contains(position) else {fatalError("Index out of bounds")}
+		return position
+	}
+	init(from: Index, to: Index, by: Index.Stride) {startIndex = from; endIndex = to; stride = by}
+	var startIndex: Index
+	var endIndex: Index
+	var stride: Index.Stride
+	var indices: Range<Index> {return startIndex..<endIndex}
+	func index(after i: Index) -> Index {return i.advanced(by: 1)}
+	func index(before i: Index) -> Index {return i.advanced(by: -1)}
+	func index(of element: Index) -> Index? {return indices.contains(element) ? element : nil}
+	func contains(_ element: Index) -> Bool {return indices.contains(element)}
+}
+public extension FixedWidthInteger {
+	///return the bound which self is beyond, otherwise self
+	func clamped<Range>(to range: Range) -> Self where Range: RangeExpression, Range.Bound == Self {
+		let range = range.relative(to: StrideToCollection(from: Self.min, to: Self.max, by: 1))
+		switch self {
+		case range: return self
+		case ...range.lowerBound: return range.lowerBound
+		case _: return range.upperBound.advanced(by: -1)
+		}
+	}
+}
+public extension FloatingPoint {
+	///return the bound which self is beyond, otherwise self
+	func clamped<Range>(to range: Range) -> Self where Range: RangeExpression, Range.Bound == Self {
+		let range = range.relative(to: StrideToCollection(from: -Self.greatestFiniteMagnitude, to: Self.greatestFiniteMagnitude, by: 1))
+		switch self {
+		case range: return self
+		case ...range.lowerBound: return range.lowerBound
+		case _: return range.upperBound.advanced(by: -1)
+		}
 	}
 }

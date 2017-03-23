@@ -15,3 +15,10 @@ public struct Weak<Reference: AnyObject> {
 	public weak var target: Reference?
 	public init(_ target: Reference?) {self.target = target}
 }
+extension Weak: ExpressibleByNilLiteral {
+	public init(nilLiteral: ()) {target = nil}
+}
+extension Weak: Hashable {}
+extension Weak: CustomDebugStringConvertible {
+	public var debugDescription: String {return target.debugDescription}
+}

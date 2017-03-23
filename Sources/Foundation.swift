@@ -9,10 +9,35 @@
 import Foundation
 
 public extension IndexPath {
-	init(row: Int) {
-		self.init(indexes: [0, row])
+	init<I: BinaryInteger>(row: I) {
+		self.init(indexes: [0, Int(row)])
 	}
-	init(item: Int) {
-		self.init(indexes: [0, item])
+	init<I: BinaryInteger>(item: I) {
+		self.init(indexes: [0, Int(item)])
+	}
+}
+
+public extension JSONDecoder {
+	func decode<Decodable: Swift.Decodable>(from data: Data) throws -> Decodable {
+		return try self.decode(Decodable.self, from: data)
+	}
+}
+
+public extension FileManager {
+	///copies a file, renaming with an incrementing number on a FileExists error.
+	func renamingCopy(at source: URL, to target: URL) throws {
+		let fileManager = FileManager.default
+		let (title, ext) = (target.deletingPathExtension().lastPathComponent, target.pathExtension)
+		let targetFolder = target.deletingLastPathComponent()
+		var target = target
+		for num in 2 ... 100 {
+			do {
+				try fileManager.copyItem(at: source, to: target)
+				return
+			} catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == CocoaError.fileWriteFileExists.rawValue {
+				target = targetFolder.appendingPathComponent("\(title) \(num).\(ext)")
+			}
+		}
+		throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileWriteFileExists.rawValue, userInfo: nil)
 	}
 }

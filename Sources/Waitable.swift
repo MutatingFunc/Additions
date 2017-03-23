@@ -6,13 +6,17 @@
 //
 //
 
+/*
+inactive - too rare
+*/
+
 import Foundation
 
 ///wraps a function which waits for a process to complete
 public struct Waitable<Result> {
 	///waits for the process to complete
 	public let wait: () -> Result
-	fileprivate init(_ process: @escaping () -> Result) {self.wait = process}
+	private init(_ process: @escaping () -> Result) {self.wait = process}
 }
 ///begins calculating the result of a function asynchronously
 public func async<Out>(priority: DispatchQoS.QoSClass = .default, _ f: @escaping () -> Out) -> Waitable<Out> {

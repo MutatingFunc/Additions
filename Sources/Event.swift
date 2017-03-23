@@ -16,9 +16,8 @@ public final class Event<Notification> {
 	public let stream: Stream
 	private let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
 	
-	public init(asyncQueue: DispatchQueue? = nil) {
-		let hashTable = self.hashTable
-		self.stream = Stream {handler in
+	public init() {
+		self.stream = Stream {[hashTable] handler in
 			let ref = HandlerRef(handler)
 			hashTable.add(ref)
 			return EventSubscription {[weak hashTable] in
@@ -51,7 +50,7 @@ public struct Stream<Notification> {
 	fileprivate init(_ subscribe: @escaping Subscribe) {
 		self.subscribeSource = subscribe
 	}
-	private init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
+	private init(async queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
 		self.init {handler in
 			subscribe {notification in
 				queue.async {
@@ -63,7 +62,7 @@ public struct Stream<Notification> {
 	private init<Source>(flatMapping subscribe: @escaping (_ handler: @escaping (Source) -> ()) -> EventSubscription, through transform: @escaping (Source) -> Notification?) {
 		self.init {handler in
 			subscribe {
-				transform($0) ?=> handler
+				transform($0).map(handler)
 			}
 		}
 	}
@@ -72,7 +71,7 @@ public struct Stream<Notification> {
 		return .init(flatMapping: self.subscribeSource, through: transform)
 	}
 	public func async(_ queue: DispatchQueue = .global()) -> Stream {
-		return .init(queue, self.subscribeSource)
+		return .init(async: queue, self.subscribeSource)
 	}
 	
 	public func subscribe(_ handler: @escaping (Notification) -> ()) -> EventSubscription {
@@ -82,7 +81,7 @@ public struct Stream<Notification> {
 
 //Subscription
 
-public final class EventSubscription: Hashable {
+public final class EventSubscription {
 	private var unsub: (() -> ())?
 	public var isActive: Bool {return unsub != nil}
 	
@@ -95,12 +94,5 @@ public final class EventSubscription: Hashable {
 		unsub?()
 		unsub = nil
 	}
-	
-	public var hashValue: Int {
-		return ObjectIdentifier(self).hashValue
-	}
-}
-public func ==(lhs: EventSubscription, rhs: EventSubscription) -> Bool {
-	return lhs === rhs
 }
 

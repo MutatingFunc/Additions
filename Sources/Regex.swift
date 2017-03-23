@@ -32,8 +32,8 @@ public struct RegEx: ExpressibleByStringLiteral {
 	}
 	
 	public func matches(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
-		return try! NSRegularExpression(pattern: self.pattern, options: self.options)
-			.firstMatch(in: string, options: options, range: range(string)) != nil
+		return try? NSRegularExpression(pattern: self.pattern, options: self.options)
+			.firstMatch(in: string, options: options, range: range(string)) ¬= nil
 	}
 }
 public func ~=(pattern: RegEx, matched: String) -> Bool {

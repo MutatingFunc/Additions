@@ -15,8 +15,19 @@ inactive
 • some optimal characters don't render nicely
 */
 
+
 prefix operator ¬
 @inline(__always) public prefix func ¬(a: Bool) -> Bool {return !a}
+
+infix operator ¬=: ComparisonPrecedence
+@inline(__always) public func ¬=<A: Equatable>(a: A, b: A) -> Bool {return a != b}
+@inline(__always) public func ¬=<A: Equatable>(a: A?, b: A?) -> Bool {return a != b}
+@inline(__always) public func ¬=<A>(a: A?, b: _OptionalNilComparisonType) -> Bool {return a != b}
+@inline(__always) public func ¬=<A>(a: _OptionalNilComparisonType, b: A?) -> Bool {return a != b}
+
+infix operator ¬==: ComparisonPrecedence
+@inline(__always) public func ¬==(a: AnyObject, b: AnyObject) -> Bool {return a !== b}
+@inline(__always) public func ¬==(a: AnyObject?, b: AnyObject?) -> Bool {return a !== b}
 
 @available(*, deprecated, renamed: "√")
 @inline(__always) public func sqrt<A>(a: A) {fatalError()}
@@ -34,15 +45,6 @@ infix operator ÷=: AssignmentPrecedence
 @inline(__always) public func ÷=<A: FloatingPoint>(a: inout A, b: A) {return a /= b}
 @inline(__always) public func ÷=<A: IntegerArithmetic>(a: inout A, b: A) {return a /= b}
 
-infix operator ≠: ComparisonPrecedence
-@inline(__always) public func ≠<A: Equatable>(a: A, b: A) -> Bool {return a != b}
-@inline(__always) public func ≠<A: Equatable>(a: A?, b: A?) -> Bool {return a != b}
-@inline(__always) public func ≠<A>(a: A?, b: _OptionalNilComparisonType) -> Bool {return a != b}
-@inline(__always) public func ≠<A>(a: _OptionalNilComparisonType, b: A?) -> Bool {return a != b}
-
-infix operator ¬==: ComparisonPrecedence
-@inline(__always) public func ¬==(a: AnyObject, b: AnyObject) -> Bool {return a !== b}
-@inline(__always) public func ¬==(a: AnyObject?, b: AnyObject?) -> Bool {return a !== b}
 
 infix operator ≤: ComparisonPrecedence
 @inline(__always) public func ≤<A: Comparable>(a: A, b: A) -> Bool {return a <= b}
@@ -58,7 +60,6 @@ infix operator ÷: MultiplicationPrecedence
 @inline(__always) public func ÷<A: FloatingPoint>(a: A, b: A) -> A {return a / b}
 @inline(__always) public func ÷<A: IntegerArithmetic>(a: A, b: A) -> A {return a / b}
 
-/*
 precedencegroup SetComparisonPrecedence {
 	higherThan: ComparisonPrecedence
 	lowerThan: NilCoalescingPrecedence
@@ -112,4 +113,4 @@ public func ∪<A: SetAlgebra>(a: A, b: A) -> A {return a.union(b)}
 
 infix operator ∩: SetOperationPrecedence
 public func ∩<A: SetAlgebra>(a: A, b: A) -> A {return a.intersection(b)}
-*/
+

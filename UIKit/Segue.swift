@@ -6,14 +6,14 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
-	import UIKit
+#if canImport(UIKit)
+import UIKit
 
-	//Segues
-	public extension UIViewController {
-		func performSegue<Segue>(_ identifierConvertible: Segue, sender: Any?) where
-				Segue: RawRepresentable, Segue.RawValue == String {
-			return performSegue(withIdentifier: identifierConvertible.rawValue, sender: sender)
-		}
+//Segues
+public extension UIViewController {
+	func performSegue<Segue>(_ identifierConvertible: Segue, sender: Any? = nil) where
+			Segue: RawRepresentable, Segue.RawValue == String {
+		return performSegue(withIdentifier: identifierConvertible.rawValue, sender: sender)
 	}
+}
 #endif
