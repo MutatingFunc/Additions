@@ -13,10 +13,10 @@
 
 	public extension XibLoadable where Self: UIView {
 		@available(iOSApplicationExtension 9, *)
-		func setupFromXib() {
+		func setupFromXib(named name: String? = nil) {
 			self.enableAutolayout()
 			let bundle = Bundle(for: type(of: self))
-			let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+			let nib = UINib(nibName: name ?? String(describing: type(of: self)), bundle: bundle)
 			let view = (nib.instantiate(withOwner: self, options: nil).first as! UIView) +> {$0.enableAutolayout()}
 			view.frame = self.bounds
 			self.addSubview(view)
