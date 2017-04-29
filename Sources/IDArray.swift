@@ -7,9 +7,7 @@
 //
 
 import Foundation
-#if swift(>=3.0)
-	//unexpected compilation error in Swift 3.1
-#else
+
 public typealias IDPaired<Element> = (id: UUID, value: Element)
 
 ///a collection providing unique identifiers for its contents
@@ -75,4 +73,3 @@ public extension IDArray {
 		return self.description
 	}
 }
-#endif

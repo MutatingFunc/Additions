@@ -21,9 +21,6 @@ infix operator ?=> : ApplicativePrecedence
 public func ?=><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
 	return try a.flatMap(b)
 }
-public func ?=><In>(a: In?, b: (In) throws -> ()) rethrows -> () {
-	_ = try a.flatMap(b)
-}
 
 ///applying
 infix operator +> : ApplicativePrecedence

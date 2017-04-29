@@ -9,6 +9,11 @@
 #if os(iOS)
 	import UIKit
 	
+	public extension CollectionSourcing where Index == Items.Index, Self: UITableViewController, CollectionView.Index == IndexPath {
+		func editActions(forRow index: Index) -> [UITableViewRowAction] {
+			return self.editActions(forRow: index, menuSource: tableView.cellForRow(at: self.displayIndex(for: index)), in: self)
+		}
+	}
 	public extension CollectionSourcing where Index == Items.Index, Self: UIViewController {
 		func editActions(forRow index: Index, menuSource sourceView: UITableViewCell?) -> [UITableViewRowAction] {
 			return self.editActions(forRow: index, menuSource: sourceView, in: self)
