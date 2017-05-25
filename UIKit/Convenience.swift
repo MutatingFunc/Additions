@@ -8,9 +8,13 @@
 
 #if os(iOS) || os(tvOS)
 	import UIKit
-
+	
 	public extension UIAlertController {
-		@discardableResult func addAction(if condition: Bool = true, _ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
+		@discardableResult func addAction(_ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
+			self.addAction(UIAlertAction(title: title, style: style, handler: handler))
+			return self
+		}
+		@discardableResult func addAction(if condition: Bool, _ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 			if condition {self.addAction(UIAlertAction(title: title, style: style, handler: handler))}
 			return self
 		}
@@ -54,27 +58,6 @@
 	public extension UIView {
 		func enableAutolayout() {
 			self.translatesAutoresizingMaskIntoConstraints = false
-		}
-		func setHidden(_ newValue: Bool, animated: Bool, duration: TimeInterval = 0.5) {
-			if newValue == self.isHidden {return}
-			
-			switch (newValue, animated) {
-			case (_, false):
-				self.isHidden = newValue
-			case (false, true):
-				self.isHidden = false
-				self.alpha = 0
-				UIView.animate(withDuration: duration) {
-					self.alpha = 1
-				}
-			case (true, true):
-				UIView.animate(withDuration: duration, animations: {
-					self.alpha = 0
-					}, completion: {_ in
-						self.isHidden = true
-						self.alpha = 1
-				})
-			}
 		}
 	}
 	

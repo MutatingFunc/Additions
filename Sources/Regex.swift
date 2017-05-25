@@ -40,6 +40,6 @@ public func ~=(pattern: RegEx, matched: String) -> Bool {
 	return pattern.matches(matched)
 }
 
-fileprivate func range(_ string: String) -> NSRange {
+private func range(_ string: String) -> NSRange {
 	return NSRange(location: 0, length: (string as NSString).length)
 }

@@ -45,10 +45,6 @@
 			self.constrain(subview: subview, centers, offset: offset)
 		}
 		
-		
-		@available(*, deprecated, renamed: "constrain(subview:_:withPadding:)")
-		func constrain(sides: Side, toSubview subview: UIView, withPadding padding: CGFloat = 0) {}
-		
 		func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {
 			if sides.contains(.top) {
 				subview.topAnchor.constraint(equalTo: self.topAnchor, constant: padding).isActive = true

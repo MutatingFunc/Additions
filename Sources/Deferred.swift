@@ -6,13 +6,17 @@
 //
 //
 
+/*
+inactive - too rare
+*/
+
 public class DeferredCreatable<Source> {
-	fileprivate init() {}
+	private init() {}
 	public func create(with source: Source) {fatalError()}
 }
 
 public class Deferred<Source, Result>: DeferredCreatable<Source> {
-	fileprivate let constructor: (Source) -> Result
+	private let constructor: (Source) -> Result
 	
 	public init(_ constructor: @escaping (Source) -> Result) {
 		self.constructor = constructor
@@ -29,5 +33,5 @@ public class Deferred<Source, Result>: DeferredCreatable<Source> {
 		result = constructor(source)
 	}
 	
-	public fileprivate(set) var result: Result?
+	public private(set) var result: Result?
 }

@@ -21,30 +21,13 @@ public extension Stream {
 			event?.notify($0)
 		}
 	}
-	func subscribe(_ nsObject: NSObject, _ handler: @escaping (Notification) -> ()) {
-		nsObject.subscriptions.insert(self.subscribe(handler))
-	}
 }
 
-fileprivate var key: ()? = ()
-public extension NSObject {
-	var subscriptions: Set<EventSubscription> {
-		get {
-			let test = objc_getAssociatedObject(self, &key) as? NSSet
-			return test?.allObjects.map{$0 as! EventSubscription} ?=> Set.init ?? []
-		}
-		set {objc_setAssociatedObject(self, &key, newValue as NSSet, .OBJC_ASSOCIATION_RETAIN)}
+extension EventSubscription: Hashable {
+	public var hashValue: Int {
+		return ObjectIdentifier(self).hashValue
 	}
 }
-public func +=(lhs: inout Set<EventSubscription>, rhs: EventSubscription) {
-	lhs.insert(rhs)
-}
-public func +=(lhs: inout Set<EventSubscription>, rhs: Set<EventSubscription>) {
-	lhs.formUnion(rhs)
-}
-public func -=(lhs: inout Set<EventSubscription>, rhs: EventSubscription) {
-	lhs.remove(rhs)
-}
-public func -=(lhs: inout Set<EventSubscription>, rhs: Set<EventSubscription>) {
-	lhs.subtract(rhs)
+public func ==(lhs: EventSubscription, rhs: EventSubscription) -> Bool {
+	return lhs === rhs
 }

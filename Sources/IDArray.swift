@@ -6,6 +6,10 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
+/*
+inactive - requires OrderedDictionary
+*/
+
 import Foundation
 
 public typealias IDPaired<Element> = (id: UUID, value: Element)
@@ -13,7 +17,7 @@ public typealias IDPaired<Element> = (id: UUID, value: Element)
 ///a collection providing unique identifiers for its contents
 public struct IDArray<Element>: RangeReplaceableCollection, MutableCollection, ExpressibleByArrayLiteral, CustomStringConvertible, CustomDebugStringConvertible {
 	
-	fileprivate var data = OrderedDictionary<UUID, Element>()
+	private var data = OrderedDictionary<UUID, Element>()
 	
 	public init() {}
 	public init(arrayLiteral elements: Element...) {self.init(elements)}

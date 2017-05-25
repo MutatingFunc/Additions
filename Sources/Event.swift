@@ -14,9 +14,9 @@ public final class Event<Notification> {
 	public typealias Stream = Additions.Stream<Notification>
 	
 	public let stream: Stream
-	fileprivate let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
+	private let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
 	
-	public init(asyncQueue: DispatchQueue? = nil) {
+	public init() {
 		let hashTable = self.hashTable
 		self.stream = Stream {handler in
 			let ref = HandlerRef(handler)
@@ -34,7 +34,7 @@ public final class Event<Notification> {
 	}
 }
 
-fileprivate class HandlerRef<Notification> {
+private class HandlerRef<Notification> {
 	let handle: (Notification) -> ()
 	
 	init(_ handle: @escaping (Notification) -> ()) {
@@ -46,12 +46,12 @@ fileprivate class HandlerRef<Notification> {
 
 public struct Stream<Notification> {
 	public typealias Subscribe = (_ handler: @escaping (Notification) -> ()) -> EventSubscription
-	fileprivate let subscribeSource: Subscribe
+	private let subscribeSource: Subscribe
 	
 	fileprivate init(_ subscribe: @escaping Subscribe) {
 		self.subscribeSource = subscribe
 	}
-	fileprivate init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
+	private init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
 		self.init {handler in
 			subscribe {notification in
 				queue.async {
@@ -60,10 +60,10 @@ public struct Stream<Notification> {
 			}
 		}
 	}
-	fileprivate init<Source>(flatMapping subscribe: @escaping (_ handler: @escaping (Source) -> ()) -> EventSubscription, through transform: @escaping (Source) -> Notification?) {
+	private init<Source>(flatMapping subscribe: @escaping (_ handler: @escaping (Source) -> ()) -> EventSubscription, through transform: @escaping (Source) -> Notification?) {
 		self.init {handler in
 			subscribe {
-				transform($0) ?=> handler
+				transform($0).map(handler)
 			}
 		}
 	}
@@ -82,8 +82,8 @@ public struct Stream<Notification> {
 
 //Subscription
 
-public final class EventSubscription: Hashable {
-	fileprivate var unsub: (() -> ())?
+public final class EventSubscription {
+	private var unsub: (() -> ())?
 	public var isActive: Bool {return unsub != nil}
 	
 	fileprivate init(_ unsub: @escaping () -> ()) {
@@ -95,12 +95,5 @@ public final class EventSubscription: Hashable {
 		unsub?()
 		unsub = nil
 	}
-	
-	public var hashValue: Int {
-		return ObjectIdentifier(self).hashValue
-	}
-}
-public func ==(lhs: EventSubscription, rhs: EventSubscription) -> Bool {
-	return lhs === rhs
 }
 

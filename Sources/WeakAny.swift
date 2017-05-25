@@ -10,8 +10,8 @@
 inactive - no valid use found
 */
 
-//fileprivate, to avoid explicit case access
-fileprivate enum _WeakAny<Type> {
+//private, to avoid explicit case access
+private enum _WeakAny<Type> {
 	case valueType(Type?)
 	case referenceType(Weak<AnyObject>)
 	
@@ -39,7 +39,7 @@ fileprivate enum _WeakAny<Type> {
 
 ///acts as a weak wrapper around a reference-type, or a regular wrapper around a value-type
 public struct WeakAny<Type> {
-	fileprivate var data: _WeakAny<Type>
+	private var data: _WeakAny<Type>
 	
 	///the contained value, stored weakly if value is a reference type
 	public var target: Type? {

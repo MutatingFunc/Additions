@@ -6,23 +6,6 @@
 //
 //
 
-//protocols
-
-public protocol Copyable {
-	///creates a new instance with the same value as self
-	func copy() -> Self
-}
-public extension Copyable {
-	init(copying other: Self) {
-		self = other.copy()
-	}
-}
-
-public protocol ValueSemantics: Copyable {}
-public extension ValueSemantics {
-	public func copy() -> Self {return self}
-}
-
 //functions
 
 ///runs a function, and returns it
@@ -37,16 +20,9 @@ public func runNow<In, Out>(with value: In, _ f: @escaping (In) -> Out) -> (In) 
 	return f
 }
 
-//operators
-
-///matching
-public func ~=<A>(pattern: (A) -> Bool, matched: A) -> Bool {
-	return pattern(matched)
-}
-
 //extensions
 
-public extension Collection where Index == Indices.Iterator.Element {
+public extension Collection {
 	subscript(ifPresent index: Index) -> Iterator.Element? {
 		get {return self.indices.contains(index) ? self[index] : nil}
 	}
@@ -66,7 +42,7 @@ public extension Comparable {
 	}
 	
 	///clamps self
-	mutating func clamped(_ range: ClosedRange<Self>) {
+	mutating func clamp(_ range: ClosedRange<Self>) {
 		self = self.clamped(range)
 	}
 }

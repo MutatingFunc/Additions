@@ -6,6 +6,11 @@
 //
 //
 
+//Optional.flatMap: ?=>
+//do {let intermediate}: =>
+//do {let object}: +>
+//do {let optional; optional.flatMap}: ?+>
+
 precedencegroup ApplicativePrecedence {
 	associativity: left
 	higherThan: NilCoalescingPrecedence, DefaultPrecedence

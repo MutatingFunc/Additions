@@ -6,17 +6,15 @@
 //
 //
 
-import Foundation
-
 //Observable
 
 public final class Observable<Value> {
 	public typealias Stream = Additions.Stream<Value>
 	
 	public let stream: Stream
-	fileprivate var subscription: EventSubscription!
+	private var subscription: EventSubscription!
 	
-	public fileprivate(set) var latest: Value
+	public private(set) var latest: Value
 	
 	public init(_ stream: Stream, initial: Value) {
 		self.latest = initial
@@ -25,6 +23,9 @@ public final class Observable<Value> {
 			self?.latest = $0
 		}
 	}
+}
+
+public extension Observable {
 	public static func make(initial: Value) -> (observable: Observable<Value>, event: Event<Value>) {
 		let event = Event<Value>()
 		let observable = Observable(event.stream, initial: initial)
@@ -37,10 +38,6 @@ public final class Observable<Value> {
 	}
 	public func subscribeNow(_ event: Event<Value>) -> EventSubscription {
 		return stream.subscribe(event)
-	}
-	public func subscribeNow(_ nsObject: NSObject, _ handler: @escaping (Value) -> ()) {
-		handler(self.latest)
-		return stream.subscribe(nsObject, handler)
 	}
 }
 

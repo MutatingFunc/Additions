@@ -6,12 +6,16 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
+/*
+inactive - dictionary bug
+*/
+
 ///a dictionary with an ordered set of keys
 public struct OrderedDictionary<Key: Hashable, Value>: RangeReplaceableCollection, ExpressibleByDictionaryLiteral, CustomStringConvertible, CustomDebugStringConvertible {
 	public typealias KeyValue = (key: Key, value: Value)
 	
-	public fileprivate(set) var keys = [Key]()
-	fileprivate var values = [Key: Value]()
+	public private(set) var keys = [Key]()
+	private var values = [Key: Value]()
 	
 	public init() {}
 	public init(dictionaryLiteral elements: (Key, Value)...) {
@@ -87,7 +91,9 @@ public extension OrderedDictionary {
 			self.values[key] = nil
 		}
 		var newKeys = [Key]()
-		if let count = newElements.count as? Int {newKeys.reserveCapacity(count)}
+		if let count = newElements.count as? Int {
+			newKeys.reserveCapacity(count)
+		}
 		for (key, value) in newElements {
 			self.values[key] = value
 			newKeys.append(key)
@@ -98,7 +104,7 @@ public extension OrderedDictionary {
 
 public extension OrderedDictionary {
 	var description: String {
-		return "\(OrderedDictionary.self): [" + self.keys.map{key in
+		return "\(OrderedDictionary.self): [" + self.keys.map {(key: Key) -> String in
 			"\(key): \(self.values[key].debugDescription)"
 		}.joined(separator: ", ") + "]"
 	}
