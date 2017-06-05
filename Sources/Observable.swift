@@ -26,7 +26,7 @@ public final class Observable<Value> {
 }
 
 public extension Observable {
-	public static func make(initial: Value) -> (observable: Observable<Value>, event: Event<Value>) {
+	public static func new(initial: Value) -> (observable: Observable<Value>, event: Event<Value>) {
 		let event = Event<Value>()
 		let observable = Observable(event.stream, initial: initial)
 		return (observable, event)

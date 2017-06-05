@@ -6,7 +6,7 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-//just make a class
+//inactive - just make a class
 #if os(iOS) || os(tvOS)
 	import UIKit
 

@@ -13,12 +13,12 @@ public protocol EditActionHandler: AnyObject {
 public protocol EditActionDataSource: EditActionHandler {
 	associatedtype Item
 	var items: [Item] {get set}
-	func makeItem() -> Item
+	func newItem() -> Item
 }
 public extension EditActionDataSource {
 	func insertItem(at indices: Set<Int>) {
 		for index in indices.sorted(by: >) {
-			items.insert(makeItem(), at: index)
+			items.insert(newItem(), at: index)
 		}
 	}
 	func deleteItem(at indices: Set<Int>) {
@@ -36,7 +36,7 @@ public protocol CopyingEditActionHandler: EditActionHandler {
 }
 public protocol CopyingEditActionDataSource: EditActionDataSource, CopyingEditActionHandler {
 	var pasteboard: [Item] {get set}
-	func makeCopy(of item: Item) -> Item
+	func newCopy(of item: Item) -> Item
 }
 public extension CopyingEditActionDataSource {
 	func duplicateItem(at indices: Set<Int>) {
