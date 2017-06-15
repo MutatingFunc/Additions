@@ -6,10 +6,6 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-/*
-inactive - dictionary bug
-*/
-
 ///a dictionary with an ordered set of keys
 public struct OrderedDictionary<Key: Hashable, Value>: RangeReplaceableCollection, ExpressibleByDictionaryLiteral, CustomStringConvertible, CustomDebugStringConvertible {
 	public typealias KeyValue = (key: Key, value: Value)
@@ -42,9 +38,8 @@ public extension OrderedDictionary {
 		set {
 			if let newValue = newValue {
 				self.updateValue(newValue, forKey: key)
-			} else if let index = keys.index(of: key) {
-				values.removeValue(forKey: key)
-				keys.remove(at: index)
+			} else {
+				self.removeValue(forKey: key)
 			}
 		}
 	}
@@ -72,6 +67,14 @@ public extension OrderedDictionary {
 		if oldValue == nil {keys.append(key)}
 		return oldValue
 	}
+	///removes the value for the given key
+	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
+		if let index = keys.index(of: key) {
+			keys.remove(at: index)
+			return values.removeValue(forKey: key).map{(index, $0)}
+		}
+		return nil
+	}
 }
 
 public extension OrderedDictionary {
@@ -90,13 +93,9 @@ public extension OrderedDictionary {
 		for key in oldKeys {
 			self.values[key] = nil
 		}
-		var newKeys = [Key]()
-		if let count = newElements.count as? Int {
-			newKeys.reserveCapacity(count)
-		}
-		for (key, value) in newElements {
-			self.values[key] = value
-			newKeys.append(key)
+		let newKeys = newElements.map {e -> Key in
+			self.values[e.key] = e.value
+			return e.key
 		}
 		self.keys.replaceSubrange(subrange, with: newKeys)
 	}
