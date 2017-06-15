@@ -17,27 +17,40 @@
 	}
 
 	public extension UITableView {
-		func register(cell cellClass: (AnyObject & ReuseIdentifiable).Type) {
+		func register(cell cellClass: (UITableViewCell & ReuseIdentifiable).Type) {
 			self.register(cellClass, forCellReuseIdentifier: cellClass.reuseID)
 		}
-		func dequeueReusableCell<Identifiable>(at indexPath: IndexPath) -> Identifiable! where
-				Identifiable: UITableViewCell, Identifiable: ReuseIdentifiable {
+		func dequeueReusableCell<Identifiable: UITableViewCell & ReuseIdentifiable>(for indexPath: IndexPath) -> Identifiable! {
 			return self.dequeueReusableCell(withIdentifier: Identifiable.reuseID, for: indexPath) as? Identifiable
 		}
 		
-		func dequeueReusableHeaderFooterView<Identifiable>() -> Identifiable! where
-				Identifiable: UITableViewHeaderFooterView, Identifiable: ReuseIdentifiable {
+		func dequeueReusableHeaderFooterView<Identifiable: UITableViewHeaderFooterView & ReuseIdentifiable>() -> Identifiable! {
 			return self.dequeueReusableHeaderFooterView(withIdentifier: Identifiable.reuseID) as? Identifiable
 		}
 	}
 
 	public extension UICollectionView {
-		func register(cell cellClass: (AnyObject & ReuseIdentifiable).Type) {
+		func register(cell cellClass: (UICollectionViewCell & ReuseIdentifiable).Type) {
 			self.register(cellClass, forCellWithReuseIdentifier: cellClass.reuseID)
 		}
-		func dequeueReusableCell<Identifiable>(at indexPath: IndexPath) -> Identifiable! where
-				Identifiable: UICollectionViewCell, Identifiable: ReuseIdentifiable {
+		func dequeueReusableCell<Identifiable: UICollectionViewCell & ReuseIdentifiable>(for indexPath: IndexPath) -> Identifiable! {
 			return self.dequeueReusableCell(withReuseIdentifier: Identifiable.reuseID, for: indexPath) as? Identifiable
+		}
+		func dequeueReusableSupplementaryView<Identifiable: UICollectionReusableView & ReuseIdentifiable>(ofKind kind: String, for indexPath: IndexPath) -> Identifiable! {
+			return self.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Identifiable.reuseID, for: indexPath) as? Identifiable
+		}
+	}
+	
+	@available(iOSApplicationExtension 11.0, *)
+	public extension UITableViewDropCoordinator {
+		func drop<Identifiable: UITableViewCell & ReuseIdentifiable>(_ dragItem: UIDragItem, toPlaceholderInsertedAt indexPath: IndexPath, ofType: Identifiable.Type, rowHeight: CGFloat, cellUpdateHandler: @escaping (Identifiable!) -> Void) -> UITableViewDropPlaceholderContext {
+			return self.drop(dragItem, toPlaceholderInsertedAt: indexPath, withReuseIdentifier: Identifiable.reuseID, rowHeight: rowHeight, cellUpdateHandler: {cellUpdateHandler($0 as? Identifiable)})
+		}
+	}
+	@available(iOSApplicationExtension 11.0, *)
+	public extension UICollectionViewDropCoordinator {
+		func drop<Identifiable: UICollectionViewCell & ReuseIdentifiable>(_ dragItem: UIDragItem, toPlaceholderInsertedAt indexPath: IndexPath, ofType: Identifiable.Type, cellUpdateHandler: @escaping (Identifiable!) -> Void) -> UICollectionViewDropPlaceholderContext {
+			return self.drop(dragItem, toPlaceholderInsertedAt: indexPath, withReuseIdentifier: Identifiable.reuseID, cellUpdateHandler: {cellUpdateHandler($0 as? Identifiable)})
 		}
 	}
 #endif
