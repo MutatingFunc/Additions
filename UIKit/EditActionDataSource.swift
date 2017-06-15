@@ -6,6 +6,10 @@
 //
 //
 
+/*
+inactive - drag & drop APIs make native alternatives appealing
+*/
+
 public protocol EditActionHandler: AnyObject {
 	func insertItem(at indices: Set<Int>)
 	func deleteItem(at index: Set<Int>)
