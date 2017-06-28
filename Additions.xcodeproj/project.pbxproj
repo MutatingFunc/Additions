@@ -20,6 +20,8 @@
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1A85FA331EE9B1BA002F84BD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA321EE9B1BA002F84BD /* General.swift */; };
+		1A8D39551F040446002B170E /* UArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D39541F040446002B170E /* UArray.swift */; };
+		1A8D39591F042B63002B170E /* UOrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D39581F042B63002B170E /* UOrderedDictionary.swift */; };
 		1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */; };
 		1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +54,8 @@
 		1A6CD2F21D664AE100F9E0B6 /* Reuseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reuseable.swift; sourceTree = "<group>"; };
 		1A6CD2F31D664AE100F9E0B6 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		1A85FA321EE9B1BA002F84BD /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		1A8D39541F040446002B170E /* UArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UArray.swift; sourceTree = "<group>"; };
+		1A8D39581F042B63002B170E /* UOrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UOrderedDictionary.swift; path = ../../../../../../../../Desktop/UOrderedDictionary.swift; sourceTree = "<group>"; };
 		1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoadable.swift; sourceTree = "<group>"; };
 		1A9C96561ED23D3800C54506 /* EditActionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditActionDataSource.swift; path = ../UIKit/EditActionDataSource.swift; sourceTree = "<group>"; };
 		1A9C96581ED23E3500C54506 /* EditActionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActionGenerator.swift; sourceTree = "<group>"; };
@@ -136,7 +140,9 @@
 				1A3C4C011D935097006EDF4A /* Event.swift */,
 				1A1681E61E6DFE0F00CF8F63 /* EventConvenience.swift */,
 				1A1681E21E6DE45000CF8F63 /* Observable.swift */,
+				1A8D39541F040446002B170E /* UArray.swift */,
 				__PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */,
+				1A8D39581F042B63002B170E /* UOrderedDictionary.swift */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -306,6 +312,8 @@
 				1A1681E31E6DE45000CF8F63 /* Observable.swift in Sources */,
 				1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */,
 				1A0CED9B1D9AE3A900CB90CF /* Foundation.swift in Sources */,
+				1A8D39591F042B63002B170E /* UOrderedDictionary.swift in Sources */,
+				1A8D39551F040446002B170E /* UArray.swift in Sources */,
 				1A2E14DB1D6DE7FE007BA6E0 /* Constraints.swift in Sources */,
 				1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */,
 				1A0CED991D9AE33200CB90CF /* Extensions.swift in Sources */,
