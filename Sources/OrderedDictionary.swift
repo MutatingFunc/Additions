@@ -7,7 +7,7 @@
 //
 
 ///a dictionary with an ordered set of keys
-public struct OrderedDictionary<Key: Hashable, Value>: RangeReplaceableCollection, ExpressibleByDictionaryLiteral, CustomStringConvertible, CustomDebugStringConvertible {
+public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLiteral {
 	public typealias KeyValue = (key: Key, value: Value)
 	
 	public private(set) var keys = [Key]()
@@ -20,9 +20,15 @@ public struct OrderedDictionary<Key: Hashable, Value>: RangeReplaceableCollectio
 	public init<C>(_ collection: C) where
 			C: Collection,
 			C.Iterator.Element == (Key, Value) {
-		if C.IndexDistance.self == Int.self {
-			keys.reserveCapacity(collection.count as! Int)
+		for (key, value) in collection {
+			values[key] = value
+			keys.append(key)
 		}
+	}
+	public init<C>(_ collection: C) where
+			C: RandomAccessCollection,
+			C.Iterator.Element == (Key, Value) {
+		keys.reserveCapacity(Int(collection.count))
 		for (key, value) in collection {
 			values[key] = value
 			keys.append(key)
@@ -43,24 +49,12 @@ public extension OrderedDictionary {
 			}
 		}
 	}
-	///accesses the key-value pair at the given index
-	subscript(_ position: Int) -> KeyValue {
-		get {
-			let key = keys[position]
-			return (key, values[key]!)
-		}
-		set {
-			values.removeValue(forKey: keys[position])
-			keys[position] = newValue.key
-			values[newValue.key] = newValue.value
-		}
-	}
 	
 	///updates the value at the given position
-	@discardableResult mutating func setValue(_ newValue: Value, at position: Int) -> Value {
-		let key = keys[position]
-		return values.updateValue(newValue, forKey: key)!
+	@discardableResult mutating func updateValue(_ newValue: Value, at position: Int) -> Value {
+		return values.updateValue(newValue, forKey: keys[position])! //safe use of indexed key
 	}
+	
 	///updates the value for the given key, or adds a new key-value pair if the key does not exist
 	@discardableResult mutating func updateValue(_ value: Value, forKey key: Key) -> Value? {
 		let oldValue = values.updateValue(value, forKey: key)
@@ -69,45 +63,62 @@ public extension OrderedDictionary {
 	}
 	///removes the value for the given key
 	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
-		if let index = keys.index(of: key) {
-			keys.remove(at: index)
-			return values.removeValue(forKey: key).map{(index, $0)}
-		}
-		return nil
+		guard
+			values[key] != nil, //O(1) failure shortcut
+			let index = keys.index(of: key)
+		else {return nil}
+		keys.remove(at: index)
+		return values.removeValue(forKey: key).map{(index, $0)}
 	}
 }
 
+extension OrderedDictionary: RangeReplaceableCollection {}
 public extension OrderedDictionary {
 	var startIndex: Int {return keys.startIndex}
-	func index(after i: Int) -> Int {return i+1}
 	var endIndex: Int {return keys.endIndex}
+	func index(after i: Int) -> Int {return i+1}
+	public mutating func reserveCapacity(_ n: Int) {
+		keys.reserveCapacity(n)
+		values.reserveCapacity(n)
+	}
 	
-	var isEmpty: Bool {return keys.isEmpty}
 	var underestimatedCount: Int {return keys.underestimatedCount}
-	var count: Int {return keys.count}
 	
-	mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where
-			C: Collection,
-			C.Iterator.Element == KeyValue {
-		let oldKeys = self.keys[subrange]
-		for key in oldKeys {
-			self.values[key] = nil
+	///accesses the key-value pair at the given index
+	subscript(_ position: Int) -> KeyValue {
+		get {
+			let key = keys[position]
+			return (key, values[key]!) //safe use of indexed key
 		}
-		let newKeys = newElements.map {e -> Key in
-			self.values[e.key] = e.value
+	}
+	mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where
+			C: Collection, R: RangeExpression, Element == C.Element, Int == R.Bound {
+		for key in self.keys[subrange] {
+			self.values.removeValue(forKey: key)
+		}
+		let keys = newElements.map {(e) -> Key in
+			precondition(values[e.key] == nil, uniqueKeyRequired)
+			values[e.key] = e.value
 			return e.key
 		}
-		self.keys.replaceSubrange(subrange, with: newKeys)
+		self.keys.replaceSubrange(subrange, with: keys)
 	}
 }
+extension OrderedDictionary: RandomAccessCollection {
+	public typealias SubSequence = RangeReplaceableRandomAccessSlice<OrderedDictionary>
+	public func index(_ i: Int, offsetBy n: Int) -> Int {return i.advanced(by: n)}
+	public func distance(from start: Int, to end: Int) -> Int {return start.distance(to: end)}
+}
 
-public extension OrderedDictionary {
-	var description: String {
-		return "\(OrderedDictionary.self): [" + self.keys.map {(key: Key) -> String in
+extension OrderedDictionary: CustomStringConvertible, CustomDebugStringConvertible {
+	public var description: String {
+		return "\(OrderedDictionary.self): [" + self.keys.map {key in
 			"\(key): \(self.values[key].debugDescription)"
 		}.joined(separator: ", ") + "]"
 	}
-	var debugDescription: String {
+	public var debugDescription: String {
 		return self.description
 	}
 }
+
+private let uniqueKeyRequired = "Attempted to insert a duplicate key"
