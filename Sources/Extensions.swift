@@ -21,32 +21,32 @@ public extension RangeReplaceableCollection {
 
 public extension Comparable {
 	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: ClosedRange<Self>) -> Self {
+	func clamped(to range: ClosedRange<Self>) -> Self {
 		return max(min(self, range.upperBound), range.lowerBound)
 	}
 	
 	///clamps self
-	mutating func clamp(_ range: ClosedRange<Self>) {
-		self = self.clamped(range)
+	mutating func clamp(to range: ClosedRange<Self>) {
+		self = self.clamped(to: range)
 	}
 }
 public extension Comparable where Self: _Strideable, Self.Stride: SignedInteger {
 	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: CountableRange<Self>) -> Self {
+	func clamped(to range: CountableRange<Self>) -> Self {
 		return max(min(self, range.upperBound.advanced(by: -1)), range.lowerBound)
 	}
 	///return the bound which self is beyond, otherwise self
-	func clamped(_ range: CountableClosedRange<Self>) -> Self {
+	func clamped(to range: CountableClosedRange<Self>) -> Self {
 		return max(min(self, range.upperBound), range.lowerBound)
 	}
 	
 	///clamps self
-	mutating func clamp(_ range: CountableRange<Self>) {
-		self = self.clamped(range)
+	mutating func clamp(to range: CountableRange<Self>) {
+		self = self.clamped(to: range)
 	}
 	///clamps self
-	mutating func clamp(_ range: CountableClosedRange<Self>) {
-		self = self.clamped(range)
+	mutating func clamp(to range: CountableClosedRange<Self>) {
+		self = self.clamped(to: range)
 	}
 }
 
