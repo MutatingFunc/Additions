@@ -18,3 +18,12 @@ public func runNow<In, Out>(with value: In, _ f: @escaping (In) -> Out) -> (In) 
 	_ = f(value)
 	return f
 }
+
+//Adrian Zubarev, Swift Evolution, Jun 27, 2017
+public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never) rethrows -> T {
+	switch optional {
+	case .some(let value): return value
+	case .none: try noreturnOrError()
+	}
+}
+
