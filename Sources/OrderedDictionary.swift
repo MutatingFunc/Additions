@@ -11,7 +11,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 	public typealias KeyValue = (key: Key, value: Value)
 	
 	public private(set) var keys = [Key]()
-	private var values = [Key: Value]()
+	private(set) var values = [Key: Value]()
 	
 	public init() {}
 	public init(dictionaryLiteral elements: (Key, Value)...) {
@@ -118,6 +118,13 @@ extension OrderedDictionary: CustomStringConvertible, CustomDebugStringConvertib
 	}
 	public var debugDescription: String {
 		return self.description
+	}
+}
+
+public extension OrderedDictionary {
+	init(_ uOrderedDictionary: UOrderedDictionary<Key, Value>) {
+		self.keys = Array(uOrderedDictionary.keys)
+		self.values = uOrderedDictionary.values
 	}
 }
 

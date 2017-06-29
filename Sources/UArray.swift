@@ -8,7 +8,7 @@
 import Foundation
 
 public struct UArray<Element> {
-	private var array: [Element]
+	fileprivate var array: [Element]
 	
 	public init() {self.array = Array()}
 	public init(_ array: [Element]) {self.array = array}
@@ -62,6 +62,12 @@ extension UArray: Codable {
 extension UArray: CustomStringConvertible, CustomDebugStringConvertible {
 	public var description: String {return array.description}
 	public var debugDescription: String {return array.debugDescription}
+}
+
+public extension Array {
+	init(_ uArray: UArray<Element>) {
+		self = uArray.array
+	}
 }
 
 /*

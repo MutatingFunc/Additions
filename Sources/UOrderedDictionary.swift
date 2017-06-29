@@ -1,5 +1,5 @@
 //
-//  OrderedDictionary.swift
+//  UOrderedDictionary.swift
 //  StandardAdditions
 //
 //  Created by James Froggatt on 28.06.2016.
@@ -7,11 +7,11 @@
 //
 
 ///a dictionary with an ordered set of keys
-public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLiteral {
+public struct UOrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLiteral {
 	public typealias KeyValue = (key: Key, value: Value)
 	
-	public private(set) var keys = [Key]()
-	private var values = [Key: Value]()
+	public private(set) var keys = UArray<Key>()
+	private(set) var values = [Key: Value]()
 	
 	public init() {}
 	public init(dictionaryLiteral elements: (Key, Value)...) {
@@ -20,24 +20,23 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 	public init<C>(_ collection: C) where
 			C: Collection,
 			C.Iterator.Element == (Key, Value) {
-		keys.reserveCapacity(Int(collection.count))
 		for (key, value) in collection {
 			values[key] = value
 			keys.append(key)
 		}
 	}
 	public init<C>(_ collection: C) where
-		C: RandomAccessCollection,
-		C.Iterator.Element == (Key, Value) {
-			keys.reserveCapacity(Int(collection.count))
-			for (key, value) in collection {
-				values[key] = value
-				keys.append(key)
-			}
+			C: RandomAccessCollection,
+			C.Iterator.Element == (Key, Value) {
+		keys.reserveCapacity(Int(collection.count))
+		for (key, value) in collection {
+			values[key] = value
+			keys.append(key)
+		}
 	}
 }
 
-public extension OrderedDictionary {
+public extension UOrderedDictionary {
 	///accesses the value for the given key,
 	///with nil indicating the absence of a value
 	subscript(_ key: Key) -> Value? {
@@ -52,7 +51,7 @@ public extension OrderedDictionary {
 	}
 	
 	///updates the value at the given position
-	@discardableResult mutating func updateValue(_ newValue: Value, at position: Int) -> Value {
+	@discardableResult mutating func updateValue(_ newValue: Value, at position: UInt) -> Value {
 		return values.updateValue(newValue, forKey: keys[position])! //safe use of indexed key
 	}
 	
@@ -63,7 +62,7 @@ public extension OrderedDictionary {
 		return oldValue
 	}
 	///removes the value for the given key
-	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
+	@discardableResult mutating func removeValue(forKey key: Key) -> (index: UInt, value: Value)? {
 		guard
 			values[key] != nil, //O(1) failure shortcut
 			let index = keys.index(of: key)
@@ -73,11 +72,11 @@ public extension OrderedDictionary {
 	}
 }
 
-extension OrderedDictionary: RangeReplaceableCollection {}
-public extension OrderedDictionary {
-	var startIndex: Int {return keys.startIndex}
-	var endIndex: Int {return keys.endIndex}
-	func index(after i: Int) -> Int {return i+1}
+extension UOrderedDictionary: RangeReplaceableCollection {}
+public extension UOrderedDictionary {
+	var startIndex: UInt {return keys.startIndex}
+	var endIndex: UInt {return keys.endIndex}
+	func index(after i: UInt) -> UInt {return i+1}
 	public mutating func reserveCapacity(_ n: Int) {
 		keys.reserveCapacity(n)
 		values.reserveCapacity(n)
@@ -86,14 +85,14 @@ public extension OrderedDictionary {
 	var underestimatedCount: Int {return keys.underestimatedCount}
 	
 	///accesses the key-value pair at the given index
-	subscript(_ position: Int) -> KeyValue {
+	subscript(_ position: UInt) -> KeyValue {
 		get {
 			let key = keys[position]
 			return (key, values[key]!) //safe use of indexed key
 		}
 	}
 	mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where
-			C: Collection, R: RangeExpression, Element == C.Element, Int == R.Bound {
+			C: Collection, R: RangeExpression, Element == C.Element, UInt == R.Bound {
 		for key in self.keys[subrange] {
 			self.values.removeValue(forKey: key)
 		}
@@ -105,20 +104,27 @@ public extension OrderedDictionary {
 		self.keys.replaceSubrange(subrange, with: keys)
 	}
 }
-extension OrderedDictionary: RandomAccessCollection {
-	public typealias SubSequence = RangeReplaceableRandomAccessSlice<OrderedDictionary>
-	public func index(_ i: Int, offsetBy n: Int) -> Int {return i.advanced(by: n)}
-	public func distance(from start: Int, to end: Int) -> Int {return start.distance(to: end)}
+extension UOrderedDictionary: RandomAccessCollection {
+	public typealias SubSequence = RangeReplaceableRandomAccessSlice<UOrderedDictionary>
+	public func index(_ i: UInt, offsetBy n: Int) -> UInt {return i.advanced(by: n)}
+	public func distance(from start: UInt, to end: UInt) -> Int {return start.distance(to: end)}
 }
 
-extension OrderedDictionary: CustomStringConvertible, CustomDebugStringConvertible {
+extension UOrderedDictionary: CustomStringConvertible, CustomDebugStringConvertible {
 	public var description: String {
-		return "\(OrderedDictionary.self): [" + self.keys.map {key in
+		return "\(UOrderedDictionary.self): [" + self.keys.map {key in
 			"\(key): \(self.values[key].debugDescription)"
 		}.joined(separator: ", ") + "]"
 	}
 	public var debugDescription: String {
 		return self.description
+	}
+}
+
+public extension UOrderedDictionary {
+	init(_ orderedDictionary: OrderedDictionary<Key, Value>) {
+		self.keys = UArray(orderedDictionary.keys)
+		self.values = orderedDictionary.values
 	}
 }
 
