@@ -9,10 +9,10 @@
 import Foundation
 
 public extension IndexPath {
-	init(row: Int) {
-		self.init(indexes: [0, row])
+	init<I: BinaryInteger>(row: I) {
+		self.init(indexes: [0, Int(row)])
 	}
-	init(item: Int) {
-		self.init(indexes: [0, item])
+	init<I: BinaryInteger>(item: I) {
+		self.init(indexes: [0, Int(item)])
 	}
 }

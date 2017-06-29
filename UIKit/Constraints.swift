@@ -12,8 +12,8 @@
 	@available(iOS 9, *)
 	public extension UIView {
 		struct Side: OptionSet {
-			public let rawValue: Int8
-			public init(rawValue: Int8) {
+			public let rawValue: UInt8
+			public init(rawValue: UInt8) {
 				self.rawValue = rawValue
 			}
 			
@@ -25,8 +25,8 @@
 			public static let trailing = Side(rawValue: 1 << 3)
 		}
 		struct Center: OptionSet {
-			public let rawValue: Int8
-			public init(rawValue: Int8) {
+			public let rawValue: UInt8
+			public init(rawValue: UInt8) {
 				self.rawValue = rawValue
 			}
 			
