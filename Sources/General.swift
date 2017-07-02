@@ -26,4 +26,3 @@ public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never
 	case .none: try noreturnOrError()
 	}
 }
-

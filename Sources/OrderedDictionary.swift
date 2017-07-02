@@ -121,11 +121,4 @@ extension OrderedDictionary: CustomStringConvertible, CustomDebugStringConvertib
 	}
 }
 
-public extension OrderedDictionary {
-	init(_ uOrderedDictionary: UOrderedDictionary<Key, Value>) {
-		self.keys = Array(uOrderedDictionary.keys)
-		self.values = uOrderedDictionary.values
-	}
-}
-
-private let uniqueKeyRequired = "Attempted to insert a duplicate key"
+private let uniqueKeyRequired = "Inserted keys must be unique"

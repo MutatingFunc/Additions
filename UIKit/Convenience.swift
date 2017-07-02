@@ -56,8 +56,9 @@
 	}
 	
 	public extension UIView {
-		func enableAutolayout() {
+		@discardableResult func autolayout() -> Self {
 			self.translatesAutoresizingMaskIntoConstraints = false
+			return self
 		}
 	}
 	

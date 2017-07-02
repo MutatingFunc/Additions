@@ -23,12 +23,11 @@ extension UArray: ExpressibleByArrayLiteral {
 extension UArray: RangeReplaceableCollection {
 	public var startIndex: UInt {return UInt(array.startIndex)}
 	public var endIndex: UInt {return UInt(array.endIndex)}
-	public func index(after i: UInt) -> UInt {return i + 1}
+	public var underestimatedCount: Int {return array.underestimatedCount}
 	public mutating func reserveCapacity(_ n: Int) {array.reserveCapacity(n)}
 	public mutating func reserveCapacity(_ n: UInt) {array.reserveCapacity(Int(n))}
-	public var count: UInt {return endIndex - startIndex}
 	
-	public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C: Collection, R: RangeExpression, Element == C.Element, UInt == R.Bound {
+	public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C: Collection, R: RangeExpression, Element == C.Element, Index == R.Bound {
 		let subrange = subrange.relative(to: self)
 		array.replaceSubrange(unsigned(subrange.relative(to: self)), with: newElements)
 	}
@@ -45,13 +44,10 @@ extension UArray: RandomAccessCollection {
 	public func index(_ i: UInt, offsetBy n: Int) -> UInt {return i.advanced(by: n)}
 	public func distance(from start: UInt, to end: UInt) -> Int {return start.distance(to: end)}
 	
-	public subscript(bounds: Range<UInt>) -> RandomAccessSlice<UArray<Element>> {
-		get {return RandomAccessSlice(base: self, bounds: bounds)}
+	public subscript(bounds: Range<UInt>) -> MutableRangeReplaceableRandomAccessSlice<UArray> {
+		get {return MutableRangeReplaceableRandomAccessSlice(base: self, bounds: bounds)}
 		set {self.replaceSubrange(bounds, with: newValue)}
 	}
-}
-extension UArray {
-	public var underestimatedCount: Int {return array.underestimatedCount}
 }
 
 extension UArray: Codable {
@@ -64,15 +60,14 @@ extension UArray: CustomStringConvertible, CustomDebugStringConvertible {
 	public var debugDescription: String {return array.debugDescription}
 }
 
+extension UArray: CVarArg {
+	public var _cVarArgEncoding: [Int] {
+		return array._cVarArgEncoding
+	}
+}
+
 public extension Array {
 	init(_ uArray: UArray<Element>) {
 		self = uArray.array
 	}
 }
-
-/*
-CustomDebugStringConvertible
-CustomReflectable
-CustomStringConvertible
-CVarArg
-*/

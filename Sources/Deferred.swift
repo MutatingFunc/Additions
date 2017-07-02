@@ -7,7 +7,7 @@
 //
 
 /*
-inactive - too rare
+inactive - too rare, lazy suits most purposes
 */
 
 public class DeferredCreatable<Source> {

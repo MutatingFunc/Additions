@@ -11,7 +11,6 @@
 		1A0CED9B1D9AE3A900CB90CF /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CED9A1D9AE3A900CB90CF /* Foundation.swift */; };
 		1A1681E31E6DE45000CF8F63 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1681E21E6DE45000CF8F63 /* Observable.swift */; };
 		1A1681E71E6DFE0F00CF8F63 /* EventConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1681E61E6DFE0F00CF8F63 /* EventConvenience.swift */; };
-		1A2684E11F051FEE0003EC9F /* UOrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2684E01F051FB60003EC9F /* UOrderedDictionary.swift */; };
 		1A2E14D41D6DE79B007BA6E0 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6CD2EF1D664AE100F9E0B6 /* Convenience.swift */; };
 		1A2E14D51D6DE7F7007BA6E0 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6CD2F31D664AE100F9E0B6 /* Segue.swift */; };
 		1A2E14D61D6DE7F7007BA6E0 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6CD2F01D664AE100F9E0B6 /* Identifiable.swift */; };
@@ -21,7 +20,6 @@
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1A85FA331EE9B1BA002F84BD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA321EE9B1BA002F84BD /* General.swift */; };
-		1A8D39551F040446002B170E /* UArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D39541F040446002B170E /* UArray.swift */; };
 		1A8D395C1F042DDC002B170E /* UExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D395B1F042DDC002B170E /* UExtensions.swift */; };
 		1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */; };
 		1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */; };
@@ -144,8 +142,6 @@
 				1A1681E61E6DFE0F00CF8F63 /* EventConvenience.swift */,
 				1A1681E21E6DE45000CF8F63 /* Observable.swift */,
 				__PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */,
-				1A8D39541F040446002B170E /* UArray.swift */,
-				1A2684E01F051FB60003EC9F /* UOrderedDictionary.swift */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -153,6 +149,8 @@
 		1ABF90C11DDCCFF0003CEFE2 /* Inactive */ = {
 			isa = PBXGroup;
 			children = (
+				1A8D39541F040446002B170E /* UArray.swift */,
+				1A2684E01F051FB60003EC9F /* UOrderedDictionary.swift */,
 				1A3126061D7D011800AD7966 /* Applicative.swift */,
 				1AF7EF9C1DC929D1009B0604 /* Maths.swift */,
 				__PBXFileRef_Sources/Weak.swift /* Weak.swift */,
@@ -314,10 +312,8 @@
 				1A3C4C021D935097006EDF4A /* Event.swift in Sources */,
 				1A8D395C1F042DDC002B170E /* UExtensions.swift in Sources */,
 				1A1681E31E6DE45000CF8F63 /* Observable.swift in Sources */,
-				1A2684E11F051FEE0003EC9F /* UOrderedDictionary.swift in Sources */,
 				1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */,
 				1A0CED9B1D9AE3A900CB90CF /* Foundation.swift in Sources */,
-				1A8D39551F040446002B170E /* UArray.swift in Sources */,
 				1A2E14DB1D6DE7FE007BA6E0 /* Constraints.swift in Sources */,
 				1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */,
 				1A0CED991D9AE33200CB90CF /* Extensions.swift in Sources */,

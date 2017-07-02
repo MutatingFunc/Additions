@@ -128,4 +128,4 @@ public extension UOrderedDictionary {
 	}
 }
 
-private let uniqueKeyRequired = "Attempted to insert a duplicate key"
+private let uniqueKeyRequired = "Inserted keys must be unique"
