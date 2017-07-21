@@ -5,6 +5,10 @@
 //  Created by James Froggatt on 28.06.2017.
 //
 
+/*
+inactive - working against language
+*/
+
 import Foundation
 
 #if os(iOS) || os(tvOS)

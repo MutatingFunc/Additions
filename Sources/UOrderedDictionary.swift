@@ -6,6 +6,10 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
+/*
+inactive - working against language
+*/
+
 ///a dictionary with an ordered set of keys
 public struct UOrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLiteral {
 	public typealias KeyValue = (key: Key, value: Value)
@@ -96,10 +100,10 @@ public extension UOrderedDictionary {
 		for key in self.keys[subrange] {
 			self.values.removeValue(forKey: key)
 		}
-		let keys = newElements.map {(e) -> Key in
-			precondition(values[e.key] == nil, uniqueKeyRequired)
-			values[e.key] = e.value
-			return e.key
+		let keys = newElements.map {(key, value) -> Key in
+			precondition(values[key] == nil, uniqueKeyRequired)
+			values[key] = value
+			return key
 		}
 		self.keys.replaceSubrange(subrange, with: keys)
 	}

@@ -20,7 +20,6 @@
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1A85FA331EE9B1BA002F84BD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA321EE9B1BA002F84BD /* General.swift */; };
-		1A8D395C1F042DDC002B170E /* UExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D395B1F042DDC002B170E /* UExtensions.swift */; };
 		1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */; };
 		1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +93,7 @@
 		1A522B891ED6020C00488806 /* Inactive */ = {
 			isa = PBXGroup;
 			children = (
+				1A8D395B1F042DDC002B170E /* UExtensions.swift */,
 				1A9C96581ED23E3500C54506 /* EditActionGenerator.swift */,
 				1A6CD2F11D664AE100F9E0B6 /* SimplePickerSource.swift */,
 			);
@@ -112,7 +112,6 @@
 		1A6CD2EB1D664AC300F9E0B6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				1A8D395B1F042DDC002B170E /* UExtensions.swift */,
 				1A6CD2EF1D664AE100F9E0B6 /* Convenience.swift */,
 				1A6CD2EE1D664AE100F9E0B6 /* Constraints.swift */,
 				1A6CD2FC1D664B0000F9E0B6 /* IBSafety */,
@@ -310,7 +309,6 @@
 			buildActionMask = 0;
 			files = (
 				1A3C4C021D935097006EDF4A /* Event.swift in Sources */,
-				1A8D395C1F042DDC002B170E /* UExtensions.swift in Sources */,
 				1A1681E31E6DE45000CF8F63 /* Observable.swift in Sources */,
 				1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */,
 				1A0CED9B1D9AE3A900CB90CF /* Foundation.swift in Sources */,

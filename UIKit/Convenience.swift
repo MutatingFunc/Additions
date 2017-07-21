@@ -35,19 +35,6 @@
 		}
 	}
 	
-	public extension UITableView {
-		func setSource(_ source: UITableViewDataSource & UITableViewDelegate) {
-			self.dataSource = source
-			self.delegate = source
-		}
-	}
-	public extension UIPickerView {
-		func setSource(_ source: UIPickerViewDataSource & UIPickerViewDelegate) {
-			self.dataSource = source
-			self.delegate = source
-		}
-	}
-	
 	public extension UIPopoverPresentationController {
 		func setSource(_ source: UIView?) {
 			self.sourceView = source
@@ -59,6 +46,23 @@
 		@discardableResult func autolayout() -> Self {
 			self.translatesAutoresizingMaskIntoConstraints = false
 			return self
+		}
+	}
+	
+	public extension UICollectionView {
+		func insertItems(at indices: Int..., in section: Int = 0) {
+			self.insertItems(at: indices.map{IndexPath(row: $0, section: section)})
+		}
+		func deleteItems(at indices: Int..., in section: Int = 0) {
+			self.deleteItems(at: indices.map{IndexPath(row: $0, section: section)})
+		}
+	}
+	public extension UITableView {
+		func insertRows(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
+			self.insertRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
+		}
+		func deleteRows(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
+			self.deleteRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
 		}
 	}
 	

@@ -90,16 +90,19 @@ public extension OrderedDictionary {
 			let key = keys[position]
 			return (key, values[key]!) //safe use of indexed key
 		}
+		set {
+			self.replaceSubrange(position...position, with: CollectionOfOne(newValue))
+		}
 	}
 	mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where
 			C: Collection, R: RangeExpression, Element == C.Element, Int == R.Bound {
 		for key in self.keys[subrange] {
 			self.values.removeValue(forKey: key)
 		}
-		let keys = newElements.map {(e) -> Key in
-			precondition(values[e.key] == nil, uniqueKeyRequired)
-			values[e.key] = e.value
-			return e.key
+		let keys = newElements.map {(key, value) -> Key in
+			precondition(values[key] == nil, uniqueKeyRequired)
+			values[key] = value
+			return key
 		}
 		self.keys.replaceSubrange(subrange, with: keys)
 	}
