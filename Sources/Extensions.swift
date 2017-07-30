@@ -6,6 +6,25 @@
 //
 //
 
+public extension Optional {
+	func map<T>(_ keyPath: KeyPath<Wrapped, T>) -> T? {
+		return self.map{$0[keyPath: keyPath]}
+	}
+	func flatMap<T>(_ keyPath: KeyPath<Wrapped, T?>) -> T? {
+		return self.flatMap{$0[keyPath: keyPath]}
+	}
+}
+public extension Sequence {
+	func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
+		return self.map{$0[keyPath: keyPath]}
+	}
+	func flatMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
+		return self.flatMap{$0[keyPath: keyPath]}
+	}
+	func flatMap<Sequence: Swift.Sequence>(_ keyPath: KeyPath<Element, Sequence>) -> [Sequence.Element] {
+		return self.flatMap{$0[keyPath: keyPath]}
+	}
+}
 public extension Collection {
 	subscript(ifPresent index: Index) -> Iterator.Element? {
 		get {return self.indices.contains(index) ? self[index] : nil}

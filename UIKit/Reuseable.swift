@@ -42,15 +42,15 @@
 	}
 	
 	@available(iOSApplicationExtension 11.0, *)
-	public extension UITableViewDropCoordinator {
-		func drop<Identifiable: UITableViewCell & ReuseIdentifiable>(_ dragItem: UIDragItem, toPlaceholderInsertedAt indexPath: IndexPath, ofType: Identifiable.Type, rowHeight: CGFloat, cellUpdateHandler: @escaping (Identifiable!) -> Void) -> UITableViewDropPlaceholderContext {
-			return self.drop(dragItem, toPlaceholderInsertedAt: indexPath, withReuseIdentifier: Identifiable.reuseID, rowHeight: rowHeight, cellUpdateHandler: {cellUpdateHandler($0 as? Identifiable)})
+	public extension UITableViewDropPlaceholder {
+		public convenience init<Identifiable: UITableViewCell & ReuseIdentifiable>(insertionIndexPath: IndexPath, ofType: Identifiable.Type, rowHeight: CGFloat) {
+			self.init(insertionIndexPath: insertionIndexPath, reuseIdentifier: Identifiable.reuseID, rowHeight: rowHeight)
 		}
 	}
 	@available(iOSApplicationExtension 11.0, *)
-	public extension UICollectionViewDropCoordinator {
-		func drop<Identifiable: UICollectionViewCell & ReuseIdentifiable>(_ dragItem: UIDragItem, toPlaceholderInsertedAt indexPath: IndexPath, ofType: Identifiable.Type, cellUpdateHandler: @escaping (Identifiable!) -> Void) -> UICollectionViewDropPlaceholderContext {
-			return self.drop(dragItem, toPlaceholderInsertedAt: indexPath, withReuseIdentifier: Identifiable.reuseID, cellUpdateHandler: {cellUpdateHandler($0 as? Identifiable)})
+	public extension UICollectionViewDropPlaceholder {
+		public convenience init<Identifiable: UICollectionViewCell & ReuseIdentifiable>(insertionIndexPath: IndexPath, ofType: Identifiable.Type) {
+			self.init(insertionIndexPath: insertionIndexPath, reuseIdentifier: Identifiable.reuseID)
 		}
 	}
 #endif

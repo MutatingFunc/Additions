@@ -9,10 +9,9 @@
 #if os(iOS) || os(tvOS)
 	import UIKit
 	
-	public typealias XibLoadable = UIView & _XibLoadable
-	public protocol _XibLoadable: AnyObject {}
+	public protocol XibLoadable: AnyObject {}
 
-	public extension _XibLoadable where Self: UIView {
+	public extension XibLoadable where Self: UIView {
 		@available(iOSApplicationExtension 9, *)
 		func setupFromXib(named name: String? = nil) {
 			self.autolayout()

@@ -6,16 +6,23 @@
 //
 //
 
-//Optional.flatMap: ?=>
-//do {let intermediate}: =>
-//do {let object}: +>
-//do {let optional; optional.flatMap}: ?+>
+
+/*
+inactive
+• =>: not needed
+• +>: indicator of need for additional functions
+*/
+
+//b(f()): =>
+//f().flatMap(b): ?=>
+//let a = f(); b(a); return a: +>
+//let a = f(); a.map(b); return a: ?+>
 
 precedencegroup ApplicativePrecedence {
 	associativity: left
 	higherThan: NilCoalescingPrecedence, DefaultPrecedence
 }
-
+/*
 ///map
 infix operator => : ApplicativePrecedence
 public func =><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
@@ -25,7 +32,7 @@ public func =><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
 infix operator ?=> : ApplicativePrecedence
 public func ?=><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
 	return try a.flatMap(b)
-}
+}*/
 
 ///applying
 infix operator +> : ApplicativePrecedence
