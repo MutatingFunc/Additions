@@ -29,6 +29,17 @@ public extension Collection {
 	subscript(ifPresent index: Index) -> Iterator.Element? {
 		get {return self.indices.contains(index) ? self[index] : nil}
 	}
+	func partitioned<Key>(_ predicate: (Element) -> Key) -> Dictionary<Key, [Element]> {
+		return Dictionary(grouping: self, by: predicate)
+	}
+	func partitioned<Key>(_ predicate: KeyPath<Element, Key>) -> Dictionary<Key, [Element]> {
+		return Dictionary(grouping: self, by: {$0[keyPath: predicate]})
+	}
+}
+public extension Dictionary where Key == Bool, Value: RangeReplaceableCollection {
+	func tuple() -> (true: Value, false: Value) {
+		return (true: self[true, default: Value()], false: self[false, default: Value()])
+	}
 }
 
 public extension RangeReplaceableCollection {

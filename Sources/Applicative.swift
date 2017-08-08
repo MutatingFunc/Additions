@@ -33,10 +33,20 @@ infix operator ?=> : ApplicativePrecedence
 public func ?=><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
 	return try a.flatMap(b)
 }*/
-
+/*
 ///applying
 infix operator +> : ApplicativePrecedence
 public func +><In, Out>(a: In, b: (In) throws -> Out) rethrows -> In {
+	_ = try b(a); return a
+}
+
+infix operator ?+> : ApplicativePrecedence
+public func ?+><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
+	_ = try a.flatMap(b); return a
+}*/
+
+infix operator +> : ApplicativePrecedence
+public func +><In, Out>(a: In, b: [WritableKeyPath<In, T>: T]) rethrows -> In {
 	_ = try b(a); return a
 }
 
