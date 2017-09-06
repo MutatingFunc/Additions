@@ -17,22 +17,11 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 	public init(dictionaryLiteral elements: (Key, Value)...) {
 		self.init(elements)
 	}
-	public init<C>(_ collection: C) where
-			C: Collection,
-			C.Iterator.Element == (Key, Value) {
-		for (key, value) in collection {
-			values[key] = value
-			keys.append(key)
-		}
-	}
-	public init<C>(_ collection: C) where
-			C: RandomAccessCollection,
-			C.Iterator.Element == (Key, Value) {
-		keys.reserveCapacity(Int(collection.count))
-		for (key, value) in collection {
-			values[key] = value
-			keys.append(key)
-		}
+	public init<S>(_ sequence: S) where
+		S: Sequence, S.Iterator.Element == (Key, Value) {
+			for (key, value) in sequence {
+				self.updateValue(value, forKey: key)
+			}
 	}
 }
 
@@ -52,7 +41,7 @@ public extension OrderedDictionary {
 	
 	///updates the value at the given position
 	@discardableResult mutating func updateValue(_ newValue: Value, at position: Int) -> Value {
-		return values.updateValue(newValue, forKey: keys[position])! //safe use of indexed key
+		return values.updateValue(newValue, forKey: keys[position])! //safe unwrap of value for known key
 	}
 	
 	///updates the value for the given key, or adds a new key-value pair if the key does not exist
@@ -64,7 +53,7 @@ public extension OrderedDictionary {
 	///removes the value for the given key
 	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
 		guard
-			values[key] != nil, //O(1) failure shortcut
+			values[key] ¬= nil, //O(1) failure shortcut
 			let index = keys.index(of: key)
 		else {return nil}
 		keys.remove(at: index)
@@ -72,7 +61,7 @@ public extension OrderedDictionary {
 	}
 }
 
-extension OrderedDictionary: RangeReplaceableCollection {}
+extension OrderedDictionary: RangeReplaceableCollection, RandomAccessCollection {}
 public extension OrderedDictionary {
 	var startIndex: Int {return keys.startIndex}
 	var endIndex: Int {return keys.endIndex}
@@ -88,7 +77,7 @@ public extension OrderedDictionary {
 	subscript(_ position: Int) -> KeyValue {
 		get {
 			let key = keys[position]
-			return (key, values[key]!) //safe use of indexed key
+			return (key, values[key]!) //safe unwrap of value for known key
 		}
 		set {
 			self.replaceSubrange(position...position, with: CollectionOfOne(newValue))
@@ -106,11 +95,6 @@ public extension OrderedDictionary {
 		}
 		self.keys.replaceSubrange(subrange, with: keys)
 	}
-}
-extension OrderedDictionary: RandomAccessCollection {
-	public typealias SubSequence = RangeReplaceableRandomAccessSlice<OrderedDictionary>
-	public func index(_ i: Int, offsetBy n: Int) -> Int {return i.advanced(by: n)}
-	public func distance(from start: Int, to end: Int) -> Int {return start.distance(to: end)}
 }
 
 extension OrderedDictionary: CustomStringConvertible, CustomDebugStringConvertible {

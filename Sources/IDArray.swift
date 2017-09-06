@@ -6,35 +6,28 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-/*
-inactive - unused
-*/
-
 import Foundation
 
-public typealias IDPaired<Element> = (id: UUID, value: Element)
+public typealias IDPaired<Element> = (id: UUID, element: Element)
 
 ///a collection providing unique identifiers for its contents
-public struct IDArray<Element>: RangeReplaceableCollection, MutableCollection, ExpressibleByArrayLiteral, CustomStringConvertible, CustomDebugStringConvertible {
+public struct IDArray<Element>: ExpressibleByArrayLiteral {
 	
 	private var data = OrderedDictionary<UUID, Element>()
 	
 	public init() {}
-	public init(arrayLiteral elements: Element...) {self.init(elements)}
-	public init<S>(_ collection: S) where
+	public init(arrayLiteral elements: Element...) {
+		self.init(elements)
+	}
+	public init<S>(_ sequence: S) where
 			S: Sequence, S.Iterator.Element == Element {
-		for element in collection {
-			self.data.append((UUID(), element))
+		for element in sequence {
+			data.append((UUID(), element))
 		}
 	}
 }
 
 public extension IDArray {
-	///accesses the element at the given position
-	subscript(_ position: Int) -> Element {
-		get {return data[position].value}
-		set {data.setValue(newValue, at: position)}
-	}
 	///accesses the element with the given identifier
 	subscript(_ id: UUID) -> Element? {
 		get {return data[id]}
@@ -45,31 +38,38 @@ public extension IDArray {
 		return data.keys.index(of: id)
 	}
 	///returns the id and value at the given index
-	func idPaired(at position: Int) -> IDPaired<Element> {
+	func idPair(at position: Int) -> IDPaired<Element> {
 		return data[position] as (UUID, Element)
 	}
 	
 	func contains(id: UUID) -> Bool {
-		return data[id] != nil
+		return data[id] ¬= nil
 	}
 }
 
+extension IDArray: RangeReplaceableCollection, RandomAccessCollection {}
 public extension IDArray {
 	var startIndex: Int {return data.startIndex}
-	func index(after i: Int) -> Int {return i+1}
 	var endIndex: Int {return data.endIndex}
+	func index(after i: Int) -> Int {return i+1}
+	public mutating func reserveCapacity(_ n: Int) {
+		data.reserveCapacity(n)
+	}
 	
-	var isEmpty: Bool {return data.isEmpty}
 	var underestimatedCount: Int {return data.underestimatedCount}
-	var count: Int {return data.count}
 	
+	///accesses the element at the given position
+	subscript(_ position: Int) -> Element {
+		get {return data[position].value}
+		set {data.updateValue(newValue, at: position)}
+	}
 	mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where
 			C: Collection, C.Iterator.Element == Element {
 		data.replaceSubrange(subrange, with: newElements.map{(UUID(), $0)})
 	}
 }
 
-public extension IDArray {
+extension IDArray: CustomStringConvertible, CustomDebugStringConvertible {
 	public var description: String {
 		return "\(IDArray.self): [" + data.map{"\($0.value)"}.joined(separator: ", ") + "]"
 	}
