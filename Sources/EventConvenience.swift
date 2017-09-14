@@ -8,6 +8,11 @@
 
 import Foundation
 
+public extension Event where Notification == () {
+	public func notify() {
+		notify(())
+	}
+}
 public extension Stream {
 	func map<Result>(_ transform: @escaping (Notification) -> Result) -> Stream<Result> {
 		return self.flatMap(transform)

@@ -23,6 +23,7 @@
 		1A984D601F3A3C3F00508A94 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF7EF9C1DC929D1009B0604 /* Maths.swift */; };
 		1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */; };
 		1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */; };
+		1AB0CA091F69A426003AC8F9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB0CA081F69A426003AC8F9 /* Storage.swift */; };
 		1AF9C9CC1F5DE24800637832 /* IDArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/IDArray.swift /* IDArray.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		1A9C96581ED23E3500C54506 /* EditActionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActionGenerator.swift; sourceTree = "<group>"; };
 		1AA4FC911ED07189007BECB4 /* Waitable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waitable.swift; sourceTree = "<group>"; };
 		1AA4FC921ED07189007BECB4 /* Deferred.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deferred.swift; sourceTree = "<group>"; };
+		1AB0CA081F69A426003AC8F9 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1AD616C51D69101700CC2F0B /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		1AE008441DBE81B0008A82AA /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		1AF7EF9C1DC929D1009B0604 /* Maths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				1A1681E21E6DE45000CF8F63 /* Observable.swift */,
 				__PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */,
 				__PBXFileRef_Sources/IDArray.swift /* IDArray.swift */,
+				1AB0CA081F69A426003AC8F9 /* Storage.swift */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				1A85FA331EE9B1BA002F84BD /* General.swift in Sources */,
 				1A1681E71E6DFE0F00CF8F63 /* EventConvenience.swift in Sources */,
 				1A984D601F3A3C3F00508A94 /* Maths.swift in Sources */,
+				1AB0CA091F69A426003AC8F9 /* Storage.swift in Sources */,
 				1A2E14D41D6DE79B007BA6E0 /* Convenience.swift in Sources */,
 				1A2E14D71D6DE7F7007BA6E0 /* Reuseable.swift in Sources */,
 			);

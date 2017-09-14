@@ -8,8 +8,6 @@
 
 import Foundation
 
-public typealias IDPaired<Element> = (id: UUID, element: Element)
-
 ///a collection providing unique identifiers for its contents
 public struct IDArray<Element>: ExpressibleByArrayLiteral {
 	
@@ -19,11 +17,16 @@ public struct IDArray<Element>: ExpressibleByArrayLiteral {
 	public init(arrayLiteral elements: Element...) {
 		self.init(elements)
 	}
-	public init<S>(_ sequence: S) where
-			S: Sequence, S.Iterator.Element == Element {
+	public init<S>(_ sequence: S) where S: Sequence, S.Iterator.Element == Element {
 		for element in sequence {
 			data.append((UUID(), element))
 		}
+	}
+	public init<S>(idPairs: S) where S: Sequence, S.Iterator.Element == (UUID, Element) {
+		data = OrderedDictionary(idPairs)
+	}
+	public init(_ data: OrderedDictionary<UUID, Element>) {
+		self.data = data
 	}
 }
 
@@ -37,9 +40,8 @@ public extension IDArray {
 	func index(ofID id: UUID) -> Int? {
 		return data.keys.index(of: id)
 	}
-	///returns the id and value at the given index
-	func idPair(at position: Int) -> IDPaired<Element> {
-		return data[position] as (UUID, Element)
+	var idPairs: OrderedDictionary<UUID, Element> {
+		return self.data
 	}
 	
 	func contains(id: UUID) -> Bool {

@@ -9,6 +9,12 @@
 #if os(iOS) || os(tvOS)
 	import UIKit
 	
+	public extension CGRect {
+		public func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
+			return CGRect(x: self.origin.x + edgeInsets.left, y: self.origin.y + edgeInsets.top, width: self.width - (edgeInsets.left + edgeInsets.right), height: self.height - (edgeInsets.top + edgeInsets.bottom))
+		}
+	}
+	
 	public extension UIAlertController {
 		@discardableResult func addAction(_ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 			self.addAction(UIAlertAction(title: title, style: style, handler: handler))
@@ -50,18 +56,30 @@
 	}
 	
 	public extension UICollectionView {
-		func insertItems(at indices: Int..., in section: Int = 0) {
+		func insertItem(at indices: IndexPath...) {
+			self.insertItems(at: indices)
+		}
+		func deleteItem(at indices: IndexPath...) {
+			self.deleteItems(at: indices)
+		}
+		func insertItem(at indices: Int..., in section: Int = 0) {
 			self.insertItems(at: indices.map{IndexPath(row: $0, section: section)})
 		}
-		func deleteItems(at indices: Int..., in section: Int = 0) {
+		func deleteItem(at indices: Int..., in section: Int = 0) {
 			self.deleteItems(at: indices.map{IndexPath(row: $0, section: section)})
 		}
 	}
 	public extension UITableView {
-		func insertRows(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
+		func insertRow(at indices: IndexPath..., with animation: UITableViewRowAnimation = .automatic) {
+			self.insertRows(at: indices, with: animation)
+		}
+		func deleteRow(at indices: IndexPath..., with animation: UITableViewRowAnimation = .automatic) {
+			self.deleteRows(at: indices, with: animation)
+		}
+		func insertRow(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
 			self.insertRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
 		}
-		func deleteRows(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
+		func deleteRow(at indices: Int..., in section: Int = 0, with animation: UITableViewRowAnimation = .automatic) {
 			self.deleteRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
 		}
 	}
