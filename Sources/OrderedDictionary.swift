@@ -25,6 +25,19 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 	}
 }
 
+extension OrderedDictionary: Codable/* where Key: Codable, Value: Codable*/ {
+	enum CodingError: Error {case nonCodable}
+	public init(from decoder: Decoder) throws {
+		guard Key.self is Codable.Type && Value.self is Codable.Type else {throw CodingError.nonCodable}
+		try self.init(decoder.singleValueContainer().decode([KeyValue].self))
+	}
+	public func encode(to encoder: Encoder) throws {
+		guard Key.self is Codable.Type && Value.self is Codable.Type else {throw CodingError.nonCodable}
+		var container = encoder.singleValueContainer()
+		try container.encode([KeyValue](self))
+	}
+}
+
 public extension OrderedDictionary {
 	///accesses the value for the given key,
 	///with nil indicating the absence of a value
@@ -37,6 +50,14 @@ public extension OrderedDictionary {
 				self.removeValue(forKey: key)
 			}
 		}
+	}
+	
+	///returns a new OrderedDictionary containing the keys of this OrderedDictionary with the values transformed by the given closure
+	func mapValues<Result>(_ transform: (Value) throws -> Result) rethrows -> OrderedDictionary<Key, Result> {
+		var result = OrderedDictionary<Key, Result>()
+		result.keys = self.keys
+		result.values = try self.values.mapValues(transform)
+		return result
 	}
 	
 	///updates the value at the given position

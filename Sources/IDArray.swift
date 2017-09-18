@@ -30,6 +30,16 @@ public struct IDArray<Element>: ExpressibleByArrayLiteral {
 	}
 }
 
+extension IDArray: Codable/* where Element: Codable*/ {
+	public init(from decoder: Decoder) throws {
+		self.data = try decoder.singleValueContainer().decode(OrderedDictionary<UUID, Element>.self)
+	}
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.singleValueContainer()
+		try container.encode(data)
+	}
+}
+
 public extension IDArray {
 	///accesses the element with the given identifier
 	subscript(_ id: UUID) -> Element? {

@@ -13,7 +13,7 @@
 
 	public extension XibLoadable where Self: UIView {
 		@available(iOSApplicationExtension 9, *)
-		func setupFromXib(named name: String? = nil) {
+		@discardableResult func setupFromXib(named name: String? = nil) -> UIView {
 			self.autolayout()
 			
 			let bundle = Bundle(for: type(of: self))
@@ -24,6 +24,7 @@
 			view.frame = self.bounds
 			self.addSubview(view)
 			self.constrain(subview: view, .allSides)
+			return view
 		}
 	}
 #endif
