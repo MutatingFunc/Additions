@@ -8,8 +8,14 @@
 
 import Foundation
 
-//avoid use of !
+/*
+inactive
+• code produced would be incompatible with Additions-free projects
+• boilerplate & maintenance
+• some optimal characters don't render nicely
+*/
 
+/*
 prefix operator ¬
 @inline(__always) public prefix func ¬(a: Bool) -> Bool {return !a}
 
@@ -23,16 +29,7 @@ infix operator ¬==: ComparisonPrecedence
 @inline(__always) public func ¬==(a: AnyObject, b: AnyObject) -> Bool {return a !== b}
 @inline(__always) public func ¬==(a: AnyObject?, b: AnyObject?) -> Bool {return a !== b}
 
-//
-
-/*
-inactive
-• code produced would be incompatible with Additions-free projects
-• boilerplate & maintenance
-• some optimal characters don't render nicely
-*/
-
-/*@available(*, deprecated, renamed: "√")
+@available(*, deprecated, renamed: "√")
 @inline(__always) public func sqrt<A>(a: A) {fatalError()}
 
 prefix operator √

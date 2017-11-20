@@ -74,7 +74,7 @@ public extension OrderedDictionary {
 	///removes the value for the given key
 	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
 		guard
-			values[key] ¬= nil, //O(1) failure shortcut
+			values[key] != nil, //O(1) failure shortcut
 			let index = keys.index(of: key)
 		else {return nil}
 		keys.remove(at: index)

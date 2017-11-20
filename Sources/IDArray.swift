@@ -55,7 +55,7 @@ public extension IDArray {
 	}
 	
 	func contains(id: UUID) -> Bool {
-		return data[id] ¬= nil
+		return data[id] != nil
 	}
 }
 

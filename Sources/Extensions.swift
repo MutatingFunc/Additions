@@ -82,6 +82,6 @@ public extension Comparable where Self: _Strideable, Self.Stride: SignedInteger 
 
 public extension Bool {
 	mutating func invert() {
-		self = ¬self
+		self = !self
 	}
 }

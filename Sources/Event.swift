@@ -84,7 +84,7 @@ public struct Stream<Notification> {
 
 public final class EventSubscription {
 	private var unsub: (() -> ())?
-	public var isActive: Bool {return unsub ¬= nil}
+	public var isActive: Bool {return unsub != nil}
 	
 	fileprivate init(_ unsub: @escaping () -> ()) {
 		self.unsub = unsub

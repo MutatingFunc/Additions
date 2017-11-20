@@ -10,8 +10,14 @@
 	import UIKit
 	
 	public extension CGRect {
-		public func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
+		func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
 			return CGRect(x: self.origin.x + edgeInsets.left, y: self.origin.y + edgeInsets.top, width: self.width - (edgeInsets.left + edgeInsets.right), height: self.height - (edgeInsets.top + edgeInsets.bottom))
+		}
+		func insetBy(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
+			return insetBy(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+		}
+		func insetBy(_ all: CGFloat) -> CGRect {
+			return insetBy(dx: all, dy: all)
 		}
 	}
 	
