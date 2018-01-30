@@ -25,16 +25,14 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 	}
 }
 
-extension OrderedDictionary: Codable/* where Key: Codable, Value: Codable*/ {
-	enum CodingError: Error {case nonCodable}
+extension OrderedDictionary: Codable where Key: Codable, Value: Codable {
+	private struct KeyValueCodable: Codable {var key: Key, value: Value}
 	public init(from decoder: Decoder) throws {
-		guard Key.self is Codable.Type && Value.self is Codable.Type else {throw CodingError.nonCodable}
-		try self.init(decoder.singleValueContainer().decode([KeyValue].self))
+		try self.init(decoder.singleValueContainer().decode([KeyValueCodable].self).map{($0.key, $0.value)})
 	}
 	public func encode(to encoder: Encoder) throws {
-		guard Key.self is Codable.Type && Value.self is Codable.Type else {throw CodingError.nonCodable}
 		var container = encoder.singleValueContainer()
-		try container.encode([KeyValue](self))
+		try container.encode(self.map(KeyValueCodable.init))
 	}
 }
 

@@ -60,7 +60,8 @@ public extension Comparable {
 		self = self.clamped(to: range)
 	}
 }
-public extension Comparable where Self: _Strideable, Self.Stride: SignedInteger {
+
+public extension Comparable where Self: Strideable, Self.Stride: SignedInteger {
 	///return the bound which self is beyond, otherwise self
 	func clamped(to range: CountableRange<Self>) -> Self {
 		return max(min(self, range.upperBound.advanced(by: -1)), range.lowerBound)

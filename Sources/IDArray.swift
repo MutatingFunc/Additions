@@ -30,7 +30,7 @@ public struct IDArray<Element>: ExpressibleByArrayLiteral {
 	}
 }
 
-extension IDArray: Codable/* where Element: Codable*/ {
+extension IDArray: Codable where Element: Codable {
 	public init(from decoder: Decoder) throws {
 		self.data = try decoder.singleValueContainer().decode(OrderedDictionary<UUID, Element>.self)
 	}
