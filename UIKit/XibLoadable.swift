@@ -6,7 +6,7 @@
 //
 //
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	import UIKit
 	
 	public protocol XibLoadable: AnyObject {}

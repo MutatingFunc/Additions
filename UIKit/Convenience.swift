@@ -6,8 +6,8 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
-	import UIKit
+#if canImport(CoreGraphics)
+	import CoreGraphics
 	
 	public extension CGRect {
 		func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
@@ -18,6 +18,15 @@
 		}
 		func insetBy(_ all: CGFloat) -> CGRect {
 			return insetBy(dx: all, dy: all)
+		}
+	}
+#endif
+#if canImport(UIKit)
+	import UIKit
+	
+	public extension CGRect {
+		func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
+			return CGRect(x: self.origin.x + edgeInsets.left, y: self.origin.y + edgeInsets.top, width: self.width - (edgeInsets.left + edgeInsets.right), height: self.height - (edgeInsets.top + edgeInsets.bottom))
 		}
 	}
 	

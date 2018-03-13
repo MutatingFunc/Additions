@@ -11,7 +11,7 @@ inactive - working against language
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	public extension IndexPath {
 		var uSection: UInt {return UInt(section)}
 		var uRow: UInt {return UInt(row)}

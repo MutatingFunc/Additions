@@ -6,7 +6,7 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	import UIKit
 
 	//Segues

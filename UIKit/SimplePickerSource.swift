@@ -7,7 +7,7 @@
 //
 
 //inactive - just make a class
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	import UIKit
 
 	open class SimplePickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {

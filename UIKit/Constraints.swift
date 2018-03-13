@@ -6,7 +6,7 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	import UIKit
 
 	@available(iOS 9, *)
@@ -39,8 +39,8 @@
 		public static let bottom   = Self(rawValue: 1 << 1)
 		public static let leading  = Self(rawValue: 1 << 2)
 		public static let trailing = Self(rawValue: 1 << 3)
-		public static let left  = Self(rawValue: 1 << 4)
-		public static let right  = Self(rawValue: 1 << 5)
+		public static let left     = Self(rawValue: 1 << 4)
+		public static let right    = Self(rawValue: 1 << 5)
 	}
 	@available(iOS 9, *)
 	public struct LayoutAnchorFrameCenter: OptionSet {
@@ -50,7 +50,7 @@
 			self.rawValue = rawValue
 		}
 		
-		public static let center = Self(rawValue: (1 << 2) - 1)
+		public static let center  = Self(rawValue: (1 << 2) - 1)
 		
 		public static let centerX = Self(rawValue: 1 << 0)
 		public static let centerY = Self(rawValue: 1 << 1)

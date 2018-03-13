@@ -10,7 +10,7 @@
 inactive - drag & drop APIs make native alternatives appealing
 */
 
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit)
 	import UIKit
 
 	public struct BasicEditActionGenerator {
