@@ -24,12 +24,6 @@
 #if canImport(UIKit)
 	import UIKit
 	
-	public extension CGRect {
-		func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
-			return CGRect(x: self.origin.x + edgeInsets.left, y: self.origin.y + edgeInsets.top, width: self.width - (edgeInsets.left + edgeInsets.right), height: self.height - (edgeInsets.top + edgeInsets.bottom))
-		}
-	}
-	
 	public extension UIAlertController {
 		@discardableResult func addAction(_ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 			self.addAction(UIAlertAction(title: title, style: style, handler: handler))
