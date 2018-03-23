@@ -18,8 +18,8 @@ public extension Sequence {
 	func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
 		return self.map{$0[keyPath: keyPath]}
 	}
-	func flatMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
-		return self.flatMap{$0[keyPath: keyPath]}
+	func compactMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
+		return self.compactMap{$0[keyPath: keyPath]}
 	}
 	func flatMap<Sequence: Swift.Sequence>(_ keyPath: KeyPath<Element, Sequence>) -> [Sequence.Element] {
 		return self.flatMap{$0[keyPath: keyPath]}

@@ -23,7 +23,7 @@
 			let view = (nib.instantiate(withOwner: self, options: nil).first as! UIView).autolayout()
 			view.frame = self.bounds
 			self.addSubview(view)
-			self.constrain(subview: view, .allSides)
+			self.constrainSubview(view, .allSides)
 			return view
 		}
 	}
