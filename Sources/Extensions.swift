@@ -36,11 +36,6 @@ public extension Collection {
 		return Dictionary(grouping: self, by: {$0[keyPath: predicate]})
 	}
 }
-public extension Dictionary where Key == Bool, Value: RangeReplaceableCollection {
-	func tuple() -> (true: Value, false: Value) {
-		return (true: self[true, default: Value()], false: self[false, default: Value()])
-	}
-}
 
 public extension RangeReplaceableCollection {
 	///removes the element at the source index and inseerts it at the destination
@@ -81,8 +76,41 @@ public extension Comparable where Self: Strideable, Self.Stride: SignedInteger {
 	}
 }
 
-public extension Bool {
-	mutating func invert() {
-		self = !self
+private struct AllFWI<Index: FixedWidthInteger>: Collection {
+	subscript(position: Index) -> () {return ()}
+	var startIndex: Index {return Index.min}
+	var endIndex: Index {return Index.max}
+	func index(after i: Index) -> Index {return i.advanced(by: 1)}
+}
+public extension FixedWidthInteger {
+	func clamped<Range>(to range: Range) -> Self where Range: RangeExpression, Range.Bound == Self {
+		let range = range.relative(to: AllFWI<Self>())
+		switch self {
+		case range: return self
+		case ...range.lowerBound: return range.lowerBound
+		case _: return range.upperBound.advanced(by: -1)
+		}
 	}
+}
+
+private struct AllFP<Index: FloatingPoint>: Collection {
+	subscript(position: Index) -> () {return ()}
+	var startIndex: Index {return -Index.greatestFiniteMagnitude}
+	var endIndex: Index {return Index.greatestFiniteMagnitude}
+	func index(after i: Index) -> Index {return i.advanced(by: 1)}
+}
+public extension FloatingPoint {
+	func clamped<Range>(to range: Range) -> Self where Range: RangeExpression, Range.Bound == Self {
+		let range = range.relative(to: AllFP<Self>())
+		switch self {
+		case range: return self
+		case ...range.lowerBound: return range.lowerBound
+		case _: return range.upperBound.advanced(by: -1)
+		}
+	}
+}
+
+public extension Bool {
+	@available(*, deprecated, renamed: "toggle")
+	mutating func invert() {self = !self}
 }

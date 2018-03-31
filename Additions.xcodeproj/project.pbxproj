@@ -17,6 +17,7 @@
 		1A2E14D71D6DE7F7007BA6E0 /* Reuseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6CD2F21D664AE100F9E0B6 /* Reuseable.swift */; };
 		1A2E14DB1D6DE7FE007BA6E0 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6CD2EE1D664AE100F9E0B6 /* Constraints.swift */; };
 		1A3C4C021D935097006EDF4A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C4C011D935097006EDF4A /* Event.swift */; };
+		1A524994206FF3FC000616A2 /* Applicative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3126061D7D011800AD7966 /* Applicative.swift */; };
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1A85FA331EE9B1BA002F84BD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A85FA321EE9B1BA002F84BD /* General.swift */; };
@@ -148,6 +149,7 @@
 				__PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */,
 				__PBXFileRef_Sources/IDArray.swift /* IDArray.swift */,
 				1AB0CA081F69A426003AC8F9 /* Storage.swift */,
+				1A3126061D7D011800AD7966 /* Applicative.swift */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -157,7 +159,6 @@
 			children = (
 				1A8D39541F040446002B170E /* UArray.swift */,
 				1A2684E01F051FB60003EC9F /* UOrderedDictionary.swift */,
-				1A3126061D7D011800AD7966 /* Applicative.swift */,
 				__PBXFileRef_Sources/Weak.swift /* Weak.swift */,
 				1A3C4C031D93D62C006EDF4A /* WeakAny.swift */,
 				1AD616C51D69101700CC2F0B /* Regex.swift */,
@@ -326,6 +327,7 @@
 				1A85FA331EE9B1BA002F84BD /* General.swift in Sources */,
 				1A1681E71E6DFE0F00CF8F63 /* EventConvenience.swift in Sources */,
 				1A984D601F3A3C3F00508A94 /* Maths.swift in Sources */,
+				1A524994206FF3FC000616A2 /* Applicative.swift in Sources */,
 				1AB0CA091F69A426003AC8F9 /* Storage.swift in Sources */,
 				1A2E14D41D6DE79B007BA6E0 /* Convenience.swift in Sources */,
 				1A2E14D71D6DE7F7007BA6E0 /* Reuseable.swift in Sources */,
