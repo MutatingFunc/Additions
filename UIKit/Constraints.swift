@@ -19,6 +19,8 @@ public protocol LayoutAnchorFrame {
 	var trailingAnchor: NSLayoutXAxisAnchor {get}
 	var leftAnchor: NSLayoutXAxisAnchor {get}
 	var rightAnchor: NSLayoutXAxisAnchor {get}
+	var heightAnchor: NSLayoutDimension {get}
+	var widthAnchor: NSLayoutDimension {get}
 }
 @available(iOS 9, *)
 extension UIView: LayoutAnchorFrame {}
@@ -32,8 +34,15 @@ public struct LayoutAnchorFrameSide: OptionSet {
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
+	public init(_ axes: LayoutAnchorFrameAxis) {
+		self = []
+		if axes.contains(.vertical) {self.insert(.verticalSides)}
+		if axes.contains(.horizontal) {self.insert(.horizontalSides)}
+	}
 	
-	public static let allSides = Self(rawValue: (1 << 4) - 1)
+	public static let allSides        = [.verticalSides, .horizontalSides] as Self
+	public static let verticalSides   = [.top, .bottom] as Self
+	public static let horizontalSides = [.left, .right] as Self
 	
 	public static let top      = Self(rawValue: 1 << 0)
 	public static let bottom   = Self(rawValue: 1 << 1)
@@ -49,11 +58,30 @@ public struct LayoutAnchorFrameCenter: OptionSet {
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
+	public init(_ axis: LayoutAnchorFrameAxis) {
+		self.rawValue = axis.rawValue
+	}
 	
 	public static let center  = Self(rawValue: (1 << 2) - 1)
 	
 	public static let centerX = Self(rawValue: 1 << 0)
 	public static let centerY = Self(rawValue: 1 << 1)
+}
+@available(iOS 9, *)
+public struct LayoutAnchorFrameAxis: OptionSet {
+	public typealias `Self` = LayoutAnchorFrameAxis
+	public let rawValue: UInt8
+	public init(rawValue: UInt8) {
+		self.rawValue = rawValue
+	}
+	public init(_ center: LayoutAnchorFrameCenter) {
+		self.rawValue = center.rawValue
+	}
+	
+	public static let bothAxes   = [horizontal, vertical] as Self
+	
+	public static let horizontal = Self(rawValue: 1 << 0)
+	public static let vertical   = Self(rawValue: 1 << 1)
 }
 
 @available(iOS 9, *)
@@ -78,6 +106,7 @@ public extension UIView {
 public extension LayoutAnchorFrame {
 	public typealias Side = LayoutAnchorFrameSide
 	public typealias Center = LayoutAnchorFrameCenter
+	public typealias Axis = LayoutAnchorFrameAxis
 	
 	@available(*, deprecated, renamed: "constrainSubview(_:_:padding:)")
 	func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrainSubview(subview, sides, padding: padding)}
@@ -109,6 +138,15 @@ public extension LayoutAnchorFrame {
 		}
 		if centers.contains(.centerY) {
 			subview.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: offset).isActive = true
+		}
+	}
+	
+	func constrainSubview(_ subview: UIView, _ axes: Axis, scale: CGFloat = 1) {
+		if axes.contains(.horizontal) {
+			subview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale)
+		}
+		if axes.contains(.vertical) {
+			subview.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: scale)
 		}
 	}
 }
