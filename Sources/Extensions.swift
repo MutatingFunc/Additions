@@ -6,6 +6,19 @@
 //
 //
 
+extension Optional: IteratorProtocol where Wrapped: IteratorProtocol {
+	public typealias Element = Wrapped.Element
+	public mutating func next() -> Wrapped.Element? {
+		return self?.next()
+	}
+}
+extension Optional: Sequence where Wrapped: Sequence {
+	public typealias Iterator = Wrapped.Iterator?
+	public func makeIterator() -> Wrapped.Iterator? {
+		return self?.makeIterator()
+	}
+}
+
 public extension Optional {
 	func map<T>(_ keyPath: KeyPath<Wrapped, T>) -> T? {
 		return self.map{$0[keyPath: keyPath]}
@@ -110,6 +123,9 @@ public extension FloatingPoint {
 	}
 }
 
+public extension String {
+	var nonEmpty: String? {return self.isEmpty ? nil : self}
+}
 public extension Bool {
 	@available(*, deprecated, renamed: "toggle")
 	mutating func invert() {self = !self}

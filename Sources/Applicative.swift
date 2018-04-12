@@ -9,14 +9,13 @@
 
 /*
 inactive
-• =>: not needed
 • +>: indicator of need for additional functions
 */
 
-//b(f()): |>
-//f().flatMap(b): ?|>
+//b(f()): =>
+//f().flatMap(b): =>?
 //let a = f(); b(a); return a: +>
-//let a = f(); a.map(b); return a: ?+>
+//let a = f(); a.map(b); return a: +>?
 
 precedencegroup ApplicativePrecedence {
 	associativity: left
@@ -24,13 +23,13 @@ precedencegroup ApplicativePrecedence {
 }
 
 ///map
-infix operator |> : ApplicativePrecedence
-public func |><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
+infix operator => : ApplicativePrecedence
+public func =><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
 	return try b(a)
 }
 
-infix operator ?|> : ApplicativePrecedence
-public func ?|><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
+infix operator =>? : ApplicativePrecedence
+public func =>?<In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
 	return try a.flatMap(b)
 }
 
@@ -40,21 +39,20 @@ public func +><In, Out>(a: In, b: (In) throws -> Out) rethrows -> In {
 	_ = try b(a); return a
 }
 
-infix operator ?+> : ApplicativePrecedence
-public func ?+><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
+infix operator +>? : ApplicativePrecedence
+public func +>?<In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
 	_ = try a.flatMap(b); return a
 }*/
 
 
 //deprecated
-infix operator => : ApplicativePrecedence
-@available(*, deprecated, renamed: "|>")
-public func =><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
-	return try b(a)
-}
-
 infix operator ?=> : ApplicativePrecedence
-@available(*, deprecated, renamed: "?|>")
+@available(*, deprecated, renamed: "=>?")
 public func ?=><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
 	return try a.flatMap(b)
+}
+infix operator ?+> : ApplicativePrecedence
+@available(*, deprecated, renamed: "+>?")
+public func ?+><In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
+	_ = try a.flatMap(b); return a
 }

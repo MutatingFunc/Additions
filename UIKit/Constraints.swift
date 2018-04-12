@@ -34,15 +34,15 @@ public struct LayoutAnchorFrameSide: OptionSet {
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
-	public init(_ axes: LayoutAnchorFrameAxis) {
+	public init(_ dimensions: LayoutAnchorFrameDimension) {
 		self = []
-		if axes.contains(.vertical) {self.insert(.verticalSides)}
-		if axes.contains(.horizontal) {self.insert(.horizontalSides)}
+		if dimensions.contains(.height) {self.insert(.verticalSides)}
+		if dimensions.contains(.width) {self.insert(.horizontalSides)}
 	}
 	
 	public static let allSides        = [.verticalSides, .horizontalSides] as Self
 	public static let verticalSides   = [.top, .bottom] as Self
-	public static let horizontalSides = [.left, .right] as Self
+	public static let horizontalSides = [.leading, .trailing] as Self
 	
 	public static let top      = Self(rawValue: 1 << 0)
 	public static let bottom   = Self(rawValue: 1 << 1)
@@ -58,30 +58,36 @@ public struct LayoutAnchorFrameCenter: OptionSet {
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
-	public init(_ axis: LayoutAnchorFrameAxis) {
-		self.rawValue = axis.rawValue
+	public init(_ dimensions: LayoutAnchorFrameDimension) {
+		self.rawValue = dimensions.rawValue
+	}
+	public init(_ axes: UILayoutConstraintAxis) {
+		self.rawValue = LayoutAnchorFrameDimension(axes).rawValue
 	}
 	
-	public static let center  = Self(rawValue: (1 << 2) - 1)
+	public static let center  = [centerX, centerY] as Self
 	
 	public static let centerX = Self(rawValue: 1 << 0)
 	public static let centerY = Self(rawValue: 1 << 1)
 }
 @available(iOS 9, *)
-public struct LayoutAnchorFrameAxis: OptionSet {
-	public typealias `Self` = LayoutAnchorFrameAxis
+public struct LayoutAnchorFrameDimension: OptionSet {
+	public typealias `Self` = LayoutAnchorFrameDimension
 	public let rawValue: UInt8
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
-	public init(_ center: LayoutAnchorFrameCenter) {
-		self.rawValue = center.rawValue
+	public init(_ centers: LayoutAnchorFrameCenter) {
+		self.rawValue = centers.rawValue
+	}
+	public init(_ axes: UILayoutConstraintAxis) {
+		switch axes {case .horizontal: self = .width; case .vertical: self = .height}
 	}
 	
-	public static let bothAxes   = [horizontal, vertical] as Self
+	public static let bothDimensions = [width, height] as Self
 	
-	public static let horizontal = Self(rawValue: 1 << 0)
-	public static let vertical   = Self(rawValue: 1 << 1)
+	public static let width  = Self(rawValue: 1 << 0)
+	public static let height = Self(rawValue: 1 << 1)
 }
 
 @available(iOS 9, *)
@@ -106,7 +112,7 @@ public extension UIView {
 public extension LayoutAnchorFrame {
 	public typealias Side = LayoutAnchorFrameSide
 	public typealias Center = LayoutAnchorFrameCenter
-	public typealias Axis = LayoutAnchorFrameAxis
+	public typealias Dimension = LayoutAnchorFrameDimension
 	
 	@available(*, deprecated, renamed: "constrainSubview(_:_:padding:)")
 	func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrainSubview(subview, sides, padding: padding)}
@@ -123,11 +129,11 @@ public extension LayoutAnchorFrame {
 		if sides.contains(.bottom) {
 			self.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: padding).isActive = true
 		}
+		if sides.contains(.right) {
+			self.rightAnchor.constraint(equalTo: subview.rightAnchor, constant: padding).isActive = true
+		}
 		if sides.contains(.trailing) {
 			self.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: padding).isActive = true
-		}
-		if sides.contains(.right) {
-			subview.rightAnchor.constraint(equalTo: self.rightAnchor, constant: padding).isActive = true
 		}
 	}
 	@available(*, deprecated, renamed: "constrainSubview(_:_:offset:)")
@@ -141,12 +147,21 @@ public extension LayoutAnchorFrame {
 		}
 	}
 	
-	func constrainSubview(_ subview: UIView, _ axes: Axis, scale: CGFloat = 1) {
-		if axes.contains(.horizontal) {
-			subview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale)
+	func constrainSubview(_ subview: UIView, _ dimensions: Dimension, scale: CGFloat = 1, padding: CGFloat = 0) {
+		if dimensions.contains(.width) {
+			subview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale, constant: -padding).isActive = true
 		}
-		if axes.contains(.vertical) {
-			subview.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: scale)
+		if dimensions.contains(.height) {
+			subview.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: scale, constant: -padding).isActive = true
+		}
+	}
+	
+	func constrain(_ dimensions: Dimension, to constant: CGFloat) {
+		if dimensions.contains(.width) {
+			self.widthAnchor.constraint(equalToConstant: constant).isActive = true
+		}
+		if dimensions.contains(.height) {
+			self.heightAnchor.constraint(equalToConstant: constant).isActive = true
 		}
 	}
 }
