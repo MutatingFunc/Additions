@@ -9,12 +9,8 @@
 #if canImport(UIKit)
 import UIKit
 
-public protocol InstantiableVC {
-	static func instantiate() -> Self
-}
-
 ///Conforming ViewControllers provide their storyboard ID as a static property for easy instantiation.
-public protocol StoryboardIdentifiable: InstantiableVC {
+public protocol StoryboardIdentifiable {
 	///Returns this type's unique storyboard ID.
 	static var storyboardID: String {get}
 }
