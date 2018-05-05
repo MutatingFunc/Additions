@@ -24,13 +24,35 @@ precedencegroup ApplicativePrecedence {
 
 ///map
 infix operator => : ApplicativePrecedence
+@_transparent
 public func =><In, Out>(a: In, b: (In) throws -> Out) rethrows -> Out {
 	return try b(a)
 }
+@_transparent
+public func =><In, Out>(a: In, b: ((In) throws -> Out)?) rethrows -> Out? {
+	return try b?(a)
+}
+@_transparent @discardableResult
+public func =><In>(a: In, b: inout In) -> In {
+	b = a
+	return b
+}
 
 infix operator =>? : ApplicativePrecedence
+@_transparent
 public func =>?<In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> Out? {
-	return try a.flatMap(b)
+	if let a = a {return try b(a)}
+	return nil
+}
+@_transparent
+public func =>?<In, Out>(a: In?, b: ((In) throws -> Out?)?) rethrows -> Out? {
+	if let a = a {return try b?(a)}
+	return nil
+}
+@_transparent @discardableResult
+public func =>?<In>(a: In?, b: inout In) -> In {
+	if let a = a {b = a}
+	return b
 }
 
 ///applying

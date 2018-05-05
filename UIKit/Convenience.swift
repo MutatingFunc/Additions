@@ -39,10 +39,12 @@ public extension UIAlertController {
 
 public extension UIViewController {
 	@nonobjc func present(in presentingViewController: UIViewController, from source: UIBarButtonItem, animated: Bool, completion: (() -> ())? = nil) {
+		self.modalPresentationStyle = .popover
 		self.present(in: presentingViewController, animated: animated, completion: completion)
 		self.popoverPresentationController?.barButtonItem = source
 	}
 	@nonobjc func present(in presentingViewController: UIViewController, from source: UIView, animated: Bool, completion: (() -> ())? = nil) {
+		self.modalPresentationStyle = .popover
 		self.present(in: presentingViewController, animated: animated, completion: completion)
 		self.popoverPresentationController?.setSource(source)
 	}

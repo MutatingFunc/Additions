@@ -15,7 +15,7 @@ inactive
 • some optimal characters don't render nicely
 */
 
-/*
+
 prefix operator ¬
 @inline(__always) public prefix func ¬(a: Bool) -> Bool {return !a}
 
@@ -113,4 +113,4 @@ public func ∪<A: SetAlgebra>(a: A, b: A) -> A {return a.union(b)}
 
 infix operator ∩: SetOperationPrecedence
 public func ∩<A: SetAlgebra>(a: A, b: A) -> A {return a.intersection(b)}
-*/
+

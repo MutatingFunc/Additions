@@ -12,7 +12,10 @@ import UIKit
 public protocol ReuseIdentifiable {
 	static var reuseID: String {get}
 }
-public extension ReuseIdentifiable where Self: UIView {
+public extension ReuseIdentifiable where Self: UITableViewCell {
+	static var reuseID: String {return String(describing: self)}
+}
+public extension ReuseIdentifiable where Self: UICollectionViewCell {
 	static var reuseID: String {return String(describing: self)}
 }
 

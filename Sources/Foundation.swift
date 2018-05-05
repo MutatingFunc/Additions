@@ -16,3 +16,9 @@ public extension IndexPath {
 		self.init(indexes: [0, Int(item)])
 	}
 }
+
+public extension JSONDecoder {
+	func decode<Decodable: Swift.Decodable>(from data: Data) throws -> Decodable {
+		return try self.decode(Decodable.self, from: data)
+	}
+}

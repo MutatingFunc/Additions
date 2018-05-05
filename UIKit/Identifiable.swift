@@ -9,13 +9,21 @@
 #if canImport(UIKit)
 import UIKit
 
+public protocol InstantiableVC {
+	static func instantiate() -> Self
+}
+
 ///Conforming ViewControllers provide their storyboard ID as a static property for easy instantiation.
-public protocol StoryboardIdentifiable {
+public protocol StoryboardIdentifiable: InstantiableVC {
 	///Returns this type's unique storyboard ID.
 	static var storyboardID: String {get}
 }
 public extension StoryboardIdentifiable where Self: UIViewController {
 	static var storyboardID: String {return String(describing: self)}
+	
+	static func instantiate() -> Self {
+		return UIStoryboard(name: "Main", bundle: .main).instantiateViewController()
+	}
 }
 
 public extension UIStoryboard {
@@ -35,6 +43,11 @@ public extension UIStoryboard {
 	func instantiateViewController<Identifiable>() -> Identifiable! where
 			Identifiable: UIViewController, Identifiable: StoryboardIdentifiable {
 		return self.instantiateViewController(withIdentifier: Identifiable.storyboardID) as? Identifiable
+	}
+	///Instantiates a storyboard based on its storyboardID.
+	func instantiateViewController<StringRepresentable>(withIdentifier identifier: StringRepresentable) -> UIViewController! where
+			StringRepresentable: RawRepresentable, StringRepresentable.RawValue == String {
+		return self.instantiateViewController(withIdentifier: identifier.rawValue)
 	}
 }
 #endif
