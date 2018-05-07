@@ -27,6 +27,9 @@ public extension CGRect {
 	}
 }
 public extension UIAlertController {
+	convenience init(_ title: String?, detail: String? = nil, style: UIAlertControllerStyle = .alert) {
+		self.init(title: title, message: detail, preferredStyle: style)
+	}
 	@discardableResult func addAction(_ title: String?, style: UIAlertActionStyle = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 		self.addAction(UIAlertAction(title: title, style: style, handler: handler))
 		return self
