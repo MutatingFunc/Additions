@@ -22,3 +22,22 @@ public extension JSONDecoder {
 		return try self.decode(Decodable.self, from: data)
 	}
 }
+
+public extension FileManager {
+	///copies a file, renaming with an incrementing number on a FileExists error.
+	func renamingCopy(at source: URL, to target: URL) throws {
+		let fileManager = FileManager.default
+		let (title, ext) = (target.deletingPathExtension().lastPathComponent, target.pathExtension)
+		let targetFolder = target.deletingLastPathComponent()
+		var target = target
+		for num in 2 ... 100 {
+			do {
+				try fileManager.copyItem(at: source, to: target)
+				return
+			} catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == CocoaError.fileWriteFileExists.rawValue {
+				target = targetFolder.appendingPathComponent("\(title) \(num).\(ext)")
+			}
+		}
+		throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileWriteFileExists.rawValue, userInfo: nil)
+	}
+}

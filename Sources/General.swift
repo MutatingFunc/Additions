@@ -36,6 +36,11 @@ public extension Optional {
 	}
 }
 public extension Sequence {
+	var last: Element? {
+		return self.reduce(nil) {prev, next in
+			next
+		}
+	}
 	func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
 		return self.map{$0[keyPath: keyPath]}
 	}
