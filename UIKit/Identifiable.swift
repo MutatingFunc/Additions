@@ -17,8 +17,15 @@ public protocol StoryboardIdentifiable {
 public extension StoryboardIdentifiable where Self: UIViewController {
 	static var storyboardID: String {return String(describing: self)}
 	
-	static func instantiate() -> Self {
-		return UIStoryboard(name: "Main", bundle: .main).instantiateViewController()
+	static func instantiate(from storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)) -> Self {
+		return storyboard.instantiateViewController()
+	}
+	static func instantiateWithNav(from storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)) -> (nav: UINavigationController, vc: Self) {
+		return (storyboard.instantiateViewController(withIdentifier: self.storyboardID) as? UINavigationController).flatMap {nav in
+			(nav.viewControllers.first as? Self).map {vc in
+				(nav, vc)
+			}
+		} ?? preconditionFailure()
 	}
 }
 
