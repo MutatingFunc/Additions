@@ -17,8 +17,7 @@ public final class Event<Notification> {
 	private let hashTable: NSHashTable<HandlerRef<Notification>> = .weakObjects()
 	
 	public init() {
-		let hashTable = self.hashTable
-		self.stream = Stream {handler in
+		self.stream = Stream {[hashTable] handler in
 			let ref = HandlerRef(handler)
 			hashTable.add(ref)
 			return EventSubscription {[weak hashTable] in
@@ -51,7 +50,7 @@ public struct Stream<Notification> {
 	fileprivate init(_ subscribe: @escaping Subscribe) {
 		self.subscribeSource = subscribe
 	}
-	private init(_ queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
+	private init(async queue: DispatchQueue, _ subscribe: @escaping Subscribe) {
 		self.init {handler in
 			subscribe {notification in
 				queue.async {
@@ -72,7 +71,7 @@ public struct Stream<Notification> {
 		return .init(flatMapping: self.subscribeSource, through: transform)
 	}
 	public func async(_ queue: DispatchQueue = .global()) -> Stream {
-		return .init(queue, self.subscribeSource)
+		return .init(async: queue, self.subscribeSource)
 	}
 	
 	public func subscribe(_ handler: @escaping (Notification) -> ()) -> EventSubscription {

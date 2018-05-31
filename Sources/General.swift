@@ -14,6 +14,12 @@ public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never
 	}
 }
 
+extension Sequence {
+	public var isEmpty: Bool {
+		var iterator = self.makeIterator()
+		return iterator.next() == nil
+	}
+}
 extension Optional: IteratorProtocol where Wrapped: IteratorProtocol {
 	public typealias Element = Wrapped.Element
 	public mutating func next() -> Wrapped.Element? {
@@ -24,6 +30,17 @@ extension Optional: Sequence where Wrapped: Sequence {
 	public typealias Iterator = Wrapped.Iterator?
 	public func makeIterator() -> Wrapped.Iterator? {
 		return self?.makeIterator()
+	}
+}
+extension Optional where Wrapped: Collection {
+	public subscript(_ position: Wrapped.Index) -> Wrapped.Element {
+		get {
+			guard let `self` = self else {preconditionFailure("Index out of bounds")}
+			return self[position]
+		}
+	}
+	public var count: Int {
+		return self?.count ?? 0
 	}
 }
 
