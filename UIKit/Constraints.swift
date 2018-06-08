@@ -61,7 +61,7 @@ public struct LayoutAnchorFrameCenter: OptionSet {
 	public init(_ dimensions: LayoutAnchorFrameDimension) {
 		self.rawValue = dimensions.rawValue
 	}
-	public init(_ axes: UILayoutConstraintAxis) {
+	public init(_ axes: NSLayoutConstraint.Axis) {
 		self.rawValue = LayoutAnchorFrameDimension(axes).rawValue
 	}
 	
@@ -80,7 +80,7 @@ public struct LayoutAnchorFrameDimension: OptionSet {
 	public init(_ centers: LayoutAnchorFrameCenter) {
 		self.rawValue = centers.rawValue
 	}
-	public init(_ axes: UILayoutConstraintAxis) {
+	public init(_ axes: NSLayoutConstraint.Axis) {
 		switch axes {case .horizontal: self = .width; case .vertical: self = .height}
 	}
 	

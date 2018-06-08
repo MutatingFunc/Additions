@@ -28,11 +28,4 @@ public extension Stream {
 	}
 }
 
-extension EventSubscription: Hashable {
-	public var hashValue: Int {
-		return ObjectIdentifier(self).hashValue
-	}
-}
-public func ==(lhs: EventSubscription, rhs: EventSubscription) -> Bool {
-	return lhs === rhs
-}
+extension EventSubscription: Hashable {}

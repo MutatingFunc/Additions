@@ -14,6 +14,15 @@ public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never
 	}
 }
 
+extension Equatable where Self: AnyObject {
+	public static func ==(lhs: Self, rhs: Self) -> Bool {
+		return lhs === rhs
+	}
+}
+extension Hashable where Self: AnyObject {
+	var hashValue: Int {return ObjectIdentifier(self).hashValue}
+}
+
 extension Sequence {
 	public var isEmpty: Bool {
 		var iterator = self.makeIterator()
