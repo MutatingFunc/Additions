@@ -76,7 +76,7 @@ public extension Sequence {
 	func flatMap<Sequence: Swift.Sequence>(_ keyPath: KeyPath<Element, Sequence>) -> [Sequence.Element] {
 		return self.flatMap{$0[keyPath: keyPath]}
 	}
-	func filter(_ keyPath: KeyPath<Element, Bool>) -> [Element] {
+	func filter(by keyPath: KeyPath<Element, Bool>) -> [Element] {
 		return self.filter{$0[keyPath: keyPath]}
 	}
 }
