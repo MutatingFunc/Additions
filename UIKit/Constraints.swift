@@ -6,6 +6,11 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
+#if !swift(>=4.2)
+extension NSLayoutConstraint {
+	public typealias Axis = UILayoutConstraintAxis
+}
+#endif
 #if canImport(UIKit)
 import UIKit
 
