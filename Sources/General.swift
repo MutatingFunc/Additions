@@ -20,7 +20,13 @@ extension Equatable where Self: AnyObject {
 	}
 }
 extension Hashable where Self: AnyObject {
+	#if swift(>=4.2)
+	func hash(into hasher: inout Hasher) {
+		ObjectIdentifier(self).hash(into: &hasher)
+	}
+	#else
 	var hashValue: Int {return ObjectIdentifier(self).hashValue}
+	#endif
 }
 
 extension Sequence {

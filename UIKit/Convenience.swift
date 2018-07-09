@@ -39,8 +39,8 @@ public extension CGRect {
 	}
 }
 public extension UIAlertController {
-	convenience init(_ title: String?, detail: String? = nil, style: UIAlertController.Style = .alert) {
-		self.init(title: title, message: detail, preferredStyle: style)
+	convenience init(_ title: String?, message: String? = nil, style: UIAlertController.Style = .alert) {
+		self.init(title: title, message: message, preferredStyle: style)
 	}
 	@discardableResult func addAction(_ title: String?, style: UIAlertAction.Style = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 		self.addAction(UIAlertAction(title: title, style: style, handler: handler))
@@ -54,7 +54,7 @@ public extension UIAlertController {
 
 public extension UIViewController {
 	@nonobjc func present(in presentingViewController: UIViewController, from source: UIBarButtonItem, animated: Bool, completion: (() -> ())? = nil) {
-		self.modalPresentationStyle = .popover
+		self.modalPresentationStyle = presentingViewController.traitCollection.horizontalSizeClass == .compact ? .overCurrentContext : .popover
 		self.present(in: presentingViewController, animated: animated, completion: completion)
 		self.popoverPresentationController?.barButtonItem = source
 	}
@@ -87,11 +87,17 @@ public extension UICollectionView {
 	func insertItem(at indices: IndexPath...) {
 		self.insertItems(at: indices)
 	}
+	func reloadItem(at indices: IndexPath...) {
+		self.reloadItems(at: indices)
+	}
 	func deleteItem(at indices: IndexPath...) {
 		self.deleteItems(at: indices)
 	}
 	func insertItem(at indices: Int..., in section: Int = 0) {
 		self.insertItems(at: indices.map{IndexPath(row: $0, section: section)})
+	}
+	func reloadItem(at indices: Int..., in section: Int = 0) {
+		self.reloadItems(at: indices.map{IndexPath(row: $0, section: section)})
 	}
 	func deleteItem(at indices: Int..., in section: Int = 0) {
 		self.deleteItems(at: indices.map{IndexPath(row: $0, section: section)})
@@ -101,11 +107,17 @@ public extension UITableView {
 	func insertRow(at indices: IndexPath..., with animation: UITableView.RowAnimation = .automatic) {
 		self.insertRows(at: indices, with: animation)
 	}
+	func reloadRow(at indices: IndexPath..., with animation: UITableView.RowAnimation = .automatic) {
+		self.reloadRows(at: indices, with: animation)
+	}
 	func deleteRow(at indices: IndexPath..., with animation: UITableView.RowAnimation = .automatic) {
 		self.deleteRows(at: indices, with: animation)
 	}
 	func insertRow(at indices: Int..., in section: Int = 0, with animation: UITableView.RowAnimation = .automatic) {
 		self.insertRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
+	}
+	func reloadRow(at indices: Int..., in section: Int = 0, with animation: UITableView.RowAnimation = .automatic) {
+		self.reloadRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)
 	}
 	func deleteRow(at indices: Int..., in section: Int = 0, with animation: UITableView.RowAnimation = .automatic) {
 		self.deleteRows(at: indices.map{IndexPath(row: $0, section: section)}, with: animation)

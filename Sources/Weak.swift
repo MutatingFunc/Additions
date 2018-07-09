@@ -18,14 +18,7 @@ public struct Weak<Reference: AnyObject> {
 extension Weak: ExpressibleByNilLiteral {
 	public init(nilLiteral: ()) {target = nil}
 }
-extension Weak: Hashable {
-	public static func ==(lhs: Weak<Reference>, rhs: Weak<Reference>) -> Bool {
-		return lhs.target === rhs.target
-	}
-	public var hashValue: Int {
-		return target.map(ObjectIdentifier.init)?.hashValue ?? .min
-	}
-}
+extension Weak: Hashable {}
 extension Weak: CustomDebugStringConvertible {
 	public var debugDescription: String {return target.debugDescription}
 }
