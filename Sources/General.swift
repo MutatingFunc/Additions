@@ -47,17 +47,6 @@ extension Optional: Sequence where Wrapped: Sequence {
 		return self?.makeIterator()
 	}
 }
-extension Optional where Wrapped: Collection {
-	public subscript(_ position: Wrapped.Index) -> Wrapped.Element {
-		get {
-			guard let `self` = self else {preconditionFailure("Index out of bounds")}
-			return self[position]
-		}
-	}
-	public var count: Int {
-		return self?.count ?? 0
-	}
-}
 
 public extension Optional {
 	func map<T>(_ keyPath: KeyPath<Wrapped, T>) -> T? {
