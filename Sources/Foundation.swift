@@ -8,6 +8,13 @@
 
 import Foundation
 
+public extension NSObjectProtocol {
+	func setup(_ setup: (Self) -> ()) -> Self {
+		setup(self)
+		return self
+	}
+}
+
 public extension IndexPath {
 	init<I: BinaryInteger>(row: I) {
 		self.init(indexes: [0, Int(row)])

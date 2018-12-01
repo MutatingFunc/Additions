@@ -6,18 +6,6 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if !swift(>=4.2)
-extension UIAlertController {
-	public typealias Style = UIAlertControllerStyle
-}
-extension UIAlertAction {
-	public typealias Style = UIAlertActionStyle
-}
-extension UITableView {
-	public typealias RowAnimation = UITableViewRowAnimation
-}
-#endif
-
 #if canImport(CoreGraphics)
 import CoreGraphics
 
@@ -30,6 +18,7 @@ public extension CGRect {
 	}
 }
 #endif
+
 #if canImport(UIKit)
 import UIKit
 
@@ -135,4 +124,17 @@ public extension UIStoryboardSegue {
 		return destination.popoverPresentationController
 	}
 }
+
+#if !swift(>=4.2)
+extension UIAlertController {
+	public typealias Style = UIAlertControllerStyle
+}
+extension UIAlertAction {
+	public typealias Style = UIAlertActionStyle
+}
+extension UITableView {
+	public typealias RowAnimation = UITableViewRowAnimation
+}
+#endif
+
 #endif

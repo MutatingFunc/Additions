@@ -18,7 +18,6 @@
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1A88A24D20B75AD00055F3C2 /* NeverConformances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A88A24C20B75AD00055F3C2 /* NeverConformances.swift */; };
-		1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9A4BE41E70BADC008C6B5C /* XibLoadable.swift */; };
 		1AA644631EF0A866003C96C6 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/OrderedDictionary.swift /* OrderedDictionary.swift */; };
 		1ADAC9A02113086000CB2BDA /* MVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADAC99F2113086000CB2BDA /* MVC.swift */; };
 		1AF9C9CC1F5DE24800637832 /* IDArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/IDArray.swift /* IDArray.swift */; };
@@ -315,7 +314,6 @@
 				1AF9C9CC1F5DE24800637832 /* IDArray.swift in Sources */,
 				1ADAC9A02113086000CB2BDA /* MVC.swift in Sources */,
 				1A2E14DB1D6DE7FE007BA6E0 /* Constraints.swift in Sources */,
-				1A9A4BE51E70BADC008C6B5C /* XibLoadable.swift in Sources */,
 				1A0CED991D9AE33200CB90CF /* General.swift in Sources */,
 				1A2E14D61D6DE7F7007BA6E0 /* Identifiable.swift in Sources */,
 				1A2E14D51D6DE7F7007BA6E0 /* Segue.swift in Sources */,
