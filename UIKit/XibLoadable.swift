@@ -27,7 +27,7 @@ public extension XibLoadable where Self: UIView {
 		let view = (nib.instantiate(withOwner: self, options: nil).first as! UIView).autolayout()
 		view.frame = self.bounds
 		self.addSubview(view)
-		self.constrainSubview(view, .allSides)
+		self.constrain(.allSides, to: view)
 		return view
 	}
 }

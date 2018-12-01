@@ -27,6 +27,7 @@ public protocol LayoutAnchorFrame {
 	var heightAnchor: NSLayoutDimension {get}
 	var widthAnchor: NSLayoutDimension {get}
 }
+
 @available(iOS 9, *)
 extension UIView: LayoutAnchorFrame {}
 @available(iOS 9, *)
@@ -34,20 +35,81 @@ extension UILayoutGuide: LayoutAnchorFrame {}
 
 @available(iOS 9, *)
 public struct LayoutAnchorFrameSide: OptionSet {
+	
+	public struct Vertical: OptionSet {
+		public typealias `Self` = Vertical
+		public let rawValue: UInt8
+		public init(rawValue: UInt8) {
+			self.rawValue = rawValue
+		}
+		public init(componentOf sides: LayoutAnchorFrameSide) {
+			self = []
+			if sides.contains(.top) {self.insert(.top)}
+			if sides.contains(.bottom) {self.insert(.bottom)}
+		}
+		
+		public static let verticalSides   = [.top, .bottom] as Self
+		
+		public static let top      = Self(rawValue: 1 << 0)
+		public static let bottom   = Self(rawValue: 1 << 1)
+	}
+	
+	public struct Horizontal: OptionSet {
+		public typealias `Self` = Horizontal
+		public let rawValue: UInt8
+		public init(rawValue: UInt8) {
+			self.rawValue = rawValue
+		}
+		public init(componentOf sides: LayoutAnchorFrameSide) {
+			self = []
+			if sides.contains(.leading) {self.insert(.leading)}
+			if sides.contains(.trailing) {self.insert(.trailing)}
+			if sides.contains(.left) {self.insert(.left)}
+			if sides.contains(.right) {self.insert(.right)}
+		}
+			
+		public static let horizontalSides = [.leading, .trailing] as Self
+		
+		public static let leading  = Self(rawValue: 1 << 0)
+		public static let trailing = Self(rawValue: 1 << 1)
+		public static let left     = Self(rawValue: 1 << 2)
+		public static let right    = Self(rawValue: 1 << 3)
+	}
+	
 	public typealias `Self` = LayoutAnchorFrameSide
 	public let rawValue: UInt8
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
+	
+	public init(_ horizontal: Horizontal, _ vertical: Vertical) {
+		self = []
+		if vertical.contains(.top) {self.insert(.top)}
+		if vertical.contains(.bottom) {self.insert(.bottom)}
+		if horizontal.contains(.leading) {self.insert(.leading)}
+		if horizontal.contains(.trailing) {self.insert(.trailing)}
+		if horizontal.contains(.left) {self.insert(.left)}
+		if horizontal.contains(.right) {self.insert(.right)}
+	}
+	public init(_ horizontal: Horizontal) {self.init(horizontal, [])}
+	public init(_ vertical: Vertical) {self.init([], vertical)}
+	
 	public init(_ dimensions: LayoutAnchorFrameDimension) {
 		self = []
 		if dimensions.contains(.height) {self.insert(.verticalSides)}
 		if dimensions.contains(.width) {self.insert(.horizontalSides)}
 	}
 	
-	public static let allSides        = [.verticalSides, .horizontalSides] as Self
-	public static let verticalSides   = [.top, .bottom] as Self
-	public static let horizontalSides = [.leading, .trailing] as Self
+	public var verticalComponent: Vertical {
+		return Vertical(componentOf: self)
+	}
+	public var horizontalComponent: Horizontal {
+		return Horizontal(componentOf: self)
+	}
+	
+	public static let allSides = [.verticalSides, .horizontalSides] as Self
+	public static let verticalSides   = Self(Vertical.verticalSides)
+	public static let horizontalSides = Self(Horizontal.horizontalSides)
 	
 	public static let top      = Self(rawValue: 1 << 0)
 	public static let bottom   = Self(rawValue: 1 << 1)
@@ -97,19 +159,15 @@ public struct LayoutAnchorFrameDimension: OptionSet {
 
 @available(iOS 9, *)
 public extension UIView {
-	func addSubview(_ subview: UIView, constraining sides: Side, padding: CGFloat = 0) {
-		addSubview(subview, constraining: sides, to: self, padding: padding)
-	}
-	func addSubview(_ subview: UIView, constraining centers: Center, offset: CGFloat = 0) {
-		addSubview(subview, constraining: centers, to: self, offset: offset)
-	}
-	func addSubview(_ subview: UIView, constraining sides: Side, to frame: LayoutAnchorFrame, padding: CGFloat = 0) {
+	func addSubview(_ subview: UIView, constraining sides: Side, to frame: LayoutAnchorFrame? = nil, padding: CGFloat = 0) {
+		let frame = frame ?? self
 		self.addSubview(subview)
-		frame.constrainSubview(subview, sides, padding: padding)
+		frame.constrain(sides, to: subview, padding: padding)
 	}
-	func addSubview(_ subview: UIView, constraining centers: Center, to frame: LayoutAnchorFrame, offset: CGFloat = 0) {
+	func addSubview(_ subview: UIView, constraining centers: Center, to frame: LayoutAnchorFrame? = nil, offset: CGFloat = 0) {
+		let frame = frame ?? self
 		self.addSubview(subview)
-		self.constrainSubview(subview, centers, offset: offset)
+		frame.constrain(centers, to: subview, offset: offset)
 	}
 }
 
@@ -121,43 +179,59 @@ public extension LayoutAnchorFrame {
 	
 	@available(*, deprecated, renamed: "constrainSubview(_:_:padding:)")
 	func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrainSubview(subview, sides, padding: padding)}
-	func constrainSubview(_ subview: UIView, _ sides: Side, padding: CGFloat = 0) {
+	@available(*, deprecated, renamed: "constrain(_:to:padding:)")
+	func constrainSubview(_ subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrain(sides, to: subview, padding: padding)}
+	func constrain(_ sides: Side, to view: UIView, padding: CGFloat = 0) {
+		let (vertical, horizontal) = (sides.verticalComponent, sides.horizontalComponent)
+		constrain(horizontal, to: view, horizontal, padding: padding)
+		constrain(vertical, to: view, vertical, padding: padding)
+	}
+	
+	func constrain(_ sides: Side.Vertical, to view: UIView, _ toSides: Side.Vertical, padding: CGFloat = 0) {
 		if sides.contains(.top) {
-			subview.topAnchor.constraint(equalTo: self.topAnchor, constant: padding).isActive = true
-		}
-		if sides.contains(.left) {
-			subview.leftAnchor.constraint(equalTo: self.leftAnchor, constant: padding).isActive = true
-		}
-		if sides.contains(.leading) {
-			subview.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding).isActive = true
+			view.topAnchor.constraint(equalTo: self.topAnchor, constant: padding).isActive = true
 		}
 		if sides.contains(.bottom) {
-			self.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: padding).isActive = true
-		}
-		if sides.contains(.right) {
-			self.rightAnchor.constraint(equalTo: subview.rightAnchor, constant: padding).isActive = true
-		}
-		if sides.contains(.trailing) {
-			self.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: padding).isActive = true
-		}
-	}
-	@available(*, deprecated, renamed: "constrainSubview(_:_:offset:)")
-	func constrain(subview: UIView, _ centers: Center, offset: CGFloat = 0) {constrainSubview(subview, centers, offset: offset)}
-	func constrainSubview(_ subview: UIView, _ centers: Center, offset: CGFloat = 0) {
-		if centers.contains(.centerX) {
-			subview.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: offset).isActive = true
-		}
-		if centers.contains(.centerY) {
-			subview.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: offset).isActive = true
+			self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: padding).isActive = true
 		}
 	}
 	
-	func constrainSubview(_ subview: UIView, _ dimensions: Dimension, scale: CGFloat = 1, padding: CGFloat = 0) {
+	func constrain(_ sides: Side.Horizontal, to view: UIView, _ toSides: Side.Horizontal, padding: CGFloat = 0) {
+		if sides.contains(.leading) {
+			view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding).isActive = true
+		}
+		if sides.contains(.trailing) {
+			self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: padding).isActive = true
+		}
+		if sides.contains(.left) {
+			view.leftAnchor.constraint(equalTo: self.leftAnchor, constant: padding).isActive = true
+		}
+		if sides.contains(.right) {
+			self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: padding).isActive = true
+		}
+	}
+	
+	@available(*, deprecated, renamed: "constrainSubview(_:_:offset:)")
+	func constrain(subview: UIView, _ centers: Center, offset: CGFloat = 0) {constrainSubview(subview, centers, offset: offset)}
+	@available(*, deprecated, renamed: "constrain(_:to:offset:)")
+	func constrainSubview(_ subview: UIView, _ centers: Center, offset: CGFloat = 0) {constrain(centers, to: subview, offset: offset)}
+	func constrain(_ centers: Center, to view: UIView, offset: CGFloat = 0) {
+		if centers.contains(.centerX) {
+			view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: offset).isActive = true
+		}
+		if centers.contains(.centerY) {
+			view.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: offset).isActive = true
+		}
+	}
+	
+	@available(*, deprecated, renamed: "constrain(_:to:scale:padding:)")
+	func constrainSubview(_ subview: UIView, _ dimensions: Dimension, scale: CGFloat = 1, padding: CGFloat = 0) {constrain(dimensions, to: subview, scale: scale, padding: padding)}
+	func constrain(_ dimensions: Dimension, to view: UIView, scale: CGFloat = 1, padding: CGFloat = 0) {
 		if dimensions.contains(.width) {
-			subview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale, constant: -padding).isActive = true
+			view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale, constant: -padding).isActive = true
 		}
 		if dimensions.contains(.height) {
-			subview.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: scale, constant: -padding).isActive = true
+			view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: scale, constant: -padding).isActive = true
 		}
 	}
 	
