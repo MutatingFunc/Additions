@@ -6,27 +6,19 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if canImport(CoreGraphics)
-import CoreGraphics
-
-public extension CGRect {
-	func insetBy(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
-		return CGRect(x: self.origin.x + left, y: self.origin.y + top, width: self.width - (left + right), height: self.height - (top + bottom))
-	}
-	func insetBy(_ all: CGFloat) -> CGRect {
-		return insetBy(dx: all, dy: all)
-	}
-}
-#endif
-
 #if canImport(UIKit)
 import UIKit
+
+#if canImport(CoreGraphics)
+import CoreGraphics
 
 public extension CGRect {
 	func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
 		return insetBy(top: edgeInsets.top, left: edgeInsets.left, bottom: edgeInsets.bottom, right: edgeInsets.right)
 	}
 }
+#endif
+
 public extension UIAlertController {
 	convenience init(_ title: String?, message: String? = nil, style: UIAlertController.Style = .alert) {
 		self.init(title: title, message: message, preferredStyle: style)
@@ -125,16 +117,5 @@ public extension UIStoryboardSegue {
 	}
 }
 
-#if !swift(>=4.2)
-extension UIAlertController {
-	public typealias Style = UIAlertControllerStyle
-}
-extension UIAlertAction {
-	public typealias Style = UIAlertActionStyle
-}
-extension UITableView {
-	public typealias RowAnimation = UITableViewRowAnimation
-}
-#endif
 
 #endif

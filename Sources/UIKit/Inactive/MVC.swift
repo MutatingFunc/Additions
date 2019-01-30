@@ -7,6 +7,8 @@
 
 import UIKit
 
+//inactive - coordinator pattern works better
+
 //Views either handle view display, or view layout / touch, not both.
 //ViewControllers should either handle view display / layout, or logic.
 //ViewControllers with logic (Coordinators) should only contain logic, and use child view controllers for presentation.
