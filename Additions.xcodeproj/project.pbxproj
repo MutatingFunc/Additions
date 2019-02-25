@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A02485D222400B000B48B67 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5A4A622023B0100C1FADD /* Observable.swift */; };
+		1A02485E222400BA00B48B67 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5A4A222023B0100C1FADD /* Event.swift */; };
+		1A0248612224051700B48B67 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0248602224051700B48B67 /* Stream.swift */; };
+		1A0248632224051E00B48B67 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0248622224051E00B48B67 /* Subscription.swift */; };
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1AC5A4BF22023B0100C1FADD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5A49A22023B0100C1FADD /* General.swift */; };
@@ -36,12 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0248602224051700B48B67 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		1A0248622224051E00B48B67 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		1A5BD3361E5BBA2300B4DF8C /* AdditionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdditionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionsTests.swift; sourceTree = "<group>"; };
 		1A5BD33A1E5BBA2300B4DF8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC5A49A22023B0100C1FADD /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		1AC5A49B22023B0100C1FADD /* NeverConformances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeverConformances.swift; sourceTree = "<group>"; };
-		1AC5A49D22023B0100C1FADD /* EventConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventConvenience.swift; sourceTree = "<group>"; };
 		1AC5A49E22023B0100C1FADD /* Deferred.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deferred.swift; sourceTree = "<group>"; };
 		1AC5A49F22023B0100C1FADD /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		1AC5A4A022023B0100C1FADD /* Waitable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waitable.swift; sourceTree = "<group>"; };
@@ -95,6 +100,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0248642224054400B48B67 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				1A0248602224051700B48B67 /* Stream.swift */,
+				1A0248622224051E00B48B67 /* Subscription.swift */,
+				1AC5A4A222023B0100C1FADD /* Event.swift */,
+				1AC5A4A622023B0100C1FADD /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
 		1A5BD3371E5BBA2300B4DF8C /* AdditionsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +134,7 @@
 			children = (
 				1AC5A49A22023B0100C1FADD /* General.swift */,
 				1AC5A49B22023B0100C1FADD /* NeverConformances.swift */,
+				1A0248642224054400B48B67 /* Observable */,
 				1AC5A49C22023B0100C1FADD /* Inactive */,
 				1AC5A4AB22023B0100C1FADD /* IDArray.swift */,
 				1AC5A4AC22023B0100C1FADD /* Foundation.swift */,
@@ -130,16 +147,13 @@
 		1AC5A49C22023B0100C1FADD /* Inactive */ = {
 			isa = PBXGroup;
 			children = (
-				1AC5A49D22023B0100C1FADD /* EventConvenience.swift */,
 				1AC5A49E22023B0100C1FADD /* Deferred.swift */,
 				1AC5A49F22023B0100C1FADD /* Reference.swift */,
 				1AC5A4A022023B0100C1FADD /* Waitable.swift */,
 				1AC5A4A122023B0100C1FADD /* UArray.swift */,
-				1AC5A4A222023B0100C1FADD /* Event.swift */,
 				1AC5A4A322023B0100C1FADD /* Regex.swift */,
 				1AC5A4A422023B0100C1FADD /* UOrderedDictionary.swift */,
 				1AC5A4A522023B0100C1FADD /* Maths.swift */,
-				1AC5A4A622023B0100C1FADD /* Observable.swift */,
 				1AC5A4A722023B0100C1FADD /* WeakAny.swift */,
 				1AC5A4AA22023B0100C1FADD /* Weak.swift */,
 			);
@@ -309,12 +323,16 @@
 			buildActionMask = 0;
 			files = (
 				1AC5A4DC22023B0100C1FADD /* Convenience.swift in Sources */,
+				1A02485D222400B000B48B67 /* Observable.swift in Sources */,
 				1AC5A4F12202409A00C1FADD /* SourceCompatibility.swift in Sources */,
 				1AC5A4CE22023B0100C1FADD /* Foundation.swift in Sources */,
+				1A0248632224051E00B48B67 /* Subscription.swift in Sources */,
 				1AC5A4D622023B0100C1FADD /* Constraints.swift in Sources */,
 				1AC5A4CD22023B0100C1FADD /* IDArray.swift in Sources */,
 				1AC5A4C022023B0100C1FADD /* NeverConformances.swift in Sources */,
+				1A0248612224051700B48B67 /* Stream.swift in Sources */,
 				1AC5A4D022023B0100C1FADD /* OrderedDictionary.swift in Sources */,
+				1A02485E222400BA00B48B67 /* Event.swift in Sources */,
 				1AC5A4CF22023B0100C1FADD /* Applicative.swift in Sources */,
 				1AC5A4D822023B0100C1FADD /* Segue.swift in Sources */,
 				1AC5A4BF22023B0100C1FADD /* General.swift in Sources */,
