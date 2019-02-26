@@ -8,9 +8,9 @@
 #if canImport(UIKit)
 import UIKit
 
-class TableViewCell<ViewType: UIView>: UITableViewCell {
+public class TableViewCell<ViewType: UIView>: UITableViewCell {
 	private var containedView: ViewType!
-	func setContent(_ view: ViewType) {
+	public func setContent(_ view: ViewType) {
 		precondition(self.containedView == nil, "Content should only be set once")
 		self.containedView = view
 		containedView.frame = self.contentView.bounds
@@ -20,9 +20,9 @@ class TableViewCell<ViewType: UIView>: UITableViewCell {
 	}
 }
 
-class CollectionViewCell<ViewType: UIView>: UICollectionViewCell {
+public class CollectionViewCell<ViewType: UIView>: UICollectionViewCell {
 	private var containedView: ViewType!
-	func setContent(_ view: ViewType) {
+	public func setContent(_ view: ViewType) {
 		precondition(self.containedView == nil, "Content should only be set once")
 		self.containedView = view
 		containedView.frame = self.contentView.bounds
