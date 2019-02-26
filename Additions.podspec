@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "Sources", "Sources/**/*.{h,m,swift}"
-  s.exclude_files = "Sources/**/Inactive/**"
+  s.exclude_files = "Sources/**/Inactive/**/*"
 
   # s.public_header_files = "Sources/**/*.h"
 

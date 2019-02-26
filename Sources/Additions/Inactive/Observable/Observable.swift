@@ -6,6 +6,8 @@
 //
 //
 
+//Inactive - mapping doesn't work
+
 //Observable
 
 public protocol Observable {
