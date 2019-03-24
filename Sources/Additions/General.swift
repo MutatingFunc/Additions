@@ -77,7 +77,7 @@ public extension Collection {
 }
 
 public extension RangeReplaceableCollection {
-	///removes the element at the source index and inseerts it at the destination
+	///removes the element at the source index and inserts it at the destination
 	mutating func move(from fromIndex: Index, to toIndex: Index) {
 		insert(remove(at: fromIndex), at: toIndex)
 	}
