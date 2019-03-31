@@ -24,15 +24,15 @@ public struct OrderedDictionary<Key: Hashable, Value>: ExpressibleByDictionaryLi
 			}
 	}
 }
-
+//Due to an Xcode 10.2 bug, this can't be a nested type
+private struct KeyValueCodable<Key: Codable, Value: Codable>: Codable {var key: Key, value: Value}
 extension OrderedDictionary: Codable where Key: Codable, Value: Codable {
-	private struct KeyValueCodable: Codable {var key: Key, value: Value}
 	public init(from decoder: Decoder) throws {
-		try self.init(decoder.singleValueContainer().decode([KeyValueCodable].self).map{($0.key, $0.value)})
+		try self.init(decoder.singleValueContainer().decode([KeyValueCodable<Key, Value>].self).map{($0.key, $0.value)})
 	}
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.singleValueContainer()
-		try container.encode(self.map(KeyValueCodable.init))
+		try container.encode(self.map(KeyValueCodable<Key, Value>.init))
 	}
 }
 
@@ -73,7 +73,7 @@ public extension OrderedDictionary {
 	@discardableResult mutating func removeValue(forKey key: Key) -> (index: Int, value: Value)? {
 		guard
 			values[key] != nil, //O(1) failure shortcut
-			let index = keys.index(of: key)
+			let index = keys.firstIndex(of: key)
 		else {return nil}
 		keys.remove(at: index)
 		return values.removeValue(forKey: key).map{(index, $0)}
@@ -85,7 +85,7 @@ public extension OrderedDictionary {
 	var startIndex: Int {return keys.startIndex}
 	var endIndex: Int {return keys.endIndex}
 	func index(after i: Int) -> Int {return i+1}
-	public mutating func reserveCapacity(_ n: Int) {
+	mutating func reserveCapacity(_ n: Int) {
 		keys.reserveCapacity(n)
 		values.reserveCapacity(n)
 	}

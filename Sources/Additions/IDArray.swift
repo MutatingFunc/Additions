@@ -48,7 +48,7 @@ public extension IDArray {
 	}
 	///returns the index for the given ID
 	func index(ofID id: UUID) -> Int? {
-		return data.keys.index(of: id)
+		return data.keys.firstIndex(of: id)
 	}
 	var idPairs: OrderedDictionary<UUID, Element> {
 		return self.data
@@ -64,7 +64,7 @@ public extension IDArray {
 	var startIndex: Int {return data.startIndex}
 	var endIndex: Int {return data.endIndex}
 	func index(after i: Int) -> Int {return i+1}
-	public mutating func reserveCapacity(_ n: Int) {
+	mutating func reserveCapacity(_ n: Int) {
 		data.reserveCapacity(n)
 	}
 	

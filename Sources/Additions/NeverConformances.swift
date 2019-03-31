@@ -7,20 +7,6 @@
 
 import Foundation
 
-extension Never: Equatable {
-	public static func == (lhs: Never, rhs: Never) -> Bool {switch (lhs, rhs) {}}
-}
-extension Never: Comparable {
-	public static func < (lhs: Never, rhs: Never) -> Bool {switch (lhs, rhs) {}}
-}
-extension Never: Hashable {
-	#if swift(>=4.2)
-	public func hash(into hasher: inout Hasher) {switch self {}}
-	#else
-	public var hashValue: Int {switch self {}}
-	#endif
-}
-extension Never: Error {}
 extension Never: CustomStringConvertible {
 	public var description: String {switch self {}}
 }

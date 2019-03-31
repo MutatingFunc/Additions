@@ -173,9 +173,9 @@ public extension UIView {
 
 @available(iOS 9, *)
 public extension LayoutAnchorFrame {
-	public typealias Side = LayoutAnchorFrameSide
-	public typealias Center = LayoutAnchorFrameCenter
-	public typealias Dimension = LayoutAnchorFrameDimension
+	typealias Side = LayoutAnchorFrameSide
+	typealias Center = LayoutAnchorFrameCenter
+	typealias Dimension = LayoutAnchorFrameDimension
 	
 	@available(*, deprecated, renamed: "constrainSubview(_:_:padding:)")
 	func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrainSubview(subview, sides, padding: padding)}
