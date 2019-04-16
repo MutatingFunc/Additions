@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A41A72F2265EC94003A128D /* ClosureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41A72E2265EC94003A128D /* ClosureExtensions.swift */; };
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
 		1AC5A4BF22023B0100C1FADD /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5A49A22023B0100C1FADD /* General.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		1A0248602224051700B48B67 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		1A0248622224051E00B48B67 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		1A41A72E2265EC94003A128D /* ClosureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureExtensions.swift; sourceTree = "<group>"; };
 		1A5BD3361E5BBA2300B4DF8C /* AdditionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdditionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionsTests.swift; sourceTree = "<group>"; };
 		1A5BD33A1E5BBA2300B4DF8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		1AC5A4AF22023B0100C1FADD /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				1A41A72E2265EC94003A128D /* ClosureExtensions.swift */,
 				1AC5A4B722023B0100C1FADD /* Constraints.swift */,
 				1AC5A4BD22023B0100C1FADD /* Convenience.swift */,
 				1AC5A4EE2202406100C1FADD /* CoreGraphics.swift */,
@@ -282,6 +285,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = "___RootGroup_";
@@ -331,6 +335,7 @@
 				1AC5A4EF2202406100C1FADD /* CoreGraphics.swift in Sources */,
 				1AC5A4DB22023B0100C1FADD /* ReusableContainerCells.swift in Sources */,
 				1AC5A4D522023B0100C1FADD /* Reuseable.swift in Sources */,
+				1A41A72F2265EC94003A128D /* ClosureExtensions.swift in Sources */,
 				1AC5A4DA22023B0100C1FADD /* Identifiable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
