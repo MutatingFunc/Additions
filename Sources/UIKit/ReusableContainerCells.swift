@@ -10,12 +10,14 @@ import UIKit
 
 public class TableViewCell<ViewType: UIView>: UITableViewCell, ReuseIdentifiable {
 	private var containedView: ViewType!
+	@available(iOSApplicationExtension 9, *)
 	public func withInitialContent(_ view: ViewType) -> Self {
 		if self.containedView == nil {
 			return self.withContent(view)
 		}
 		return self
 	}
+	@available(iOSApplicationExtension 9, *)
 	public func withContent(_ view: ViewType) -> Self {
 		if self.containedView === view {
 			return self
@@ -24,22 +26,21 @@ public class TableViewCell<ViewType: UIView>: UITableViewCell, ReuseIdentifiable
 		}
 		view.removeFromSuperview()
 		self.containedView = view
-		containedView.frame = self.contentView.bounds
-		containedView.translatesAutoresizingMaskIntoConstraints = true
-		containedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		self.contentView.addSubview(containedView)
+		self.contentView.addSubview(containedView.autolayout(), constraining: .allSides)
 		return self
 	}
 }
 
 public class CollectionViewCell<ViewType: UIView>: UICollectionViewCell, ReuseIdentifiable {
 	private var containedView: ViewType!
+	@available(iOSApplicationExtension 9, *)
 	public func withInitialContent(_ view: ViewType) -> Self {
 		if self.containedView == nil {
 			return self.withContent(view)
 		}
 		return self
 	}
+	@available(iOSApplicationExtension 9, *)
 	public func withContent(_ view: ViewType) -> Self {
 		if self.containedView === view {
 			return self
@@ -48,10 +49,7 @@ public class CollectionViewCell<ViewType: UIView>: UICollectionViewCell, ReuseId
 		}
 		view.removeFromSuperview()
 		self.containedView = view
-		containedView.frame = self.contentView.bounds
-		containedView.translatesAutoresizingMaskIntoConstraints = true
-		containedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		self.contentView.addSubview(containedView)
+		self.contentView.addSubview(containedView.autolayout(), constraining: .allSides)
 		return self
 	}
 }
