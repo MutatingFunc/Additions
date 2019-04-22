@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "+>")
 public extension NSObjectProtocol {
 	func setup(_ setup: (Self) -> ()) -> Self {
 		setup(self)

@@ -29,7 +29,7 @@ public class UIControlHandler: UIHandler, UIInvalidatableHandler {
 	fileprivate let id: String
 	private let control: UIControl
 	private let events: UIControl.Event
-	init(control: UIControl, events: UIControl.Event, handler: @escaping () -> ()) {
+	init(observing control: UIControl, _ events: UIControl.Event, with handler: @escaping () -> ()) {
 		self.id = "\(events.rawValue)"
 		self.control = control
 		self.events = events
@@ -43,7 +43,7 @@ public class UIControlHandler: UIHandler, UIInvalidatableHandler {
 public extension UIControl {
 	@discardableResult
 	func addHandler(for events: UIControl.Event, _ handler: @escaping () -> ()) -> UIControlHandler {
-		let handler = UIControlHandler(control: self, events: events, handler: handler)
+		let handler = UIControlHandler(observing: self, events, with: handler)
 		objc_setAssociatedObject(self, handler.id, handler, .OBJC_ASSOCIATION_RETAIN)
 		self.addTarget(handler, action: #selector(handler.handle), for: events)
 		return handler
@@ -61,7 +61,7 @@ public extension UIControl {
 
 public class UIGestureHandler: UIHandler, UIInvalidatableHandler {
 	private let recognizer: UIGestureRecognizer
-	init(recognizer: UIGestureRecognizer, handler: @escaping () -> ()) {
+	init(observing recognizer: UIGestureRecognizer, with handler: @escaping () -> ()) {
 		self.recognizer = recognizer
 		super.init(handler: handler)
 	}
@@ -73,7 +73,7 @@ public class UIGestureHandler: UIHandler, UIInvalidatableHandler {
 public extension UIGestureRecognizer {
 	@discardableResult
 	func addHandler(_ handler: @escaping () -> ()) -> UIGestureHandler {
-		let handler = UIGestureHandler(recognizer: self, handler: handler)
+		let handler = UIGestureHandler(observing: self, with: handler)
 		objc_setAssociatedObject(self, UIHandler.defaultID, handler, .OBJC_ASSOCIATION_RETAIN)
 		self.addTarget(handler, action: #selector(handler.handle))
 		return handler

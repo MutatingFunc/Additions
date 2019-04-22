@@ -56,15 +56,17 @@ public func =>?<In>(a: In?, b: inout In) -> In {
 }
 
 ///applying
-/*infix operator +> : ApplicativePrecedence
+infix operator +> : ApplicativePrecedence
+@_transparent @discardableResult
 public func +><In, Out>(a: In, b: (In) throws -> Out) rethrows -> In {
 	_ = try b(a); return a
 }
 
 infix operator +>? : ApplicativePrecedence
+@_transparent @discardableResult
 public func +>?<In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
 	_ = try a.flatMap(b); return a
-}*/
+}
 
 
 //deprecated
