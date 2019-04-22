@@ -57,13 +57,21 @@ public func =>?<In>(a: In?, b: inout In) -> In {
 
 ///applying
 infix operator +> : ApplicativePrecedence
-public func +><In, Out>(a: In, b: (In) throws -> Out) rethrows -> In {
+public func +><In: AnyObject, Out>(a: In, b: (In) throws -> Out) rethrows -> In {
 	_ = try b(a); return a
+}
+public func +><In, Out>(a: In, b: (inout In) throws -> Out) rethrows -> In {
+	var a = a
+	_ = try b(&a); return a
 }
 
 infix operator +>? : ApplicativePrecedence
-public func +>?<In, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
+public func +>?<In: AnyObject, Out>(a: In?, b: (In) throws -> Out?) rethrows -> In? {
 	_ = try a.flatMap(b); return a
+}
+public func +>?<In, Out>(a: In?, b: (inout In) throws -> Out?) rethrows -> In? {
+	guard var a = a else {return nil}
+	_ = try b(&a); return a
 }
 
 
