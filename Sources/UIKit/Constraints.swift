@@ -14,7 +14,7 @@ extension NSLayoutConstraint {
 #if canImport(UIKit)
 import UIKit
 
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public protocol LayoutAnchorFrame {
 	var topAnchor: NSLayoutYAxisAnchor {get}
 	var bottomAnchor: NSLayoutYAxisAnchor {get}
@@ -28,12 +28,12 @@ public protocol LayoutAnchorFrame {
 	var widthAnchor: NSLayoutDimension {get}
 }
 
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 extension UIView: LayoutAnchorFrame {}
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 extension UILayoutGuide: LayoutAnchorFrame {}
 
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public struct LayoutAnchorFrameSide: OptionSet {
 	
 	public struct Vertical: OptionSet {
@@ -118,7 +118,7 @@ public struct LayoutAnchorFrameSide: OptionSet {
 	public static let left     = Self(rawValue: 1 << 4)
 	public static let right    = Self(rawValue: 1 << 5)
 }
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public struct LayoutAnchorFrameCenter: OptionSet {
 	public typealias `Self` = LayoutAnchorFrameCenter
 	public let rawValue: UInt8
@@ -137,7 +137,7 @@ public struct LayoutAnchorFrameCenter: OptionSet {
 	public static let centerX = Self(rawValue: 1 << 0)
 	public static let centerY = Self(rawValue: 1 << 1)
 }
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public struct LayoutAnchorFrameDimension: OptionSet {
 	public typealias `Self` = LayoutAnchorFrameDimension
 	public let rawValue: UInt8
@@ -157,7 +157,7 @@ public struct LayoutAnchorFrameDimension: OptionSet {
 	public static let height = Self(rawValue: 1 << 1)
 }
 
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public extension UIView {
 	func addSubview(_ subview: UIView, constraining sides: Side, to frame: LayoutAnchorFrame? = nil, padding: CGFloat = 0) {
 		let frame = frame ?? self
@@ -171,7 +171,7 @@ public extension UIView {
 	}
 }
 
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 public extension LayoutAnchorFrame {
 	typealias Side = LayoutAnchorFrameSide
 	typealias Center = LayoutAnchorFrameCenter

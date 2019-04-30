@@ -16,7 +16,7 @@ import UIKit
 public protocol XibLoadable: AnyObject {}
 
 public extension XibLoadable where Self: UIView {
-	@available(iOSApplicationExtension 9, *)
+	@available(iOSApplicationExtension 9, iOS 9, *)
 	@discardableResult func setupFromXib(named name: String? = nil) -> UIView {
 		self.autolayout()
 		

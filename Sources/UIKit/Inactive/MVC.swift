@@ -15,7 +15,7 @@ import UIKit
 
 #if canImport(UIKit)
 ///Displays a single content ViewController.
-@available(iOS 9, *)
+@available(iOSApplicationExtension 9, iOS 9, *)
 open class ContainerViewController: UIViewController {
 	override open func viewDidLoad() {
 		view.backgroundColor = .clear
