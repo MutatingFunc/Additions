@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A36B8DA227E175400ECE2CD /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5A4AA22023B0100C1FADD /* Weak.swift */; };
 		1A41A72F2265EC94003A128D /* ClosureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41A72E2265EC94003A128D /* ClosureExtensions.swift */; };
 		1A5BD3391E5BBA2300B4DF8C /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5BD3381E5BBA2300B4DF8C /* AdditionsTests.swift */; };
 		1A5BD33B1E5BBA2300B4DF8C /* Additions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Additions" /* Additions.framework */; };
@@ -132,6 +133,7 @@
 			children = (
 				1AC5A49A22023B0100C1FADD /* General.swift */,
 				1AC5A49B22023B0100C1FADD /* NeverConformances.swift */,
+				1AC5A4AA22023B0100C1FADD /* Weak.swift */,
 				1AC5A49C22023B0100C1FADD /* Inactive */,
 				1AC5A4AB22023B0100C1FADD /* IDArray.swift */,
 				1AC5A4AC22023B0100C1FADD /* Foundation.swift */,
@@ -153,7 +155,6 @@
 				1AC5A4A422023B0100C1FADD /* UOrderedDictionary.swift */,
 				1AC5A4A522023B0100C1FADD /* Maths.swift */,
 				1AC5A4A722023B0100C1FADD /* WeakAny.swift */,
-				1AC5A4AA22023B0100C1FADD /* Weak.swift */,
 			);
 			path = Inactive;
 			sourceTree = "<group>";
@@ -335,6 +336,7 @@
 				1AC5A4EF2202406100C1FADD /* CoreGraphics.swift in Sources */,
 				1AC5A4DB22023B0100C1FADD /* ReusableContainerCells.swift in Sources */,
 				1AC5A4D522023B0100C1FADD /* Reuseable.swift in Sources */,
+				1A36B8DA227E175400ECE2CD /* Weak.swift in Sources */,
 				1A41A72F2265EC94003A128D /* ClosureExtensions.swift in Sources */,
 				1AC5A4DA22023B0100C1FADD /* Identifiable.swift in Sources */,
 			);
