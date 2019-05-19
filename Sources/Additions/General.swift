@@ -14,6 +14,11 @@ public func ??<T>(optional: T?, noreturnOrError: @autoclosure () throws -> Never
 	}
 }
 
+public extension Bool {
+	@inlinable
+	var isFalse: Bool {return self == false}
+}
+
 extension Equatable where Self: AnyObject {
 	public static func ==(lhs: Self, rhs: Self) -> Bool {
 		return lhs === rhs
