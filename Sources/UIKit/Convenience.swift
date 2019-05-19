@@ -27,6 +27,7 @@ public extension UIAlertController {
 		self.addAction(UIAlertAction(title: title, style: style, handler: handler))
 		return self
 	}
+	@available(*, deprecated, message: "Function is not sufficiently general")
 	@discardableResult func addAction(if condition: Bool, _ title: String?, style: UIAlertAction.Style = .default, handler: ((UIAlertAction) -> ())? = nil) -> UIAlertController {
 		if condition {self.addAction(UIAlertAction(title: title, style: style, handler: handler))}
 		return self
