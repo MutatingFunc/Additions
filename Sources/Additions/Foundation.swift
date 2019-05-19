@@ -49,3 +49,11 @@ public extension FileManager {
 		throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileWriteFileExists.rawValue, userInfo: nil)
 	}
 }
+
+public extension NSPredicate {
+	convenience init<Type>(for type: Type.Type, _ predicate: @escaping (Type) -> Bool) {
+		self.init {object, _ in
+			predicate(object as! Type)
+		}
+	}
+}
