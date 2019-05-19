@@ -11,7 +11,6 @@ import XCTest
 /// To avoid need for XCTest import in actual tests
 public typealias Test = XCTestCase
 
-@available(iOSApplicationExtension 9.0, *)
 public extension XCTestCase {
 	@discardableResult
 	func withActivity<Result>(_ name: String, _ action: (XCTActivity) -> Result) -> Result {
@@ -19,20 +18,12 @@ public extension XCTestCase {
 	}
 }
 
-public extension NSPredicate {
-	convenience init<Type>(for type: Type.Type, _ predicate: @escaping (Type) -> Bool) {
-		self.init {object, _ in
-			predicate(object as! Type)
-		}
-	}
-}
 public extension XCTNSPredicateExpectation {
 	convenience init<Type>(suchThat object: Type, fulfils predicate: @escaping (Type) -> Bool) {
 		self.init(predicate: NSPredicate(for: Type.self, predicate), object: object)
 	}
 }
 
-@available(iOSApplicationExtension 9.0, *)
 public extension XCUIElementQuery {
 	func matching(_ predicate: @escaping (XCUIElementAttributes) -> Bool) -> XCUIElementQuery {
 		return self.matching(NSPredicate(for: XCUIElementAttributes.self, predicate))
@@ -49,7 +40,6 @@ public extension XCUIElementQuery {
 	}
 }
 
-@available(iOSApplicationExtension 9.0, *)
 public extension XCUIElement {
 	func wait(for predicate: @escaping (XCUIElement) -> Bool, timeout: TimeInterval = 8, _ result: XCTWaiter.Result = .completed) {
 		let expectation = XCTNSPredicateExpectation(suchThat: self, fulfils: predicate)

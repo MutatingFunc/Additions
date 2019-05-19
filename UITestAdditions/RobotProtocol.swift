@@ -5,16 +5,13 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
-#if canImport(XCTest)
 import XCTest
 
-@available(iOSApplicationExtension 9.0, *)
 public protocol Robot {
 	init()
 	static var appBundleID: String? {get}
 }
 
-@available(iOSApplicationExtension 9.0, *)
 public extension Robot {
 	static var appBundleID: String? {return nil}
 	var app: XCUIApplication {return Self.appBundleID =>? XCUIApplication.init ?? XCUIApplication()}
@@ -48,16 +45,12 @@ public extension Robot {
 	}
 }
 
-@available(iOSApplicationExtension 9.0, *)
 public protocol PoppableRobot: Robot {
 	associatedtype Parent: Robot
 }
-@available(iOSApplicationExtension 9.0, *)
 public extension PoppableRobot {
 	func pop() -> Parent {return action {
 		app.navigationBars.firstMatch.buttons.firstMatch.tap()
 		return Parent()
 	}}
 }
-
-#endif

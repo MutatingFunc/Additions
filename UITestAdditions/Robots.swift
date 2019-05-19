@@ -5,17 +5,14 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
-#if canImport(XCTest)
 import XCTest
 
-@available(iOSApplicationExtension 9.0, *)
 public struct HomeScreenRobot: Robot {
 	public init() {
 		XCUIDevice.shared.press(.home)
 	}
 }
 
-@available(iOSApplicationExtension 9.0, *)
 public struct SettingsRobot: Robot {
 	public static var appBundleID: String? {return "com.apple.Preferences"}
 	
@@ -58,4 +55,3 @@ public struct SettingsRobot: Robot {
 		}
 	}
 }
-#endif
