@@ -5,7 +5,10 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
+#if canImport(XCTest)
 import XCTest
+
+import Additions
 
 public protocol Robot {
 	init()
@@ -54,3 +57,4 @@ public extension PoppableRobot {
 		return Parent()
 	}}
 }
+#endif
