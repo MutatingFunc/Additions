@@ -82,8 +82,11 @@ class AdditionsTests: XCTestCase {
 		waitForExpectations(timeout: 5)
 	}
 	
-	func testPerformanceExample() {
-		self.measure{}
-	}
-	
+	static let allTests = [
+		("testEventCapture", testEventCapture),
+		("testEventNSObject", testEventNSObject),
+		("testObservable", testObservable),
+		("testSync", testSync),
+		("testAsync", testAsync),
+	]
 }

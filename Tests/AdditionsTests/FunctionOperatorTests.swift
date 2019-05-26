@@ -55,10 +55,10 @@ class FunctionOperatorTests: XCTestCase {
 			XCTAssert(a == 5)
 		}();
 	}
-
-	func testPerformanceExample() {
-			measure {}
-	}
-
+	
+	static let allTests = [
+		("testMap", testMap),
+		("testApply", testApply),
+	]
 }
 
