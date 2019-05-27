@@ -27,7 +27,7 @@ public protocol UIInvalidatableHandler: UIHandler {
 
 public class UIControlHandler: UIHandler, UIInvalidatableHandler {
 	fileprivate let id: String
-	private let control: UIControl
+	private weak var control: UIControl?
 	private let events: UIControl.Event
 	init(observing control: UIControl, _ events: UIControl.Event, with handler: @escaping () -> ()) {
 		self.id = "\(events.rawValue)"
@@ -37,7 +37,7 @@ public class UIControlHandler: UIHandler, UIInvalidatableHandler {
 	}
 	
 	public func invalidate() {
-		control.removeHandler(self, for: events)
+		control?.removeHandler(self, for: events)
 	}
 }
 public extension UIControl {
@@ -51,23 +51,25 @@ public extension UIControl {
 	
 	@discardableResult
 	func removeHandler(_ handler: UIControlHandler, for events: UIControl.Event) -> Bool {
-		var isPresent = false
-		isPresent = objc_getAssociatedObject(self, handler.id) != nil
-		self.removeTarget(handler, action: #selector(handler.handle), for: events)
-		objc_setAssociatedObject(self, handler.id, nil, .OBJC_ASSOCIATION_RETAIN)
-		return isPresent
+		if objc_getAssociatedObject(self, handler.id) != nil {
+			self.removeTarget(handler, action: #selector(handler.handle), for: events)
+			objc_setAssociatedObject(self, handler.id, nil, .OBJC_ASSOCIATION_RETAIN)
+			return true
+		} else {
+			return false
+		}
 	}
 }
 
 public class UIGestureHandler: UIHandler, UIInvalidatableHandler {
-	private let recognizer: UIGestureRecognizer
+	private weak var recognizer: UIGestureRecognizer?
 	init(observing recognizer: UIGestureRecognizer, with handler: @escaping () -> ()) {
 		self.recognizer = recognizer
 		super.init(handler: handler)
 	}
 	
 	public func invalidate() {
-		recognizer.removeHandler(self)
+		recognizer?.removeHandler(self)
 	}
 }
 public extension UIGestureRecognizer {
@@ -81,11 +83,55 @@ public extension UIGestureRecognizer {
 	
 	@discardableResult
 	func removeHandler(_ handler: UIGestureHandler) -> Bool {
-		var isPresent = false
-		isPresent = objc_getAssociatedObject(self, UIHandler.defaultID) != nil
+		let current = objc_getAssociatedObject(self, UIHandler.defaultID) as? UIGestureRecognizer
+		guard handler === current else {return false}
 		self.removeTarget(handler, action: #selector(handler.handle))
 		objc_setAssociatedObject(self, UIHandler.defaultID, nil, .OBJC_ASSOCIATION_RETAIN)
-		return isPresent
+		return true
+	}
+}
+
+public class UIBarButtonItemHandler: UIHandler, UIInvalidatableHandler {
+	private weak var barButtonItem: UIBarButtonItem?
+	init(observing barButtonItem: UIBarButtonItem, with handler: @escaping () -> ()) {
+		self.barButtonItem = barButtonItem
+		super.init(handler: handler)
+	}
+	
+	public func invalidate() {
+		barButtonItem?.removeHandler(self)
+	}
+}
+public extension UIBarButtonItem {
+	convenience init(barButtonSystemItem: UIBarButtonItem.SystemItem, handler: UIBarButtonItemHandler) {
+		self.init(barButtonSystemItem: barButtonSystemItem, target: nil, action: nil)
+		setHandler(handler)
+	}
+	convenience init(image: UIImage?, style: UIBarButtonItem.Style, handler: UIBarButtonItemHandler) {
+		self.init(image: image, style: style, target: nil, action: nil)
+		setHandler(handler)
+	}
+	convenience init(title: String?, style: UIBarButtonItem.Style, handler: UIBarButtonItemHandler) {
+		self.init(title: title, style: style, target: nil, action: nil)
+		setHandler(handler)
+	}
+	
+	@discardableResult
+	func setHandler(_ handler: UIBarButtonItemHandler) -> UIBarButtonItemHandler {
+		objc_setAssociatedObject(self, UIHandler.defaultID, handler, .OBJC_ASSOCIATION_RETAIN)
+		self.target = handler
+		self.action = #selector(handler.handle)
+		return handler
+	}
+	
+	@discardableResult
+	func removeHandler(_ handler: UIBarButtonItemHandler) -> Bool {
+		let current = objc_getAssociatedObject(self, UIHandler.defaultID) as? UIBarButtonItemHandler
+		guard handler === current else {return false}
+		self.target = nil
+		self.action = nil
+		objc_setAssociatedObject(self, UIHandler.defaultID, nil, .OBJC_ASSOCIATION_RETAIN)
+		return true
 	}
 }
 #endif
