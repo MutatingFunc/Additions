@@ -26,10 +26,16 @@ internal class UIHandler: NSObject {
 	}
 }
 
-public extension UIControl {
-	func addHandler(for event: UIControl.Event, _ handler: @escaping () -> ()) {
+//Workaround for lack of Self as a class method parameter
+public protocol _UIControlProtocol: UIControl {}
+extension UIControl: _UIControlProtocol {}
+
+public extension _UIControlProtocol {
+	func addHandler(for event: UIControl.Event, _ handler: @escaping (Self) -> ()) {
 		let id = UIHandler.id(for: event)
-		let handler = UIHandler(handler)
+		let handler = UIHandler {[weak self] in
+			self =>? handler
+		}
 		self[associatedObject: id] = handler
 		self.addTarget(handler, action: #selector(handler.handle), for: event)
 	}
@@ -47,22 +53,28 @@ public extension UIControl {
 	}
 }
 
+//Workaround for lack of Self as a class method parameter
+public protocol _UIGestureRecognizerProtocol: UIGestureRecognizer {}
+extension UIGestureRecognizer: _UIGestureRecognizerProtocol {}
+
 public extension UITapGestureRecognizer {
-	convenience init(handler: @escaping () -> ()) {
+	convenience init(handler: @escaping (UITapGestureRecognizer) -> ()) {
 		self.init(target: nil, action: nil)
 		addHandler(handler)
 	}
 }
 public extension UILongPressGestureRecognizer {
-	convenience init(handler: @escaping () -> ()) {
+	convenience init(handler: @escaping (UILongPressGestureRecognizer) -> ()) {
 		self.init(target: nil, action: nil)
 		addHandler(handler)
 	}
 }
-public extension UIGestureRecognizer {
-	func addHandler(_ handler: @escaping () -> ()) {
+public extension _UIGestureRecognizerProtocol {
+	func addHandler(_ handler: @escaping (Self) -> ()) {
 		let id = UIHandler.defaultID
-		let handler = UIHandler(handler)
+		let handler = UIHandler {[weak self] in
+			self =>? handler
+		}
 		self[associatedObject: id] = handler
 		self.addTarget(handler, action: #selector(handler.handle))
 	}
@@ -77,23 +89,29 @@ public extension UIGestureRecognizer {
 	}
 }
 
-public extension UIBarButtonItem {
-	convenience init(barButtonSystemItem: UIBarButtonItem.SystemItem, handler: @escaping () -> ()) {
+//Workaround for lack of Self as a class method parameter
+public protocol _UIBarButtonItemProtocol: UIBarButtonItem {}
+extension UIBarButtonItem: _UIBarButtonItemProtocol {}
+
+public extension _UIBarButtonItemProtocol {
+	init(barButtonSystemItem: UIBarButtonItem.SystemItem, handler: @escaping (Self) -> ()) {
 		self.init(barButtonSystemItem: barButtonSystemItem, target: nil, action: nil)
 		setHandler(handler)
 	}
-	convenience init(image: UIImage?, style: UIBarButtonItem.Style, handler: @escaping () -> ()) {
+	init(image: UIImage?, style: UIBarButtonItem.Style, handler: @escaping (Self) -> ()) {
 		self.init(image: image, style: style, target: nil, action: nil)
 		setHandler(handler)
 	}
-	convenience init(title: String?, style: UIBarButtonItem.Style, handler: @escaping () -> ()) {
+	init(title: String?, style: UIBarButtonItem.Style, handler: @escaping (Self) -> ()) {
 		self.init(title: title, style: style, target: nil, action: nil)
 		setHandler(handler)
 	}
 	
-	func setHandler(_ handler: @escaping () -> ()) {
+	func setHandler(_ handler: @escaping (Self) -> ()) {
 		let id = UIHandler.defaultID
-		let handler = UIHandler(handler)
+		let handler = UIHandler {[weak self] in
+			self =>? handler
+		}
 		self[associatedObject: id] = handler
 		self.target = handler
 		self.action = #selector(handler.handle)

@@ -25,10 +25,10 @@ class ClosureExtensionsTests: XCTestCase {
 	func testButtonHandler() {
 		let button = UIButton()
 		
-		button.addHandler(for: .touchUpInside) {}
+		button.addHandler(for: .touchUpInside) {_ in}
 		XCTAssertEqual(button.actions(forTarget: button[associatedObject: UIHandler.id(for: .touchUpInside)], forControlEvent: .touchUpInside), [#selector(UIHandler.handle).description])
 		
-		button.addHandler(for: .touchDown) {}
+		button.addHandler(for: .touchDown) {_ in}
 		XCTAssertEqual(button.actions(forTarget: button[associatedObject: UIHandler.id(for: .touchDown)], forControlEvent: .touchDown), [#selector(UIHandler.handle).description])
 		XCTAssertEqual(button.actions(forTarget: button[associatedObject: UIHandler.id(for: .touchUpInside)], forControlEvent: .touchUpInside), [#selector(UIHandler.handle).description])
 		
@@ -38,7 +38,7 @@ class ClosureExtensionsTests: XCTestCase {
 	}
 	
 	func testBarButtonItemHandler() {
-		let button = UIBarButtonItem(barButtonSystemItem: .add) {}
+		let button = UIBarButtonItem(barButtonSystemItem: .add) {_ in}
 		XCTAssertEqual(button.target as? UIHandler, button[associatedObject: UIHandler.defaultID] as? UIHandler)
 		XCTAssertEqual(button.action, #selector(UIHandler.handle))
 		
@@ -46,11 +46,11 @@ class ClosureExtensionsTests: XCTestCase {
 		XCTAssertEqual(button.target as? UIHandler, nil)
 		XCTAssertEqual(button.action, nil)
 		
-		button.setHandler{}
+		button.setHandler{_ in}
 		XCTAssertEqual(button.target as? UIHandler, button[associatedObject: UIHandler.defaultID] as? UIHandler)
 		XCTAssertEqual(button.action, #selector(UIHandler.handle))
 		
-		button.setHandler{}
+		button.setHandler{_ in}
 		XCTAssertEqual(button.target as? UIHandler, button[associatedObject: UIHandler.defaultID] as? UIHandler)
 		XCTAssertEqual(button.action, #selector(UIHandler.handle))
 	}
