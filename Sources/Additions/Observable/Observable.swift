@@ -6,8 +6,6 @@
 //
 //
 
-//Inactive - mapping doesn't work
-
 //Observable
 
 public protocol Observable {
@@ -94,11 +92,11 @@ public extension WritableObservable {
 }
 
 public extension Observable {
-	public func subscribeNow(_ handler: @escaping (Value) -> ()) -> EventSubscription {
+	func subscribeNow(_ handler: @escaping (Value) -> ()) -> EventSubscription {
 		handler(self.latest)
 		return stream.subscribe(handler)
 	}
-	public func subscribeNow(_ event: Event<Value>) -> EventSubscription {
+	func subscribeNow(_ event: Event<Value>) -> EventSubscription {
 		return stream.subscribe(event)
 	}
 }

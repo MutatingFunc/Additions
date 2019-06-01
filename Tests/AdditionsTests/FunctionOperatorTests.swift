@@ -15,7 +15,7 @@ class FunctionOperatorTests: XCTestCase {
 	let add5: (Int) -> (Int) = {$0 + 5}
 	
 	func testMap() {
-		{
+		do {
 			var a = 5
 			a = a => add2
 			XCTAssert(a == 7)
@@ -23,20 +23,20 @@ class FunctionOperatorTests: XCTestCase {
 			a = 5
 			a = a => add5 => add2
 			XCTAssert(a == 12)
-		}();
-		{
+		}
+		do {
 			var a: Int? = 5
-			a = a ?=> add2
+			a = a =>? add2
 			XCTAssert(a == 7)
 			
 			a = 5
-			a = a ?=> add5 ?=> add2
+			a = a =>? add5 =>? add2
 			XCTAssert(a == 12)
-		}();
+		}
 	}
 	
 	func testApply() {
-		{
+		do {
 			var a = 5
 			a = a +> {$0 + 2}
 			XCTAssert(a == 5)
@@ -44,16 +44,16 @@ class FunctionOperatorTests: XCTestCase {
 			a = 5
 			a = a +> add5 +> add2
 			XCTAssert(a == 5)
-		}();
-		{
+		}
+		do {
 			var a: Int? = 5
-			a = a ?+> add2
+			a = a +>? add2
 			XCTAssert(a == 5)
 			
 			a = 5
-			a = a ?+> add5 ?+> add2
+			a = a +>? add5 +>? add2
 			XCTAssert(a == 5)
-		}();
+		}
 	}
 	
 	static let allTests = [

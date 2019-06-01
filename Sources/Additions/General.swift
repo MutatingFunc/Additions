@@ -34,12 +34,6 @@ extension Hashable where Self: AnyObject {
 	#endif
 }
 
-extension Sequence {
-	public var isEmpty: Bool {
-		var iterator = self.makeIterator()
-		return iterator.next() == nil
-	}
-}
 extension Optional: IteratorProtocol where Wrapped: IteratorProtocol {
 	public typealias Element = Wrapped.Element
 	public mutating func next() -> Wrapped.Element? {

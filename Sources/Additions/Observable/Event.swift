@@ -38,7 +38,7 @@ public final class Event<Notification> {
 }
 
 public extension Event where Notification == () {
-	public func notify() {
+	func notify() {
 		notify(())
 	}
 }
