@@ -21,8 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1A7D837422A1D49B00AC97AC /* ObservableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D837322A1D49B00AC97AC /* ObservableTests.swift */; };
 		1A7D837822A2D56300AC97AC /* ClosureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D837622A2D56000AC97AC /* ClosureExtensionsTests.swift */; };
+		1A7D837F22A2FC2C00AC97AC /* ObservableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D837322A1D49B00AC97AC /* ObservableTests.swift */; };
 		OBJ_100 /* AdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* AdditionsTests.swift */; };
 		OBJ_101 /* FunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* FunctionOperatorTests.swift */; };
 		OBJ_102 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* XCTestManifests.swift */; };
@@ -232,7 +232,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -245,7 +245,6 @@
 				OBJ_53 /* README.md */,
 				OBJ_54 /* LICENSE.txt */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -361,7 +360,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,7 +405,6 @@
 				OBJ_73 /* ClosureExtensions.swift in Sources */,
 				OBJ_74 /* Constraints.swift in Sources */,
 				OBJ_75 /* Convenience.swift in Sources */,
-				1A7D837422A1D49B00AC97AC /* ObservableTests.swift in Sources */,
 				OBJ_76 /* CoreGraphics.swift in Sources */,
 				OBJ_77 /* Identifiable.swift in Sources */,
 				OBJ_78 /* Reuseable.swift in Sources */,
@@ -432,6 +430,7 @@
 				OBJ_100 /* AdditionsTests.swift in Sources */,
 				OBJ_101 /* FunctionOperatorTests.swift in Sources */,
 				1A7D837822A2D56300AC97AC /* ClosureExtensionsTests.swift in Sources */,
+				1A7D837F22A2FC2C00AC97AC /* ObservableTests.swift in Sources */,
 				OBJ_102 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

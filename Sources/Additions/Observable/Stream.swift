@@ -34,7 +34,7 @@ public struct Stream<Notification> {
 }
 
 public extension Stream {
-	public func flatMap<Result>(_ transform: @escaping (Notification) -> Result?) -> Stream<Result> {
+	func flatMap<Result>(_ transform: @escaping (Notification) -> Result?) -> Stream<Result> {
 		return Stream<Result> {[subscribeSource] handler in
 			subscribeSource {
 				_ = transform($0).map(handler)
