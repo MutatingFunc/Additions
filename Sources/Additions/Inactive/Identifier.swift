@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Inactive: conflicts with SwiftUI protocol
+
 public protocol Identifiable {
 	associatedtype RawIdentifier: Codable = String
 	
