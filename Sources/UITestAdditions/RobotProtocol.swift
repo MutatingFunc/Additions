@@ -34,12 +34,17 @@ public extension Robot {
 		return self
 	}
 	
+	#if canImport(UIKit) && !os(watchOS)
 	func rotate(to orientation: UIDeviceOrientation) -> Self {
 		XCUIDevice.shared.orientation = orientation
 		return self
 	}
+	#endif
 	
-	func pressHome() -> HomeScreenRobot {
+	@available(*, renamed: "returnToHome", message: "Devices may not have a home button")
+	func pressHome() -> HomeScreenRobot {return returnToHome()}
+	
+	func returnToHome() -> HomeScreenRobot {
 		return HomeScreenRobot()
 	}
 	

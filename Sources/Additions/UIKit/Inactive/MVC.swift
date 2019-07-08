@@ -13,7 +13,7 @@ import UIKit
 //ViewControllers should either handle view display / layout, or logic.
 //ViewControllers with logic (Coordinators) should only contain logic, and use child view controllers for presentation.
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 ///Displays a single content ViewController.
 @available(iOSApplicationExtension 9, iOS 9, *)
 open class ContainerViewController: UIViewController {

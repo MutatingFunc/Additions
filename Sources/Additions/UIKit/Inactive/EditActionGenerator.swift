@@ -10,7 +10,7 @@
 inactive - drag & drop APIs make native alternatives appealing
 */
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 public struct BasicEditActionGenerator {

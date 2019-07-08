@@ -7,7 +7,7 @@
 //
 
 //inactive - just make a class
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 open class SimplePickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {

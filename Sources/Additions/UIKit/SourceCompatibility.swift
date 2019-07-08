@@ -5,7 +5,7 @@
 //  Created by James Froggatt on 30.01.2019.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 #if !swift(>=4.2)

@@ -6,7 +6,7 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 ///Conforming ViewControllers provide their storyboard ID as a static property for easy instantiation.

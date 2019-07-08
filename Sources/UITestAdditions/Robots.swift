@@ -10,7 +10,9 @@ import XCTest
 
 public struct HomeScreenRobot: Robot {
 	public init() {
+		#if canImport(UIKit) && !os(watchOS)
 		XCUIDevice.shared.press(.home)
+		#endif
 	}
 }
 
@@ -22,6 +24,7 @@ public struct SettingsRobot: Robot {
 		XCTAssert(app.wait(for: .runningForeground, timeout: 3))
 	}
 	
+	#if os(iOS)
 	@discardableResult
 	public func setDefaultKeyboard() -> SettingsRobot {
 		return action {
@@ -55,5 +58,6 @@ public struct SettingsRobot: Robot {
 			return self
 		}
 	}
+	#endif
 }
 #endif

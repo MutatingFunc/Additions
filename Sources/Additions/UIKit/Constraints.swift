@@ -6,13 +6,14 @@
 //  Copyright © 2016 James Froggatt. All rights reserved.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+import UIKit
+
 #if !swift(>=4.2)
 extension NSLayoutConstraint {
 	public typealias Axis = UILayoutConstraintAxis
 }
 #endif
-#if canImport(UIKit)
-import UIKit
 
 @available(iOSApplicationExtension 9, iOS 9, *)
 public protocol LayoutAnchorFrame {
@@ -181,12 +182,14 @@ public extension LayoutAnchorFrame {
 	func constrain(subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrainSubview(subview, sides, padding: padding)}
 	@available(*, deprecated, renamed: "constrain(_:to:padding:)")
 	func constrainSubview(_ subview: UIView, _ sides: Side, padding: CGFloat = 0) {constrain(sides, to: subview, padding: padding)}
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ sides: Side, to view: UIView, padding: CGFloat = 0) {
 		let (vertical, horizontal) = (sides.verticalComponent, sides.horizontalComponent)
 		constrain(horizontal, to: view, horizontal, padding: padding)
 		constrain(vertical, to: view, vertical, padding: padding)
 	}
 	
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ sides: Side.Vertical, to view: UIView, _ toSides: Side.Vertical, padding: CGFloat = 0) {
 		if sides.contains(.top) {
 			view.topAnchor.constraint(equalTo: self.topAnchor, constant: padding).isActive = true
@@ -196,6 +199,7 @@ public extension LayoutAnchorFrame {
 		}
 	}
 	
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ sides: Side.Horizontal, to view: UIView, _ toSides: Side.Horizontal, padding: CGFloat = 0) {
 		if sides.contains(.leading) {
 			view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding).isActive = true
@@ -215,6 +219,7 @@ public extension LayoutAnchorFrame {
 	func constrain(subview: UIView, _ centers: Center, offset: CGFloat = 0) {constrainSubview(subview, centers, offset: offset)}
 	@available(*, deprecated, renamed: "constrain(_:to:offset:)")
 	func constrainSubview(_ subview: UIView, _ centers: Center, offset: CGFloat = 0) {constrain(centers, to: subview, offset: offset)}
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ centers: Center, to view: UIView, offset: CGFloat = 0) {
 		if centers.contains(.centerX) {
 			view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: offset).isActive = true
@@ -226,6 +231,7 @@ public extension LayoutAnchorFrame {
 	
 	@available(*, deprecated, renamed: "constrain(_:to:scale:padding:)")
 	func constrainSubview(_ subview: UIView, _ dimensions: Dimension, scale: CGFloat = 1, padding: CGFloat = 0) {constrain(dimensions, to: subview, scale: scale, padding: padding)}
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ dimensions: Dimension, to view: UIView, scale: CGFloat = 1, padding: CGFloat = 0) {
 		if dimensions.contains(.width) {
 			view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scale, constant: -padding).isActive = true
@@ -235,6 +241,7 @@ public extension LayoutAnchorFrame {
 		}
 	}
 	
+	@available(*, deprecated, message: "Use native layout systems or frameworks like Anchorage")
 	func constrain(_ dimensions: Dimension, to constant: CGFloat) {
 		if dimensions.contains(.width) {
 			self.widthAnchor.constraint(equalToConstant: constant).isActive = true

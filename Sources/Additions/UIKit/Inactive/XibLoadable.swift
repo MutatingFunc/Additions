@@ -10,7 +10,7 @@
 inactive - init() does this automatically
 */
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 public protocol XibLoadable: AnyObject {}

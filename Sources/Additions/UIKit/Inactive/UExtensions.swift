@@ -11,7 +11,7 @@ inactive - working against language
 
 import Foundation
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 public extension IndexPath {
 	var uSection: UInt {return UInt(section)}
 	var uRow: UInt {return UInt(row)}
