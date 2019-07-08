@@ -39,18 +39,7 @@ class AdditionsTests: XCTestCase {
 		XCTAssertNotNil(object[associatedObject: "a"])
 	}
 	
-	func testOptionalSequence() {
-		let sequence = Optional([1])
-		XCTAssertNotNil(sequence.makeIterator())
-		for i in sequence {
-			XCTAssertEqual(i, 1)
-		}
-		//Disabled due to compiler bugs
-		//XCTAssertFalse(i.isEmpty)
-	}
-	
 	static let allTests = [
 		("testObjCAssociatedObjects", testObjCAssociatedObjects),
-		("testOptionalSequence", testOptionalSequence),
 	]
 }
