@@ -7,8 +7,17 @@
 
 import Foundation
 
+public protocol UserDefaultsCodable {}
+extension Bool: UserDefaultsCodable {}
+extension Int: UserDefaultsCodable {}
+extension Float: UserDefaultsCodable {}
+extension Double: UserDefaultsCodable {}
+extension String: UserDefaultsCodable {}
+extension URL: UserDefaultsCodable {}
+extension Data: UserDefaultsCodable {}
+
 @propertyWrapper
-public struct WritableUserDefault<Wrapped: Codable> {
+public struct WritableUserDefault<Wrapped: UserDefaultsCodable> {
 	public var userDefaults: UserDefaults
 	public var key: String
 	public var defaultValue: Wrapped
@@ -27,7 +36,7 @@ public struct WritableUserDefault<Wrapped: Codable> {
 }
 
 @propertyWrapper
-public struct UserDefault<Wrapped: Codable> {
+public struct UserDefault<Wrapped: UserDefaultsCodable> {
 	public var userDefaults: UserDefaults
 	public var key: String
 	public var defaultValue: Wrapped
