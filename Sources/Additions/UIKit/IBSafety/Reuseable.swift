@@ -44,6 +44,7 @@ public extension UICollectionView {
 	}
 }
 
+#if !os(tvOS)
 @available(iOSApplicationExtension 11.0, iOS 11.0, *)
 public extension UITableViewDropPlaceholder {
 	convenience init<Identifiable: UITableViewCell & ReuseIdentifiable>(insertionIndexPath: IndexPath, ofType: Identifiable.Type, rowHeight: CGFloat) {
@@ -56,4 +57,6 @@ public extension UICollectionViewDropPlaceholder {
 		self.init(insertionIndexPath: insertionIndexPath, reuseIdentifier: Identifiable.reuseID)
 	}
 }
+#endif
+
 #endif

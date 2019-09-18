@@ -35,6 +35,7 @@ public extension UIAlertController {
 }
 
 public extension UIViewController {
+	#if !os(tvOS)
 	@nonobjc func present(in presentingViewController: UIViewController, from source: UIBarButtonItem, animated: Bool, completion: (() -> ())? = nil) {
 		self.modalPresentationStyle = .popover
 		self.present(in: presentingViewController, animated: animated, completion: completion)
@@ -45,18 +46,21 @@ public extension UIViewController {
 		self.present(in: presentingViewController, animated: animated, completion: completion)
 		self.popoverPresentationController?.setSource(source)
 	}
+	#endif
 	
 	func present(in presentingViewController: UIViewController, animated: Bool, completion: (() -> ())? = nil) {
 		presentingViewController.present(self, animated: animated, completion: completion)
 	}
 }
 
+#if !os(tvOS)
 public extension UIPopoverPresentationController {
 	func setSource(_ source: UIView?) {
 		self.sourceView = source
 		self.sourceRect = source?.bounds ?? .zero
 	}
 }
+#endif
 
 public extension UIView {
 	@discardableResult func autolayout() -> Self {
@@ -113,9 +117,11 @@ public extension UIStoryboardSegue {
 	var target: UIViewController? {
 		return targetNav?.topViewController ?? destination
 	}
+	#if !os(tvOS)
 	var targetPopover: UIPopoverPresentationController? {
 		return destination.popoverPresentationController
 	}
+	#endif
 }
 
 

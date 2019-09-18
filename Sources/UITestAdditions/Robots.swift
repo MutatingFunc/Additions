@@ -5,7 +5,7 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
-#if canImport(XCTest)
+#if !os(watchOS) && canImport(XCTest)
 import XCTest
 
 public struct HomeScreenRobot: Robot {
