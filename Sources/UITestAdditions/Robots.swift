@@ -63,7 +63,7 @@ public struct SettingsRobot: Robot {
 	public func setDarkMode(_ enabled: Bool) -> Self {
 		action {
 			let developerButton = app.cells["Developer"]
-			developerButton.scrollTo(in: app)
+			developerButton.scrollTo(in: app.tables.firstMatch)
 			developerButton.tap()
 			let darkModeSwitch = app.switches["Dark Appearance"]
 			if (darkModeSwitch.value as? String == "1") != enabled {
