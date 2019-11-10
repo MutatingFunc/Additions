@@ -16,12 +16,12 @@ public protocol Robot {
 }
 
 public extension Robot {
-	static var appBundleID: String? {return nil}
-	var app: XCUIApplication {return Self.appBundleID =>? XCUIApplication.init ?? XCUIApplication()}
+	static var appBundleID: String? {nil}
+	var app: XCUIApplication {Self.appBundleID =>? XCUIApplication.init ?? XCUIApplication()}
 	
 	
 	func action<Result>(_ name: String = #function, _ action: () -> Result) -> Result {
-		return XCTContext.runActivity(named: name, block: {_ in action()})
+		XCTContext.runActivity(named: name, block: {_ in action()})
 	}
 	
 	@discardableResult
@@ -41,16 +41,12 @@ public extension Robot {
 	}
 	#endif
 	
-	@available(*, renamed: "returnToHome", message: "Devices may not have a home button")
-	func pressHome() -> HomeScreenRobot {return returnToHome()}
+	@available(*, renamed: "showHomescreen")
+	func returnToHome() -> HomeScreenRobot {showHomeScreen()}
 	
-	func returnToHome() -> HomeScreenRobot {
-		return HomeScreenRobot()
-	}
+	func showHomeScreen() -> HomeScreenRobot {.init()}
 	
-	func launchSettings() -> SettingsRobot {
-		return SettingsRobot()
-	}
+	func launchSettings() -> SettingsRobot {.init()}
 }
 
 #if !os(tvOS)
@@ -58,10 +54,12 @@ public protocol PoppableRobot: Robot {
 	associatedtype Parent: Robot
 }
 public extension PoppableRobot {
-	func pop() -> Parent {return action {
-		app.navigationBars.firstMatch.buttons.firstMatch.tap()
-		return Parent()
-	}}
+	func pop() -> Parent {
+		action {
+			app.navigationBars.firstMatch.buttons.firstMatch.tap()
+			return .init()
+		}
+	}
 }
 #endif
 #endif

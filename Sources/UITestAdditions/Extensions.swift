@@ -14,7 +14,7 @@ public typealias Test = XCTestCase
 public extension XCTestCase {
 	@discardableResult
 	func withActivity<Result>(_ name: String, _ action: (XCTActivity) -> Result) -> Result {
-		return XCTContext.runActivity(named: name, block: action)
+		XCTContext.runActivity(named: name, block: action)
 	}
 }
 
@@ -26,10 +26,10 @@ public extension XCTNSPredicateExpectation {
 
 public extension XCUIElementQuery {
 	func matching(_ predicate: @escaping (XCUIElementAttributes) -> Bool) -> XCUIElementQuery {
-		return self.matching(NSPredicate(for: XCUIElementAttributes.self, predicate))
+		self.matching(NSPredicate(for: XCUIElementAttributes.self, predicate))
 	}
 	func element(matching predicate: @escaping (XCUIElementAttributes) -> Bool) -> XCUIElement {
-		return self.element(matching: NSPredicate(for: XCUIElementAttributes.self, predicate))
+		self.element(matching: NSPredicate(for: XCUIElementAttributes.self, predicate))
 	}
 	func wait(for predicate: @escaping (XCUIElementQuery) -> Bool, timeout: TimeInterval = 8, _ result: XCTWaiter.Result = .completed) {
 		let expectation = XCTNSPredicateExpectation(
@@ -42,13 +42,13 @@ public extension XCUIElementQuery {
 	#if swift(<999)
 	//https://apple.github.io/swift-evolution/#?search=Key%20Path%20Expressions%20as%20Functions
 	func matching(_ predicate: KeyPath<XCUIElementAttributes, Bool>) -> XCUIElementQuery {
-		return matching({$0[keyPath: predicate]})
+		matching({$0[keyPath: predicate]})
 	}
 	func element(matching predicate: KeyPath<XCUIElementAttributes, Bool>) -> XCUIElement {
-		return element(matching: {$0[keyPath: predicate]})
+		element(matching: {$0[keyPath: predicate]})
 	}
 	func wait(for predicate: KeyPath<XCUIElementQuery, Bool>, timeout: TimeInterval = 8, _ result: XCTWaiter.Result = .completed) {
-		return wait(for: {$0[keyPath: predicate]}, timeout: timeout, result)
+		wait(for: {$0[keyPath: predicate]}, timeout: timeout, result)
 	}
 	#endif
 }
@@ -61,7 +61,7 @@ public extension XCUIElement {
 	#if swift(<999)
 	//https://apple.github.io/swift-evolution/#?search=Key%20Path%20Expressions%20as%20Functions
 	func wait(for predicate: KeyPath<XCUIElement, Bool>, timeout: TimeInterval = 8, _ result: XCTWaiter.Result = .completed) {
-		return wait(for: {$0[keyPath: predicate]}, timeout: timeout, result)
+		wait(for: {$0[keyPath: predicate]}, timeout: timeout, result)
 	}
 	#endif
 }
