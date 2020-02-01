@@ -26,7 +26,13 @@ public class TableViewCell<ViewType: UIView>: UITableViewCell, ReuseIdentifiable
 		}
 		view.removeFromSuperview()
 		self.containedView = view
-		self.contentView.addSubview(containedView.autolayout(), constraining: .allSides)
+		self.contentView.addSubview(containedView.autolayout())
+		NSLayoutConstraint.activate([
+			self.contentView.topAnchor.constraint(equalTo: containedView.topAnchor),
+			self.contentView.bottomAnchor.constraint(equalTo: containedView.bottomAnchor),
+			self.contentView.leadingAnchor.constraint(equalTo: containedView.leadingAnchor),
+			self.contentView.trailingAnchor.constraint(equalTo: containedView.trailingAnchor),
+		])
 		return self
 	}
 }
@@ -49,7 +55,13 @@ public class CollectionViewCell<ViewType: UIView>: UICollectionViewCell, ReuseId
 		}
 		view.removeFromSuperview()
 		self.containedView = view
-		self.contentView.addSubview(containedView.autolayout(), constraining: .allSides)
+		self.contentView.addSubview(containedView.autolayout())
+		NSLayoutConstraint.activate([
+			self.contentView.topAnchor.constraint(equalTo: containedView.topAnchor),
+			self.contentView.bottomAnchor.constraint(equalTo: containedView.bottomAnchor),
+			self.contentView.leadingAnchor.constraint(equalTo: containedView.leadingAnchor),
+			self.contentView.trailingAnchor.constraint(equalTo: containedView.trailingAnchor),
+		])
 		return self
 	}
 }
