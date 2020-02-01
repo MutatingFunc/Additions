@@ -10,6 +10,63 @@ import Combine
 import SwiftUI
 
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public protocol _OptionalProtocol {
+	associatedtype WrappedValue
+	var _wrappedValue: WrappedValue? {get set}
+}
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Optional: _OptionalProtocol {
+	public var _wrappedValue: Self {
+		get {self}
+		set {self = newValue}
+	}
+}
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public extension Binding where Value: _OptionalProtocol {
+	var ifCurrentlyNonNil: Binding<Value.WrappedValue>? {
+		self.wrappedValue._wrappedValue != nil
+			? .init(
+				get: {self.wrappedValue._wrappedValue!},
+				set: {self.wrappedValue._wrappedValue = $0}
+			)
+			: nil
+	}
+	var forceUnwrapping: Binding<Value.WrappedValue> {
+		.init(
+			get: {self.wrappedValue._wrappedValue!},
+			set: {self.wrappedValue._wrappedValue = $0}
+		)
+	}
+}
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public extension Sequence {
+	func numbered<Range>(by n: Range) -> [Enumerated<Element>]
+		where Range: Sequence, Range.Element == Int {
+		zip(n, self).map(Enumerated.init)
+	}
+}
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@dynamicMemberLookup
+public struct Enumerated<Element> {
+	public var number: Int
+	public var element: Element
+	
+	public subscript<T>(dynamicMember keyPath: WritableKeyPath<Element, T>) -> T {
+    get { element[keyPath: keyPath] }
+    set { element[keyPath: keyPath] = newValue }
+  }
+}
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Enumerated: Identifiable where Element: Identifiable {
+	public var id: Element.ID {element.id}
+}
+
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public typealias ResultPublisher<ContentType> = AnyPublisher<Result<ContentType, Error>, Never>
 
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
@@ -25,7 +82,7 @@ public extension Publisher {
 	var asResultForUI: ResultPublisher<Output> {
 		self
 			.asResult
-			.receive(on: DispatchQueue.main)
+			.receive(on: RunLoop.main)
 			.asAny
 	}
 }
