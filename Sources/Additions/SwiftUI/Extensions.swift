@@ -96,4 +96,28 @@ public extension View {
 public extension Cancellable {
 	var asAny: AnyCancellable {AnyCancellable(self)}
 }
+
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public extension CGRect {
+	func inset(by edgeInsets: EdgeInsets, layoutDirection: LayoutDirection) -> CGRect {
+		switch layoutDirection {
+		case .rightToLeft:
+			return self.insetBy(
+				top: edgeInsets.top,
+				left: edgeInsets.trailing,
+				bottom: edgeInsets.bottom,
+				right: edgeInsets.leading
+			)
+		case .leftToRight: fallthrough
+		@unknown case _:
+			return self.insetBy(
+				top: edgeInsets.top,
+				left: edgeInsets.leading,
+				bottom: edgeInsets.bottom,
+				right: edgeInsets.trailing
+			)
+		}
+	}
+}
+
 #endif
