@@ -12,6 +12,7 @@ import UIKit
 #if canImport(CoreGraphics)
 import CoreGraphics
 
+@available(*, deprecated, message: "A native solution is available")
 public extension CGRect {
 	func insetBy(_ edgeInsets: UIEdgeInsets) -> CGRect {
 		return insetBy(top: edgeInsets.top, left: edgeInsets.left, bottom: edgeInsets.bottom, right: edgeInsets.right)

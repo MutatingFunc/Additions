@@ -30,7 +30,7 @@ public struct WritableUserDefault<Wrapped: UserDefaultsCodable> {
 		self.defaultValue = wrappedValue; self.userDefaults = userDefaults; self.key = key
 	}
 	
-	public func removeStoredValue() {
+	public func reset() {
 		userDefaults.removeObject(forKey: key)
 	}
 }
