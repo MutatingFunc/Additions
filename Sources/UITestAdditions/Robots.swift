@@ -5,14 +5,12 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
-#if !os(watchOS) && canImport(XCTest)
+#if canImport(XCTest) && os(iOS) && !TARGET_OS_MACCATALYST
 import XCTest
 
 public struct HomeScreenRobot: Robot {
 	public init() {
-		#if canImport(UIKit) && !os(watchOS)
 		XCUIDevice.shared.press(.home)
-		#endif
 	}
 }
 

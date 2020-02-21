@@ -5,7 +5,7 @@
 //  Created by James Froggatt on 19.05.2019.
 //
 
-#if !os(watchOS) && canImport(XCTest)
+#if canImport(XCTest)
 import XCTest
 
 import Additions
@@ -34,7 +34,7 @@ public extension Robot {
 		return self
 	}
 	
-	#if canImport(UIKit) && os(iOS)
+	#if os(iOS) && !TARGET_OS_MACCATALYST
 	func rotate(to orientation: UIDeviceOrientation) -> Self {
 		XCUIDevice.shared.orientation = orientation
 		return self
@@ -49,7 +49,7 @@ public extension Robot {
 	func launchSettings() -> SettingsRobot {.init()}
 }
 
-#if !os(tvOS)
+#if os(iOS)
 public protocol PoppableRobot: Robot {
 	associatedtype Parent: Robot
 }

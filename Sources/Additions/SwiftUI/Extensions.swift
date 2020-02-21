@@ -9,12 +9,12 @@
 import Combine
 import SwiftUI
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public protocol _OptionalProtocol {
 	associatedtype WrappedValue
 	var _wrappedValue: WrappedValue? {get set}
 }
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 extension Optional: _OptionalProtocol {
 	public var _wrappedValue: Self {
 		get {self}
@@ -22,7 +22,7 @@ extension Optional: _OptionalProtocol {
 	}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension Binding where Value: _OptionalProtocol {
 	var ifCurrentlyNonNil: Binding<Value.WrappedValue>? {
 		self.wrappedValue._wrappedValue != nil
@@ -40,7 +40,7 @@ public extension Binding where Value: _OptionalProtocol {
 	}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension Sequence {
 	func numbered<Range>(by n: Range) -> [Enumerated<Element>]
 		where Range: Sequence, Range.Element == Int {
@@ -48,7 +48,7 @@ public extension Sequence {
 	}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 @dynamicMemberLookup
 public struct Enumerated<Element> {
 	public var number: Int
@@ -60,16 +60,16 @@ public struct Enumerated<Element> {
   }
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 extension Enumerated: Identifiable where Element: Identifiable {
 	public var id: Element.ID {element.id}
 }
 
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public typealias ResultPublisher<ContentType> = AnyPublisher<Result<ContentType, Error>, Never>
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension Publisher {
 	var asAny: AnyPublisher<Output, Failure> {AnyPublisher(self)}
 	
@@ -87,17 +87,17 @@ public extension Publisher {
 	}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension View {
 	var asAny: AnyView {AnyView(self)}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension Cancellable {
 	var asAny: AnyCancellable {AnyCancellable(self)}
 }
 
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension CGRect {
 	func inset(by edgeInsets: EdgeInsets, layoutDirection: LayoutDirection) -> CGRect {
 		switch layoutDirection {

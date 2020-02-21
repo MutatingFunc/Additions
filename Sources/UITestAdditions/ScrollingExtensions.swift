@@ -5,7 +5,7 @@
 //  Created by James Froggatt on 10/11/2019.
 //
 
-#if !os(watchOS) && canImport(XCTest)
+#if os(iOS) && canImport(XCTest)
 import XCTest
 
 public enum SwipeDirection {
@@ -16,6 +16,7 @@ public enum SwipeDirection {
 }
 
 public extension XCUIElement {
+	#if !TARGET_OS_MACCATALYST
 	func swipe(_ direction: SwipeDirection) {
 		switch direction {
 		case .up: swipeUp()
@@ -24,6 +25,7 @@ public extension XCUIElement {
 		case .right: swipeRight()
 		}
 	}
+	#endif
 }
 
 public extension XCUIElement {
