@@ -39,7 +39,7 @@ public extension XCUIElementQuery {
 		XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: timeout), result)
 	}
 	
-	#if swift(<999)
+	#if swift(<5.2)
 	//https://apple.github.io/swift-evolution/#?search=Key%20Path%20Expressions%20as%20Functions
 	func matching(_ predicate: KeyPath<XCUIElementAttributes, Bool>) -> XCUIElementQuery {
 		matching({$0[keyPath: predicate]})
@@ -58,7 +58,7 @@ public extension XCUIElement {
 		let expectation = XCTNSPredicateExpectation(suchThat: self, fulfils: predicate)
 		XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: timeout), result)
 	}
-	#if swift(<999)
+	#if swift(<5.2)
 	//https://apple.github.io/swift-evolution/#?search=Key%20Path%20Expressions%20as%20Functions
 	func wait(for predicate: KeyPath<XCUIElement, Bool>, timeout: TimeInterval = 8, _ result: XCTWaiter.Result = .completed) {
 		wait(for: {$0[keyPath: predicate]}, timeout: timeout, result)

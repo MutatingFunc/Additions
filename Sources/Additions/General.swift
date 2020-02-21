@@ -47,7 +47,7 @@ extension Optional: Sequence where Wrapped: Sequence {
 	}
 }
 
-@available(*, deprecated, message: "Use native alternatives")
+#if swift(<5.2)
 public extension Optional {
 	func map<T>(_ keyPath: KeyPath<Wrapped, T>) -> T? {
 		return self.map{$0[keyPath: keyPath]}
@@ -56,7 +56,6 @@ public extension Optional {
 		return self.flatMap{$0[keyPath: keyPath]}
 	}
 }
-@available(*, deprecated, message: "Use native alternatives")
 public extension Sequence {
 	func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
 		return self.map{$0[keyPath: keyPath]}
@@ -76,6 +75,7 @@ public extension Collection {
 		get {return self.indices.contains(index) ? self[index] : nil}
 	}
 }
+#endif
 
 public extension RangeReplaceableCollection {
 	///removes the element at the source index and inserts it at the destination
