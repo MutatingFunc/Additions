@@ -24,15 +24,15 @@ public struct SettingsRobot: Robot {
 	
 	#if os(iOS)
 	@discardableResult
-	public func setDefaultKeyboard(_ keyboardName: String) -> Self {
+	public func setDefaultKeyboard(_ keyboardName: String, extensionBundleID: String) -> Self {
 		action {
 			if app.staticTexts["General"].exists {
 				app.staticTexts["General"].tap()
 				app.staticTexts["Keyboard"].tap()
 				app.staticTexts["Keyboards"].tap()
 			}
-			let ckeyCell = app.cells["com.James.CustomKeyboard.Custom-Keyboard-Extension"]
-			if ckeyCell.exists == false {
+			let keyboardCell = app.cells[extensionBundleID]
+			if keyboardCell.exists == false {
 				app.staticTexts["Add New Keyboard..."].tap()
 				let addCell = app.staticTexts.matching(identifier: keyboardName) //Multiple matches when view is modal
 				addCell.allElementsBoundByIndex.forEach {
@@ -42,7 +42,7 @@ public struct SettingsRobot: Robot {
 				}
 			}
 			app.navigationBars.buttons["Edit"].tap()
-			ckeyCell.buttons["Reorder " + keyboardName].press(forDuration: 1, thenDragTo: app.navigationBars.firstMatch)
+			keyboardCell.buttons["Reorder " + keyboardName].press(forDuration: 1, thenDragTo: app.navigationBars.firstMatch)
 			let deleteButtons = app.tables.cells.buttons.matching{$0.label.contains("Delete") && ($0.label.contains(keyboardName) == false)}
 			var button = deleteButtons.allElementsBoundByIndex.last(where: {$0.isHittable})
 			while deleteButtons.count > 0 {
