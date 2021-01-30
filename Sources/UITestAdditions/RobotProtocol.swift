@@ -20,8 +20,8 @@ public extension Robot {
 	var app: XCUIApplication {Self.appBundleID =>? XCUIApplication.init ?? XCUIApplication()}
 	
 	
-	func action<Result>(_ name: String = #function, _ action: () -> Result) -> Result {
-		XCTContext.runActivity(named: name, block: {_ in action()})
+	func action<Result>(_ name: String = #function, _ action: () throws -> Result) rethrows -> Result {
+		try XCTContext.runActivity(named: name, block: {_ in try action()})
 	}
 	
 	@discardableResult

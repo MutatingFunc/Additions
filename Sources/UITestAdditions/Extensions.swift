@@ -13,8 +13,8 @@ public typealias Test = XCTestCase
 
 public extension XCTestCase {
 	@discardableResult
-	func withActivity<Result>(_ name: String, _ action: (XCTActivity) -> Result) -> Result {
-		XCTContext.runActivity(named: name, block: action)
+	func withActivity<Result>(_ name: String, _ action: (XCTActivity) throws -> Result) rethrows -> Result {
+		try XCTContext.runActivity(named: name, block: action)
 	}
 }
 
