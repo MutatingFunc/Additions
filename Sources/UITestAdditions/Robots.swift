@@ -27,10 +27,10 @@ public struct SettingsRobot: Robot {
 	@discardableResult
 	public func setDefaultKeyboard(_ keyboardName: String, extensionBundleID: String) -> Self {
 		action {
-			if app.staticTexts["General"].exists {
-				app.staticTexts["General"].tap()
-				app.staticTexts["Keyboard"].tap()
-				app.staticTexts["KEYBOARDS"].tap()
+			if app.tables.staticTexts["General"].exists {
+				app.tables.staticTexts["General"].tap()
+				app.tables.staticTexts["Keyboard"].tap()
+				app.tables.staticTexts["KEYBOARDS"].tap()
 			}
 			let keyboardCell = app.cells[extensionBundleID]
 			if keyboardCell.exists == false {
