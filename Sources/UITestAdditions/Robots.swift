@@ -29,7 +29,7 @@ public struct SettingsRobot: Robot {
 			if app.staticTexts["General"].exists {
 				app.staticTexts["General"].tap()
 				app.staticTexts["Keyboard"].tap()
-				app.staticTexts["Keyboards"].tap()
+				app.staticTexts["KEYBOARDS"].tap()
 			}
 			let keyboardCell = app.cells[extensionBundleID]
 			if keyboardCell.exists == false {
