@@ -9,13 +9,14 @@
 import XCTest
 
 public struct HomeScreenRobot: Robot {
+	public static var appBundleID: String? {"com.apple.springboard"}
 	public init() {
 		XCUIDevice.shared.press(.home)
 	}
 }
 
 public struct SettingsRobot: Robot {
-	public static var appBundleID: String? {return "com.apple.Preferences"}
+	public static var appBundleID: String? {"com.apple.Preferences"}
 	
 	public init() {
 		app.launch()
