@@ -42,7 +42,8 @@ extension Optional: IteratorProtocol where Wrapped: IteratorProtocol {
 }
 extension Optional: Sequence where Wrapped: Sequence {
 	public typealias Iterator = Wrapped.Iterator?
-	public func makeIterator() -> Wrapped.Iterator? {
+	public typealias Element = Iterator.Element
+	public __consuming func makeIterator() -> Wrapped.Iterator? {
 		return self?.makeIterator()
 	}
 }
